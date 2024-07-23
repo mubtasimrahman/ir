@@ -1,0 +1,20 @@
+@mixin mask-button($bcolor, $url, $x1, $y1, $bor, $col) {
+  background: $bcolor;
+  mask: url($url);
+  mask-size: $x1 $y1;
+  border: $bor;
+  color: $col;
+}
+
+@mixin poppins-semibold {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin poppins-bold {
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+

@@ -1,0 +1,72 @@
+@import "../../../scss/mixins";
+
+.description-container {
+  position: relative;
+  color: #f2f2f2;
+  font-size: 0.7rem;
+  overflow: hidden;
+}
+
+.mask {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  @include mask-button(
+    linear-gradient(90deg, #000000, #1e1e1e, #000000),
+    "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+    2300%,
+    100%,
+    none,
+    #f2f2f2
+  );
+
+  &.animate-mask {
+    animation: ani 0.7s steps(22) forwards;
+  }
+
+  &.reverse-mask {
+    animation: ani2 0.7s steps(22) forwards;
+  }
+}
+
+@keyframes ani {
+  from {
+    mask-position: 0 0;
+  }
+
+  to {
+    mask-position: 100% 0;
+  }
+}
+
+@keyframes ani2 {
+  from {
+    mask-position: 100% 0;
+  }
+
+  to {
+    mask-position: 0 0;
+  }
+}
+
+.intro {
+  color: #f2f2f2;
+  font-size: 2.5rem;
+}
+
+.social-img {
+  max-width: 3.125rem;
+  max-height: 3.125rem;
+  margin-right: 1rem;
+}
+
+@media screen and (width<=991.8px) {
+  .photo{
+    max-width: 750px;
+
+}
+}
+
+

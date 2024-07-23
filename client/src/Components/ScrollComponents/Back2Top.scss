@@ -1,0 +1,17 @@
+.to-top {
+  z-index: 19;
+  max-width: max-content;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  transition: opacity 0.4s; /* Adding a transition for smoother appearance */
+
+  &.visible {
+    opacity: 1;
+  }
+}
