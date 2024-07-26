@@ -18,10 +18,6 @@ $padding-less: 0.8rem;
   border-radius: 0.75rem;
 }
 
-.img-ir {
-  width: 80%;
-}
-
 .transformed {
   writing-mode: vertical-rl;
 }
@@ -129,53 +125,41 @@ ul {
   padding-top: $padding-less;
   padding-bottom: $padding-less;
 }
+
 .padding-ir {
-  padding-top: $padding-less;
-  padding-bottom: $padding-less;
+  padding: $padding-less $padding-more;
 }
+
+// .img-ir{
+//   width:80%
+// }
 
 .our-stack-logo {
   width: var(--stack-logo-dimension);
   height: var(--stack-logo-dimension);
 }
 
-@media screen and (width<=767.8px) {
-  .padding-ir {
-    padding-top: $padding-more;
-    padding-bottom: $padding-more;
-  }
-}
-
 .padding-more {
-  padding-top: $padding-more;
-  padding-bottom: $padding-more;
+  padding-top: $padding-more * 1.05;
+  padding-bottom: $padding-more * 1.05;
 }
 
-@media screen and (width <= 991.8px) {
+.smaller-font {
+  font-size: $smaller-font;
+}
+
+@media screen and (width >= 1400px) {
+  .custom-fb {
+    height: 110%;
+  }
+
   .padding-more {
-    padding-top: $padding-more * 0.5;
-    padding-bottom: $padding-more * 0.6;
-  }
-
-  .poppins-semibold-heading {
-    margin-top: 1rem * 0.9;
-  }
-
-  .media-img {
-    max-width: 2.5rem;
-    max-height: 2.5rem;
-  }
-
-  .bento-box {
-    --stack-logo-dimension: 50px;
+    padding-top: $padding-more * 1.1;
+    padding-bottom: $padding-more * 1.1;
   }
 }
 
-.custom-fb {
-  flex-basis: 80%;
-}
-
-@media screen and (width >= 1200px) and (width <= 1399.8px) {
+@media screen and (width >= 1200px) and (width < 1400px) {
   .custom-fb {
     height: 110%;
   }
@@ -185,13 +169,13 @@ ul {
   }
 }
 
-@media screen and (width >= 992px) and (width <= 1199.8px) {
+@media screen and (width >= 992px) and (width < 1200px) {
   .custom-fb {
     height: 115%;
   }
 }
 
-@media screen and (width >= 768px) and (width <= 991.8px) {
+@media screen and (width >= 768px) and (width < 992px) {
   .custom-fb {
     height: 100%;
   }
@@ -209,36 +193,73 @@ ul {
   word-spacing: normal;
 }
 
-@media screen and (width >= 768px) and (width <= 1399.8px) {
+@media screen and (width >= 768px) and (width < 1400px) {
   .text-wrap {
     word-spacing: 5rem;
   }
 }
 
-@media screen and (width >= 992px) and (width <= 1399.8px) {
+@media screen and (width >= 992px) and (width < 1400px) {
   .poppins-semibold-heading {
     font-size: 3rem;
   }
 }
 
-.smaller-font {
-  font-size: $smaller-font;
-}
-
-@media screen and (width >= 576px) and (width <= 991.8px) {
+@media screen and (width >= 576px) and (width < 992px) {
   .smaller-font {
     font-size: $smaller-font * 0.85;
   }
+
+  .custom-fb {
+    height: 113.5%;
+  }
 }
 
-@media screen and (width<=575.8px) {
+@media screen and (width < 992px) {
+  .padding-more {
+    padding-top: $padding-more * 0.5;
+    padding-bottom: $padding-more * 0.8;
+  }
+
+  .poppins-semibold-heading {
+    margin-top: 1rem * 0.9;
+  }
+
+  .media-img {
+    max-width: 2.5rem;
+    max-height: 2.5rem;
+  }
+
+  .bento-box {
+    --stack-logo-dimension: 50px;
+  }
+}
+
+@media screen and (width < 768px) {
+  .padding-ir {
+    padding-top: $padding-more;
+    padding-bottom: $padding-more;
+  }
+
+  .negative-margin {
+    margin-left: -2rem;
+    margin-right: 0;
+  }
+
+  .min-width-img {
+    min-width: 55px;
+  }
+}
+
+@media screen and (width < 576px) {
   .bento-box {
     --stack-logo-dimension: 45px;
   }
 }
 
-// .temp{
-//   line-height: 0px;
-//   padding-bottom: 1rem;
-//   padding-top: 1rem;
-// }
+@media screen and (width<400px) {
+  .negative-margin {
+    margin-left: -0.6rem;
+    margin-right: 0;
+  }
+}

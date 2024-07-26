@@ -20,9 +20,9 @@ function BentoBox({ id }: { id: string }) {
     >
       <div className="row gx-md-6">
         <div className="col-md left-col mb-md-0 mb-3">
-          <div className="row g-2">
-            <div className="col-12 ir padding-ir">
-              <img className="img-ir" src={IrrealVisuals} alt="" />
+          <div className="row gy-2 gx-3">
+            <div className="col-12  ">
+              <img className="img-ir ir padding-ir" src={IrrealVisuals} alt="" />
             </div>
 
             <div className="col-6">
@@ -60,15 +60,16 @@ function BentoBox({ id }: { id: string }) {
           </div>
         </div>
         <div className="col right-col">
-          <div className="row gy-2 gx-5">
-            <div className="col-2 d-flex justify-content-around align-items-center transformed ir padding-less">
+         {/* gx-5 original */}
+          <div className="row gy-2 gx-md-5 gx-0  justify-content-center">
+            <div className="col-2 d-flex justify-content-around align-items-center transformed ir padding-less min-width-img">
               <img className="media-img" src={FBCursor} alt="" />
               <img className="media-img" src={BHCursor} alt="" />
               <img className="media-img" src={IGCursor} alt="" />
             </div>
-            <div className="col-10 d-flex justify-content-center">
-              <div className="row gy-2">
-                <div className=" col-12 d-flex flex-wrap ir poppins-semibold smaller-font padding-less justify-content-around ">
+            <div className="col-md-10 col-9 d-flex justify-content-center">
+              <div className="row gy-2 negative-margin justify-content-end">
+                <div className=" col-12  d-flex flex-wrap ir poppins-semibold smaller-font padding-less justify-content-around ">
                   <div className="rc">RECENT CLIENTS</div>
                   <div className="text-start">
                     <ul className="poppins-regular">
@@ -83,7 +84,7 @@ function BentoBox({ id }: { id: string }) {
                     </ul>
                   </div>
                 </div>
-                <div className=" col-12 ir poppins-regular padding-less smaller-font">
+                <div className="col-12  ir poppins-regular padding-less smaller-font">
                   <div>
                     Our primary experties lies in
                     <div className="poppins-semibold mb-2">
@@ -100,7 +101,7 @@ function BentoBox({ id }: { id: string }) {
             </div>
 
             <div className="col-12  justify-content-center">
-              <div className="ir custom-fb padding-less">
+              <div className="d-flex flex-column justify-content-between ir custom-fb padding-less">
                 <div className="poppins-semibold temp"> OUR STACK</div>
 
                 <div className="our-stack-slider">
