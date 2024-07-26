@@ -16,12 +16,12 @@ function BentoBox({ id }: { id: string }) {
   return (
     <div
       id={id}
-      className="container px-md-2 px-sm-1 px-5 mt-lg-10 mt-8 mb-sm-8 mb-4 text-center"
+      className="container px-md-2 px-sm-1 px-5 mt-lg-10 mt-8 mb-sm-8 mb-4 text-center bento-box"
     >
       <div className="row gx-md-6">
         <div className="col-md left-col mb-md-0 mb-3">
           <div className="row g-2">
-            <div className="col-12 ir padding-less">
+            <div className="col-12 ir padding-ir">
               <img className="img-ir" src={IrrealVisuals} alt="" />
             </div>
 
@@ -110,9 +110,8 @@ function BentoBox({ id }: { id: string }) {
                       return (
                         <div className="our-stack-slide" key={index}>
                           <img
+                            className="our-stack-logo"
                             src={imageSrc}
-                            height="65"
-                            width="65"
                             alt={`Slide ${index.toString()}`}
                           />
                         </div>
