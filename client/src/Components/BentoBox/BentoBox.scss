@@ -263,3 +263,10 @@ ul {
     margin-right: 0;
   }
 }
+
+@media screen and (width<350px) {
+  .negative-margin {
+    margin-left: 0.6rem;
+    margin-right: 0;
+  }
+}

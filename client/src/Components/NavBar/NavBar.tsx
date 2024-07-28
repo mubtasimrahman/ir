@@ -8,7 +8,7 @@ function NavBar() {
       where when expanding, in chromium it causes the jitter but does not take space whereas
       with firefox there is not jitter, but the expanded content causes shifts. Also the issue of how it will
       work in tandem with back2top button*/
-      className="navbar navbar-expand-lg poppins-regular fixed-top mb-8"
+      className="navbar navbar-expand-lg poppins-regular fixed-top"
       data-bs-theme="dark"
     >
       <div className="container ">

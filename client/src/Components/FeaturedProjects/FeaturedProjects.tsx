@@ -36,9 +36,9 @@ const clients = [
   },
 ];
 
-function FeaturedProjects({id}:{id:string}) {
+function FeaturedProjects() {
   return (
-    <div id={id} className="featured-projects my-4">
+    <div className="featured-projects my-4">
       <div className="featured-title poppins-bold-heading">
         Featured Clients
       </div>
@@ -55,7 +55,11 @@ function FeaturedProjects({id}:{id:string}) {
                       </h5>
                       <div className="col-lg-3 col-2 button-container-fp poppins-regular">
                         <span className="mask-fp">GO</span>
-                        <button className="button-fp" type="button" name="Hover">
+                        <button
+                          className="button-fp"
+                          type="button"
+                          name="Hover"
+                        >
                           Learn More
                         </button>
                       </div>

@@ -5,7 +5,7 @@ import FBCursor from "../../assets/Facebookcursor.svg";
 import TTCursor from "../../assets/Tiktokcursor.svg";
 import "./AllTrades.scss";
 
-function AllTrades({id}:{id:string}) {
+function AllTrades() {
   const maskRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function AllTrades({id}:{id:string}) {
   }, []);
 
   return (
-    <div id ={id} className="container-fluid description-container px-4 mt-4 text-lg-start text-center poppins-light">
+    <div className="container-fluid description-container px-4 mt-4 text-lg-start text-center poppins-light">
       <div className="row gx-5 justify-content-center align-items-center">
         <div className="col-xxl-4 col-lg-5 ">
           <img className="photo" src={Photo} alt="" />

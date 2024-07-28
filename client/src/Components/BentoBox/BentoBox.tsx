@@ -12,17 +12,18 @@ import APP from "../../assets//bentoBox/Adobe Premiere Pro.svg";
 
 const Logos = [AI, AA, AP, APP, AAE];
 
-function BentoBox({ id }: { id: string }) {
+function BentoBox() {
   return (
-    <div
-      id={id}
-      className="container px-md-2 px-sm-1 px-5 mt-lg-10 mt-8 mb-sm-8 mb-4 text-center bento-box"
-    >
+    <div className="container px-md-2 px-sm-1 px-5 mt-lg-10 mt-8 mb-sm-8 mb-4 text-center bento-box">
       <div className="row gx-md-6">
         <div className="col-md left-col mb-md-0 mb-3">
           <div className="row gy-2 gx-3">
             <div className="col-12  ">
-              <img className="img-ir ir padding-ir" src={IrrealVisuals} alt="" />
+              <img
+                className="img-ir ir padding-ir"
+                src={IrrealVisuals}
+                alt=""
+              />
             </div>
 
             <div className="col-6">
@@ -60,8 +61,8 @@ function BentoBox({ id }: { id: string }) {
           </div>
         </div>
         <div className="col right-col">
-         {/* gx-5 original */}
-          <div className="row gy-2 gx-md-5 gx-0  justify-content-center">
+          {/* gx-5 original */}
+          <div className="row gy-2 gx-md-5 gx-0  justify-content-between">
             <div className="col-2 d-flex justify-content-around align-items-center transformed ir padding-less min-width-img">
               <img className="media-img" src={FBCursor} alt="" />
               <img className="media-img" src={BHCursor} alt="" />
