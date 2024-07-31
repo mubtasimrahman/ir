@@ -1,5 +1,6 @@
 import "./FeaturedProjects.scss";
 import demoLogo from "../../assets/vite.svg";
+import LazyMask from "../WrapperComponents/LazyMask";
 
 const clients = [
   {
@@ -36,9 +37,9 @@ const clients = [
   },
 ];
 
-function FeaturedProjects() {
+function FeaturedProjects({ id }: { id: string }) {
   return (
-    <div className="featured-projects my-4">
+    <div id={id} className="featured-projects my-4">
       <div className="featured-title poppins-bold-heading">
         Featured Clients
       </div>
@@ -55,13 +56,18 @@ function FeaturedProjects() {
                       </h5>
                       <div className="col-lg-3 col-2 button-container-fp poppins-regular">
                         <span className="mask-fp">GO</span>
-                        <button
-                          className="button-fp"
-                          type="button"
-                          name="Hover"
+                        <LazyMask
+                          maskImageUrl="https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png"
+                          rootMargin="75%"
                         >
-                          Learn More
-                        </button>
+                          <button
+                            className="button-fp"
+                            type="button"
+                            name="Hover"
+                          >
+                            Learn More
+                          </button>
+                        </LazyMask>
                       </div>
                     </div>
                   </div>

@@ -76,8 +76,8 @@
     font-size: 0.67rem;
 
     @include mask-button(
-      #000,
-      "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
+      black,
+      var(--mask-image-url),
       3000%,
       100%,
       none,

@@ -23,7 +23,7 @@ $animation-speed-carousel: 25s;
     @include dark-gradient;
 
     content: "";
-    height: 100px;
+    height: calc(100px + 1rem);
     position: absolute;
     width: 15rem;
     z-index: 2;
@@ -57,5 +57,5 @@ $animation-speed-carousel: 25s;
 }
 
 .slide {
-  padding: 0 3rem;
+  padding: 0.5rem 3rem;
 }

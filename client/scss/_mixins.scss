@@ -1,6 +1,6 @@
 @mixin mask-button($bcolor, $url, $x1, $y1, $bor, $col) {
   background: $bcolor;
-  mask: url($url);
+  mask: $url;
   mask-size: $x1 $y1;
   border: $bor;
   color: $col;
@@ -17,4 +17,3 @@
   font-weight: 700;
   font-style: normal;
 }
-

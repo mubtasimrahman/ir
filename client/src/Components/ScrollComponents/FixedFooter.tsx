@@ -51,6 +51,7 @@ function FixedFooter() {
           }`}
         >
           <span className="mask-ff">Copied</span>
+
           <button
             className={`button-ff ${isClicked ? "clicked" : ""}`}
             type="button"
@@ -66,3 +67,5 @@ function FixedFooter() {
 }
 
 export default FixedFooter;
+/*Problem is that the footer is fixed right below viewport so either viewport is always intersecting
+or never, until the footer rises up */

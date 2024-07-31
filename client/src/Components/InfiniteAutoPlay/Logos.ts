@@ -12,7 +12,7 @@ import Leur from "../../assets/infiniteAutoPlay/Leur.svg";
 import MM from "../../assets/infiniteAutoPlay/Madmen.svg";
 import SA from "../../assets/infiniteAutoPlay/Smart Air.svg";
 import Sparrows from "../../assets/infiniteAutoPlay/Sparrow.svg";
-import UM from "../../assets/infiniteAutoPlay/Unimartt.svg";
+import UM from "../../assets/infiniteAutoPlay/Unimart.svg";
 import WOP from "../../assets/infiniteAutoPlay/wop.svg";
 
 const Logos: string[] = [

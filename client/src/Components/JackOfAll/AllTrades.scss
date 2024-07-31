@@ -5,17 +5,17 @@
   color: #f2f2f2;
   font-size: 0.7rem;
   overflow: hidden;
+  background-color: #282828;
 }
 
 .mask {
   pointer-events: none;
-  width: 100%;
+  width: 101%;
   height: 100%;
-  position: absolute;
 
   @include mask-button(
-    linear-gradient(90deg, #000000, #1e1e1e, #000000),
-    "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+    #1e1e1e,
+    var(--mask-image-url),
     2300%,
     100%,
     none,
@@ -63,10 +63,7 @@
 }
 
 @media screen and (width<=991.8px) {
-  .photo{
+  .photo {
     max-width: 750px;
-
+  }
 }
-}
-
-

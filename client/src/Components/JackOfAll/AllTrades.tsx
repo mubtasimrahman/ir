@@ -3,9 +3,10 @@ import Photo from "../../assets/Photo.svg";
 import IGCursor from "../../assets/Instagramcursor.svg";
 import FBCursor from "../../assets/Facebookcursor.svg";
 import TTCursor from "../../assets/Tiktokcursor.svg";
+import LazyMask from "../WrapperComponents/LazyMask";
 import "./AllTrades.scss";
 
-function AllTrades() {
+function AllTrades({ id }: { id: string }) {
   const maskRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -38,7 +39,10 @@ function AllTrades() {
   }, []);
 
   return (
-    <div className="container-fluid description-container px-4 mt-4 text-lg-start text-center poppins-light">
+    <div
+      id={id}
+      className="container-fluid description-container px-4 mt-4 text-lg-start text-center poppins-light"
+    >
       <div className="row gx-5 justify-content-center align-items-center">
         <div className="col-xxl-4 col-lg-5 ">
           <img className="photo" src={Photo} alt="" />
@@ -60,18 +64,25 @@ function AllTrades() {
             Operating remotely has allowed us to be cost-effective, enabling us
             to pass these savings on to our clients.
           </div>
-          <div className="mb-3">
+          <div className="mb3">
             I have also recetly started my journey as a digital content creator
             to gain a better understanding of popular social media platforms,
             with an aim to better serve our clients.
           </div>
           <div>
-            <img className="social-img" src={FBCursor} alt="" />
-            <img className="social-img" src={IGCursor} alt="" />
-            <img className="social-img" src={TTCursor} alt="" />
+            <img loading="lazy" className="social-img" src={FBCursor} alt="" />
+            <img loading="lazy" className="social-img" src={IGCursor} alt="" />
+            <img loading="lazy" className="social-img" src={TTCursor} alt="" />
           </div>
         </div>
-        <div className="mask" ref={maskRef}></div>
+
+        <LazyMask
+          maskImageUrl="https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png"
+          rootMargin="250%"
+          threshold={0.1}
+        >
+          <div className="mask" ref={maskRef}></div>
+        </LazyMask>
       </div>
     </div>
   );

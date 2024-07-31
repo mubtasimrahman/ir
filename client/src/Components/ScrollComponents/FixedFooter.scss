@@ -20,6 +20,7 @@
 }
 
 .button-container-ff {
+  width: 14rem;
   padding: 0;
   position: relative;
   overflow: hidden;
@@ -51,7 +52,7 @@
 
     @include mask-button(
       linear-gradient(90deg, #000000, #1e1e1e, #000000),
-      "https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png",
+      url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png"),
       7100%,
       100%,
       none,

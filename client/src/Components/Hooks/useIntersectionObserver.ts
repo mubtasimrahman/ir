@@ -1,8 +1,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 function useIntersectionObserver(
-  options: IntersectionObserverInit | undefined,
-  once = true
+  options: IntersectionObserverInit | undefined
 ): [Dispatch<SetStateAction<HTMLDivElement | null>>, boolean] {
   const [isIntersecting, setIntersecting] = useState(false);
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
@@ -13,16 +12,16 @@ function useIntersectionObserver(
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIntersecting(true);
-        if (once) observer.disconnect();
+        observer.disconnect();
       }
     }, options);
 
     observer.observe(ref);
 
     return () => {
-      if (!once) observer.disconnect();
+      observer.disconnect();
     };
-  }, [ref, options, once]);
+  }, [ref, options]);
 
   return [setRef, isIntersecting];
 }
