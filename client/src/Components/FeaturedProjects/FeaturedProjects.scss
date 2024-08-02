@@ -61,7 +61,6 @@
 
 .button-container-fp {
   // visibility:hidden;
-
   padding: 0;
   position: relative;
   overflow: hidden;
@@ -121,4 +120,10 @@
   to {
     mask-position: 0 0;
   }
+}
+
+@media screen and (width<400px){
+.custom-width-smaller{
+  max-width: 70%;
+}  
 }

@@ -43,7 +43,7 @@ function FeaturedProjects({ id }: { id: string }) {
       <div className="featured-title poppins-bold-heading">
         Featured Clients
       </div>
-      <div className="container">
+      <div className="container px-sm-1 px-8">
         <div className="row ">
           {clients.map((client, index) => (
             <div key={index} className="col-lg-6 mb-4">
@@ -51,10 +51,10 @@ function FeaturedProjects({ id }: { id: string }) {
                 <div className="card-body">
                   <div className="container">
                     <div className="row justify-content-between align-item-center">
-                      <h5 className="col-lg-9 col-9 poppins-semibold card-title">
+                      <h5 className="col-9 poppins-semibold card-title custom-width-smaller">
                         {client.name}
                       </h5>
-                      <div className="col-lg-3 col-2 button-container-fp poppins-regular">
+                      <div className="col-lg-3 col-sm-2 col button-container-fp poppins-regular ">
                         <span className="mask-fp">GO</span>
                         <LazyMask
                           maskImageUrl="https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png"

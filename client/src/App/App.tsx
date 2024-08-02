@@ -2,8 +2,9 @@ import NavBar from "../Components/NavBar/NavBar";
 import InfiniteAutoPlay from "../Components/InfiniteAutoPlay/InfiniteAutoPlay";
 import BentoBox from "../Components/BentoBox/BentoBox";
 import FixedFooter from "../Components/ScrollComponents/FixedFooter";
-import AllTrades from "../Components/JackOfAll/AllTrades";
+import AllTrades from "../Components/AllTrades/AllTrades";
 import FeaturedProjects from "../Components/FeaturedProjects/FeaturedProjects";
+import ClientExperiences from "../Components/ClientExperiences/ClientExperiences";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <FeaturedProjects id="FeaturedProjects" />
 
       <FixedFooter />
-
+      <ClientExperiences></ClientExperiences>
       <AllTrades id="AllTrades" />
     </div>
   );

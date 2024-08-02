@@ -1,0 +1,118 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .carousel-entries {
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-entry {
+    flex: 0 0 30%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background: #282828;
+    color: #fff;
+    border-radius: 10px;
+    margin: 0 10px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0.6;
+  
+    &.highlight {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  
+    .quote-icon {
+      align-self: flex-end;
+      width: 50px;
+    }
+  
+    blockquote {
+      font-size: 1.2rem;
+      margin: 20px 0;
+    }
+  
+    .author-info {
+      display: flex;
+      align-items: center;
+  
+      img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+  
+      div {
+        display: flex;
+        flex-direction: column;
+  
+        p {
+          margin: 0;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+  
+    &.left {
+      left: 10px;
+    }
+  
+    &.right {
+      right: 10px;
+    }
+  
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .carousel-pills {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  
+    .pill {
+      width: 10px;
+      height: 10px;
+      background: #aaa;
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+  
+      &.active {
+        background: #fff;
+      }
+    }
+  }
+  
