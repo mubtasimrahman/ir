@@ -20,7 +20,7 @@ function App() {
       <FeaturedProjects id="FeaturedProjects" />
 
       <FixedFooter />
-      <ClientExperiences></ClientExperiences>
+      <ClientExperiences id="ClientExperiences"></ClientExperiences>
       <AllTrades id="AllTrades" />
     </div>
   );

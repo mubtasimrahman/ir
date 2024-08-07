@@ -1,118 +1,133 @@
 .carousel-container {
-    position: relative;
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+  padding: 2rem 0;
+}
+
+.carousel-entry {
+  border-right: solid 1rem #1e1e1e;
+  border-left: solid transparent;
+  flex: 0 0 calc(100% / 3);
+  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--website-282828-colour);
+  color: var(--website-white-colour);
+  border-radius: 0.5rem;
+  opacity: 0.7;
+  transition: translate 1s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out,
+    border-left 0.3s ease-in-out, border-right 0.3s ease-in-out;
+
+  &:hover {
+    border-left: solid gray;
+    opacity: 1;
+    transform: scale(1, 1.05);
+  }
+
+  .quote-icon {
+    margin-right: 1rem;
+    align-self: flex-end;
+    width: 3rem;
+  }
+
+  blockquote {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+
+  .author-info {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .carousel-wrapper {
     display: flex;
-    align-items: center;
+
+    img {
+      border-radius: 25%;
+      width: calc(88rem / 24);
+      height: calc(88rem / 24);
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
   }
-  
-  .carousel-entries {
-    display: flex;
-    justify-content: center;
-    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 2%;
+  transform: translateY(-50%);
+  background: none;
+  color: var(--website-white-colour);
+  opacity: 0.8;
+  border: none;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+
+  &.left {
+    right: 50%;
   }
-  
-  .carousel-entry {
-    flex: 0 0 30%;
-    box-sizing: border-box;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    background: #282828;
-    color: #fff;
-    border-radius: 10px;
-    margin: 0 10px;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    opacity: 0.6;
-  
-    &.highlight {
-      transform: scale(1.1);
+
+  &.right {
+    left: 50%;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    scale: 1.1 0.9;
+  }
+}
+
+.carousel-pills {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50%;
+  display: flex;
+  gap: 0.25rem;
+
+  .pill {
+    width: 2.2rem;
+    height: 0.33rem;
+    background: #aaa;
+    opacity: 0.5;
+    border-radius: 10% / 50%;
+    margin: 0 0.21rem;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
       opacity: 1;
     }
-  
-    .quote-icon {
-      align-self: flex-end;
-      width: 50px;
-    }
-  
-    blockquote {
-      font-size: 1.2rem;
-      margin: 20px 0;
-    }
-  
-    .author-info {
-      display: flex;
-      align-items: center;
-  
-      img {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-      }
-  
-      div {
-        display: flex;
-        flex-direction: column;
-  
-        p {
-          margin: 0;
-          font-size: 0.9rem;
-        }
-      }
+
+    &.active {
+      opacity: 1;
+      background: var(--website-white-colour);
     }
   }
-  
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-  
-    &.left {
-      left: 10px;
-    }
-  
-    &.right {
-      right: 10px;
-    }
-  
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
-  
-  .carousel-pills {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  
-    .pill {
-      width: 10px;
-      height: 10px;
-      background: #aaa;
-      border-radius: 50%;
-      margin: 0 5px;
-      cursor: pointer;
-  
-      &.active {
-        background: #fff;
-      }
-    }
-  }
-  
+}
+
+.author-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 0.25rem;
+
+  // margin-left: 0.5rem;
+  background-color: #1e1e1e;
+  width: 100%;
+  border-top-left-radius: 0.5rem;
+}
+
+/* Couple of options
+I can also remove the space between and add border radius right side of entries
+*/

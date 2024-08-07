@@ -46,7 +46,7 @@ function NavBar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#Testimonials">
+              <a className="nav-link" href="#ClientExperiences">
                 Testimonials
               </a>
             </li>

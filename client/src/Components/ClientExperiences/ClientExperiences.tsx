@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import "./ClientExperiences.scss";
 import BlockQuote from "../../assets/quote.svg";
 
@@ -35,78 +35,134 @@ const items = [
   },
 ];
 
-const getVisibleItems = (index: number, totalItems: number) => {
-  if (totalItems < 3) return items;
+const visibleItems = 3;
 
-  const prevIndex = (index - 1 + totalItems) % totalItems;
-  const nextIndex = (index + 1) % totalItems;
-
-  return [items[prevIndex], items[index], items[nextIndex]];
-};
-
-function ClientExperiences() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+function ClientExperiences({ id }: { id: string }) {
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
   const totalItems = items.length;
+  const entryRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const hintBrowser = useCallback((event: MouseEvent) => {
+    const target = event.currentTarget as HTMLElement;
+    target.style.willChange = "scale";
+  }, []);
+
+  const removeHint = useCallback((event: AnimationEvent) => {
+    const target = event.currentTarget as HTMLElement;
+    target.style.willChange = "auto";
+  }, []);
+
+  useEffect(() => {
+    const entries = entryRef.current;
+    entries.forEach((entry) => {
+      if (entry) {
+        entry.addEventListener("mouseenter", hintBrowser);
+        entry.addEventListener("animationend", removeHint);
+      }
+    });
+
+    return () => {
+      entries.forEach((entry) => {
+        if (entry) {
+          entry.removeEventListener("mouseenter", hintBrowser);
+          entry.removeEventListener("animationend", removeHint);
+        }
+      });
+    };
+  }, [hintBrowser, removeHint]);
 
   const goToNext = () => {
-    setCurrentIndex((currentIndex + 1) % totalItems);
+    setCurrentGroupIndex((index) => {
+      if (index >= totalItems - 3) return 0;
+      return index + 1;
+    });
   };
 
   const goToPrev = () => {
-    setCurrentIndex((currentIndex - 1 + totalItems) % totalItems);
+    setCurrentGroupIndex((index) => {
+      if (index === 0) return totalItems - 3;
+      return index - 1;
+    });
   };
 
-  const visibleItems = getVisibleItems(currentIndex, totalItems);
+  const handlePillClick = (index: number) => {
+    setCurrentGroupIndex(index);
+  };
 
   return (
-    <div className="carousel-container">
-      <button className="carousel-button left" onClick={goToPrev}>
-        &lt;
-      </button>
-      <div className="carousel-wrapper">
-        <div className="carousel-entries">
-          {visibleItems.map((item, index) => (
+    <div id={id} className="container my-5">
+      <div className="featured-title poppins-bold-heading">
+        Client Experiences
+      </div>
+      <div className="carousel-container">
+        <button
+          className="carousel-button left"
+          onClick={goToPrev}
+          type="button"
+        >
+          &lt;
+        </button>
+        {items.map((item, index) => {
+          return (
             <div
-              key={index}
-              className={`carousel-entry ${index === 1 ? "highlight" : ""}`}
+              ref={(el) => (entryRef.current[index] = el)}
+              style={{ translate: `${(-100 * currentGroupIndex).toString()}%` }}
+              key={item.author}
+              className={`carousel-entry poppins-regular justify-content-between`}
             >
-              <img src={BlockQuote} alt="" className="quote-icon" />
+              <img
+                loading="lazy"
+                src={BlockQuote}
+                alt=""
+                className="quote-icon"
+              />
               <blockquote>{item.text}</blockquote>
-              <div className="author-info">
-                <img src={item.image} alt={item.author} />
-                <div>
+              <div className="author-info ">
+                <img loading="lazy" src={item.image} alt={item.author} />
+                <div className="author-text ">
                   <p>{item.author}</p>
-                  <p>{item.company}</p>
+                  <p className="poppins-extralight">{item.company}</p>
                 </div>
               </div>
             </div>
-          ))}
+          );
+        })}
+        <button
+          className="carousel-button right"
+          onClick={goToNext}
+          type="button"
+        >
+          &gt;
+        </button>
+        <div className="carousel-pills">
+          {Array.from({ length: totalItems - visibleItems + 1 }).map(
+            (_, index) => (
+              <div
+                key={index}
+                className={`pill ${
+                  currentGroupIndex === index ? "active" : ""
+                }`}
+                onClick={() => {
+                  handlePillClick(index);
+                }}
+                tabIndex={0}
+                role="button"
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    handlePillClick(index);
+                  }
+                }}
+                aria-label={`Go to slide ${index.toString() + "1"}`}
+              />
+            )
+          )}
         </div>
-      </div>
-      <button className="carousel-button right" onClick={goToNext}>
-        &gt;
-      </button>
-      <div className="carousel-pills">
-        {items.map((_, index) => (
-          <div
-            key={index}
-            className={`pill ${currentIndex === index ? "active" : ""}`}
-            onClick={() => {
-              setCurrentIndex(index);
-            }}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                setCurrentIndex(index);
-              }
-            }}
-            tabIndex={0}
-            role="button"
-            aria-label={`Go to slide ${index.toString() + "1"}`}
-          />
-        ))}
       </div>
     </div>
   );
 }
 
 export default ClientExperiences;
+
+//absolutley postion left,center,right on top of each, and make left
+//go left, center be center and so on
