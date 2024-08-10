@@ -45,11 +45,7 @@ function FixedFooter() {
           isFooterVisible ? "visible" : ""
         }`}
       >
-        <div
-          className={`button-container-ff poppins-regular ${
-            isFooterVisible ? "visible" : ""
-          }`}
-        >
+        <div className={`button-container-ff poppins-regular `}>
           <span className="mask-ff">Copied</span>
 
           <button

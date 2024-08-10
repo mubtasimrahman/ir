@@ -2,7 +2,7 @@ import "./Back2Top.scss";
 
 interface Props {
   visible: boolean;
-  clicked: boolean; // Optional prop if not used
+  clicked?: boolean; // Optional prop if not used
 }
 
 function Back2Top({ visible }: Props) {
