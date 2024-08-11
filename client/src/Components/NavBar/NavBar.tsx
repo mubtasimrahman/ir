@@ -10,11 +10,9 @@ function NavBar() {
       work in tandem with back2top button*/
       className="navbar navbar-expand-lg poppins-regular fixed-top"
       data-bs-theme="dark"
+      aria-label="navbar + scrollspy"
     >
       <div className="container ">
-        <a className="navbar-brand ms-9 ms-sm-0" href="#bla">
-          Navbar
-        </a>
         <button
           className="navbar-toggler me-9 me-sm-0"
           type="button"
@@ -26,17 +24,16 @@ function NavBar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        <a className="navbar-brand ms-9 ms-sm-0" href="#bla">
+          Navbar
+        </a>
         <div
           className="collapse navbar-collapse ms-9 ms-sm-0"
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav mb-2 mb-lg-0 flex-fill justify-content-evenly">
             <li className="nav-item">
-              <a
-                className="nav-link"
-                aria-current="page"
-                href="#FeaturedProjects"
-              >
+              <a className="nav-link" href="#FeaturedProjects">
                 Our Work
               </a>
             </li>
@@ -57,13 +54,9 @@ function NavBar() {
             </li>
           </ul>
 
-          <button type="button" className="contact-button ">
+          <button type="button" className="contact-button mb-lg-0 mb-3">
             Contact Us
           </button>
-          {/* <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form> */}
         </div>
       </div>
     </nav>

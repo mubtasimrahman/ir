@@ -9,8 +9,8 @@ import ClientExperiences from "../Components/ClientExperiences/ClientExperiences
 function App() {
   return (
     <div
+      //Gives live highlighting of which element is targeted
       data-bs-spy="scroll"
-      data-bs-target="NavBar"
       //Give "overflow-hidden" to stop horizontal scrolling
       className="d-flex flex-column "
     >
