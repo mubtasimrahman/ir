@@ -3,13 +3,13 @@
 .description-container {
   position: relative;
   color: #f2f2f2;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   overflow: hidden;
   background-color: #282828;
 }
 
 .mask {
-  pointer-events: none;
+  
   width: 101%;
   height: 100%;
 
@@ -57,13 +57,33 @@
 }
 
 .social-img {
-  max-width: 3.125rem;
-  max-height: 3.125rem;
+  max-width: 3rem;
+  max-height: 3rem;
   margin-right: 1rem;
+  opacity: 0.3;
+  transition: opacity 0.5s linear;
+  
 }
 
-@media screen and (width<=991.8px) {
+.social-img:hover {
+  opacity: 1;
+}
+
+
+
+@media screen and (width < 992px) {
   .photo {
-    max-width: 750px;
+    max-width: 650px;
+  }
+}
+@media screen and (width >= 992px) and (width < 1400px) {
+  .intro {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (width<361px) {
+  .intro {
+    font-size: 1.6rem;
   }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Photo from "../../assets/Photo.svg";
+import Photo from "../../assets/Mind copy.svg";
 import IGCursor from "../../assets/Instagramcursor.svg";
 import FBCursor from "../../assets/Facebookcursor.svg";
 import TTCursor from "../../assets/Tiktokcursor.svg";
@@ -43,12 +43,12 @@ function AllTrades({ id }: { id: string }) {
       id={id}
       className="container-fluid description-container px-4 mt-5 text-lg-start text-center poppins-light"
     >
-      <div className="row gx-5 justify-content-center align-items-center">
-        <div className="col-xxl-4 col-lg-5 ">
-          <img className="photo" src={Photo} alt="" />
+      <div className="row gx-5 justify-content-center align-items-start">
+        <div className="col-xxl-5 col-lg-6  ">
+          <img className="photo mt-3" src={Photo} alt="" />
         </div>
-        <div className="col-xxl-6 col-lg-5">
-          <div className="intro poppins-bold">JACK OF ALL TRADES</div>
+        <div className="col-lg-6 pointer-events-enabled">
+          <div className="intro poppins-bold mt-3">JACK OF ALL TRADES</div>
           <div className="mb-2">
             Hi, I'm Ishraqur Rahman, the design-obsessed marketer behind Irreal
             Visuals. After graduating with a degree in marketing, I started my
@@ -64,7 +64,7 @@ function AllTrades({ id }: { id: string }) {
             Operating remotely has allowed us to be cost-effective, enabling us
             to pass these savings on to our clients.
           </div>
-          <div className="mb3">
+          <div className="mb-3">
             I have also recetly started my journey as a digital content creator
             to gain a better understanding of popular social media platforms,
             with an aim to better serve our clients.

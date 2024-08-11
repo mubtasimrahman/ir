@@ -11,7 +11,8 @@ function App() {
     <div
       data-bs-spy="scroll"
       data-bs-target="NavBar"
-      className="d-flex flex-column"
+      //Give "overflow-hidden" to stop horizontal scrolling
+      className="d-flex flex-column "
     >
       <NavBar />
       <BentoBox />
