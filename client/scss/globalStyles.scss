@@ -5,6 +5,7 @@
 
 // custom spacers
 $custom-spacers: (
+  11: $spacer * 0.75,
   9: $spacer * 2.15,
   6: $spacer * 2.5,
   7: $spacer * 4,
@@ -58,7 +59,7 @@ $spacers: map-merge(
   text-size-adjust: none; /* for other mobile browsers */
 
   --website-white-colour: #f2f2f2;
-  --website-282828-colour : #282828;
+  --website-282828-colour: #282828;
 }
 
 // Large Screens

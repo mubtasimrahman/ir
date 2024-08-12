@@ -14,7 +14,7 @@ const Logos = [AI, AA, AP, APP, AAE];
 
 function BentoBox() {
   return (
-    <div className="container px-md-2 px-sm-1 px-5 mt-lg-10 mt-8 mb-sm-8 mb-4 text-center bento-box">
+    <div className="container px-md-2 px-sm-1 px-4 mt-lg-10 mt-8 mb-lg-4 mb-md-3 mb-sm-4 mb-5 text-center bento-box">
       <div className="row gx-md-6">
         <div className="col-md left-col mb-md-0 mb-3">
           <div className="row gy-2 gx-3">
@@ -101,7 +101,7 @@ function BentoBox() {
               </div>
             </div>
 
-            <div className="col-12  justify-content-center">
+            <div className="col-12 justify-content-center ps-0 pe-md-11">
               <div className="d-flex flex-column justify-content-between ir custom-fb padding-less">
                 <div className="poppins-semibold temp"> OUR STACK</div>
 
