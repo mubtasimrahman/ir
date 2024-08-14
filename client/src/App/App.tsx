@@ -1,10 +1,11 @@
 import NavBar from "../Components/NavBar/NavBar";
-import InfiniteAutoPlay from "../Components/InfiniteAutoPlay/InfiniteAutoPlay";
 import BentoBox from "../Components/BentoBox/BentoBox";
-import FixedFooter from "../Components/ScrollComponents/FixedFooter";
-import AllTrades from "../Components/AllTrades/AllTrades";
+import InfiniteAutoPlay from "../Components/InfiniteAutoPlay/InfiniteAutoPlay";
 import FeaturedProjects from "../Components/FeaturedProjects/FeaturedProjects";
+import FixedFooter from "../Components/ScrollComponents/FixedFooter";
 import ClientExperiences from "../Components/ClientExperiences/ClientExperiences";
+import AllTrades from "../Components/AllTrades/AllTrades";
+import OurSpecialities from "../Components/OurSpecialities/OurSpecialities";
 
 function App() {
   return (
@@ -12,14 +13,14 @@ function App() {
       //Gives live highlighting of which element is targeted
       data-bs-spy="scroll"
       //Give "overflow-hidden" to stop horizontal scrolling
-      className="d-flex flex-column "
+      className="d-flex flex-column overflow-hidden"
     >
       <NavBar />
       <BentoBox />
       <InfiniteAutoPlay />
 
       <FeaturedProjects id="FeaturedProjects" />
-
+      <OurSpecialities id="Specialities"></OurSpecialities>
       <FixedFooter />
       <ClientExperiences id="ClientExperiences"></ClientExperiences>
       <AllTrades id="AllTrades" />

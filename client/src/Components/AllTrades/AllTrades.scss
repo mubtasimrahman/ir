@@ -9,7 +9,6 @@
 }
 
 .mask {
-  
   width: 101%;
   height: 100%;
 
@@ -76,6 +75,7 @@
     max-width: 650px;
   }
 }
+
 @media screen and (width >= 992px) and (width < 1400px) {
   .intro {
     font-size: 1.75rem;

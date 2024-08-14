@@ -38,8 +38,8 @@ function NavBar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#Services">
-                Services
+              <a className="nav-link" href="#Specialities">
+                Specialities
               </a>
             </li>
             <li className="nav-item">

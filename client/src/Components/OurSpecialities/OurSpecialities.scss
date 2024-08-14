@@ -1,0 +1,38 @@
+.image-animation {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+.speciality {
+  background-image: linear-gradient(to right, #0f0f0f, #000);
+  border-radius: 5% / 20%;
+  position: relative;
+  overflow: hidden;
+
+  .image-svg {
+    transform: translateX(20%);
+    opacity: 0.6;
+    position: absolute;
+    width: 12rem;
+    height: 12rem;
+    right: 0;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover .image-svg {
+    transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
+    opacity: 1;
+  }
+}
+
+.service-name {
+  font-size: 1.4rem;
+  color: #f2f2f2;
+}
+
+@media screen and (width<576px) {
+  .service-name {
+    font-size: 1.2rem;
+  }
+}

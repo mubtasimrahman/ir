@@ -45,7 +45,7 @@
     border-radius: inherit;
     padding: 2.18rem 7.1rem;
     background: conic-gradient(from var(--angle), transparent 70%, white);
-    animation: border-animation-angle-control 3s linear infinite;
+    animation: border-animation-angle-control 3.5s linear infinite;
     pointer-events: none; // Allow clicks to pass through
   }
 
@@ -102,12 +102,12 @@
   //   --angle: 360deg;
   // }
 
-  from{
+  from {
     --angle: 0deg;
   }
 
-  to{
-    --angle:360deg;
+  to {
+    --angle: 360deg;
   }
 }
 

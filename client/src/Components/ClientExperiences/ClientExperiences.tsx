@@ -102,31 +102,29 @@ function ClientExperiences({ id }: { id: string }) {
         >
           &lt;
         </button>
-        {items.map((item, index) => {
-          return (
-            <div
-              ref={(el) => (entryRef.current[index] = el)}
-              style={{ translate: `${(-100 * currentGroupIndex).toString()}%` }}
-              key={item.author}
-              className={`carousel-entry poppins-regular justify-content-between`}
-            >
-              <img
-                loading="lazy"
-                src={BlockQuote}
-                alt=""
-                className="quote-icon"
-              />
-              <blockquote>{item.text}</blockquote>
-              <div className="author-info ">
-                <img loading="lazy" src={item.image} alt={item.author} />
-                <div className="author-text ">
-                  <p>{item.author}</p>
-                  <p className="poppins-extralight">{item.company}</p>
-                </div>
+        {items.map((item, index) => (
+          <div
+            ref={(el) => (entryRef.current[index] = el)}
+            style={{ translate: `${(-100 * currentGroupIndex).toString()}%` }}
+            key={item.author}
+            className={`carousel-entry poppins-regular justify-content-between`}
+          >
+            <img
+              loading="lazy"
+              src={BlockQuote}
+              alt=""
+              className="quote-icon"
+            />
+            <blockquote>{item.text}</blockquote>
+            <div className="author-info ">
+              <img loading="lazy" src={item.image} alt={item.author} />
+              <div className="author-text ">
+                <p>{item.author}</p>
+                <p className="poppins-extralight">{item.company}</p>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
         <button
           className="carousel-button right"
           onClick={goToNext}

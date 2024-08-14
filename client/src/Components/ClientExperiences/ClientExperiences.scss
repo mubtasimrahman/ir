@@ -5,10 +5,11 @@
   padding: 2rem 0;
 }
 
-//visible borders(on borders themselves) formed on hover for chromium
+// visible borders(on borders themselves) formed on hover for chromium
 .carousel-entry {
   border-right: solid 1rem #1e1e1e;
   box-shadow: none;
+
   // border-left: solid transparent;
   flex: 0 0 calc(100% / 3);
   padding: 1rem;
@@ -20,10 +21,12 @@
   align-items: flex-start;
   background: var(--website-282828-colour);
   color: var(--website-white-colour);
+
   // border-radius: 0.5rem;
   opacity: 0.7;
   transition: translate 1s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out,
     border-right 0.3s ease-in-out;
+
   // border-left 0.3s ease-in-out,
 
   &:hover {

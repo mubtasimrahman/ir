@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 154.29 159.44">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .31;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: url(#Degradado_sin_nombre_7);
+        opacity: .35;
+      }
+
+      .cls-4 {
+        fill: url(#Degradado_sin_nombre_8);
+        opacity: .32;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+    <radialGradient id="Degradado_sin_nombre_7" data-name="Degradado sin nombre 7" cx="76.22" cy="77.68" fx="76.22" fy="77.68" r="114.24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".37" stop-color="rgba(255, 255, 255, 0)" stop-opacity="0"/>
+      <stop offset=".51" stop-color="rgba(255, 255, 255, .03)" stop-opacity=".03"/>
+      <stop offset=".6" stop-color="rgba(255, 255, 255, .08)" stop-opacity=".08"/>
+      <stop offset=".68" stop-color="rgba(255, 255, 255, .15)" stop-opacity=".15"/>
+      <stop offset=".75" stop-color="rgba(255, 255, 255, .23)" stop-opacity=".23"/>
+      <stop offset=".8" stop-color="rgba(255, 255, 255, .34)" stop-opacity=".34"/>
+      <stop offset=".86" stop-color="rgba(255, 255, 255, .47)" stop-opacity=".47"/>
+      <stop offset=".91" stop-color="rgba(255, 255, 255, .61)" stop-opacity=".61"/>
+      <stop offset=".95" stop-color="rgba(255, 255, 255, .78)" stop-opacity=".78"/>
+      <stop offset=".99" stop-color="rgba(255, 255, 255, .96)" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <radialGradient id="Degradado_sin_nombre_8" data-name="Degradado sin nombre 8" cx="126.62" cy="-7.69" fx="126.62" fy="-7.69" r="153.95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".07" stop-color="rgba(255, 255, 255, .89)" stop-opacity=".89"/>
+      <stop offset=".27" stop-color="rgba(255, 255, 255, .63)" stop-opacity=".63"/>
+      <stop offset=".46" stop-color="rgba(255, 255, 255, .4)" stop-opacity=".4"/>
+      <stop offset=".63" stop-color="rgba(255, 255, 255, .23)" stop-opacity=".23"/>
+      <stop offset=".78" stop-color="rgba(255, 255, 255, .1)" stop-opacity=".1"/>
+      <stop offset=".91" stop-color="rgba(255, 255, 255, .03)" stop-opacity=".03"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clippath">
+      <rect class="cls-2" x="21.03" y="23.72" width="112.5" height="112.13"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" x="21.03" y="23.72" width="112.5" height="112.13"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_12" data-name="Layer 12">
+    <g id="Videography">
+      <g>
+        <g>
+          <rect class="cls-3" x="0" width="154.29" height="159.44" rx="27.94" ry="27.94"/>
+          <rect class="cls-4" x="0" width="154.29" height="159.44" rx="27.94" ry="27.94"/>
+        </g>
+        <g class="cls-1">
+          <g class="cls-7">
+            <path class="cls-5" d="M84.99,135.22c-12.86,1.93-25.99-.77-37.05-7.62v-29.38l37.05,37Z"/>
+            <path class="cls-5" d="M121.86,113.42c-7.75,10.42-18.91,17.79-31.53,20.81l-20.81-20.81h52.34Z"/>
+            <path class="cls-5" d="M124.91,108.93h-29.38c25.79-25.87,27.38-27.43,37.09-37.09,1.85,12.88-.88,26.01-7.71,37.09h0Z"/>
+            <path class="cls-5" d="M131.55,66.55c-14.26,14.31-9.51,9.57-20.81,20.81v-52.43c10.37,7.83,17.72,19,20.81,31.62h0Z"/>
+            <path class="cls-5" d="M106.25,31.92v29.42c-18.2-18.15-9.8-9.76-37.05-37,12.86-1.92,25.98.77,37.05,7.58h0Z"/>
+          </g>
+          <path class="cls-5" d="M84.68,46.14h-52.34c7.75-10.41,18.91-17.78,31.53-20.81l20.81,20.81Z"/>
+          <g class="cls-6">
+            <path class="cls-5" d="M43.46,72.2v52.34c-10.42-7.75-17.79-18.91-20.81-31.53l20.81-20.81Z"/>
+            <path class="cls-5" d="M58.66,50.63l-14.53,14.53v.05l-22.47,22.47c-1.94-12.86.76-26,7.62-37.05h29.38Z"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
