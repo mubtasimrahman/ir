@@ -90,7 +90,7 @@ function OurSpecialities({ id }: { id: string }) {
   ];
 
   return (
-    <div className="mt-5 mb-4"id={id}>
+    <div className="mt-5 mb-4" id={id}>
       <div className="poppins-bold-heading">Our Specialities</div>
       <div className="container">
         <div className="row gy-3 justify-content-center">
@@ -123,8 +123,17 @@ function OurSpecialities({ id }: { id: string }) {
                   }}
                   aria-label={`Animation for ${service.serviceName}`}
                 />
-                <div className="service-name poppins-semibold ms-2">
-                  {service.serviceName}
+                <div className="d-flex flex-column justify-content-center align-items-start speciality-content">
+                  <div className="service-name poppins-semibold ms-2">
+                    {service.serviceName}
+                  </div>
+                  <button
+                    type="button"
+                    className="learn-more poppins-extralight ms-2 mt-1"
+                  >
+                    {" "}
+                    Learn More &gt;
+                  </button>
                 </div>
                 {/* Add your button here in the future */}
                 <img

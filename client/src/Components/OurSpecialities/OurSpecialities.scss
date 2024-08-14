@@ -1,6 +1,8 @@
 .image-animation {
   width: 5.5rem;
   height: 5.5rem;
+  min-width: max-content;
+  min-height: max-content;
 }
 
 .speciality {
@@ -29,10 +31,22 @@
 .service-name {
   font-size: 1.4rem;
   color: #f2f2f2;
+ line-height: 1.75rem;
 }
 
-@media screen and (width<576px) {
-  .service-name {
-    font-size: 1.2rem;
+.learn-more {
+  font-size: 0.8rem;
+  border-style: solid;
+  background: none;
+  border-color: #f2f2f2;
+  border-radius: 10%/40%;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #0f0f0f;
+    background-color: #f2f2f2;
   }
 }
+
+
+
