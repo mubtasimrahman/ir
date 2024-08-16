@@ -5,7 +5,7 @@ function InfiniteAutoPlay() {
   const entries = 30; // Length of the array
 
   return (
-    <div className="slider mb-5 mt-sm-8 mt-4">
+    <div className="slider mt-sm-8 mt-4">
       <div className="slide-track">
       {/*Creates an undefined array of length 30 from arrayLike and populates with images*/}
         {Array.from({ length: entries }, (_, index) => {

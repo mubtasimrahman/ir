@@ -39,7 +39,7 @@ const clients = [
 
 function FeaturedProjects({ id }: { id: string }) {
   return (
-    <div id={id} className="featured-projects my-4">
+    <div id={id} className="featured-projects mt-4">
       <div className="featured-title poppins-bold-heading">
         Featured Clients
       </div>

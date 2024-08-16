@@ -17,3 +17,9 @@
 .fixed-top {
   background-color: #1e1e1e;
 }
+
+@media screen and (prefers-reduced-motion) {
+  .contact-button {
+    transition: none;
+  }
+}

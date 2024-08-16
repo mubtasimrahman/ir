@@ -17,3 +17,26 @@
   font-weight: 700;
   font-style: normal;
 }
+
+@mixin transition-effect($transform: none, $delay: 0s) {
+  &.hidden {
+    opacity: 0.01;
+    filter: blur(0.5rem);
+    transform: $transform;
+  }
+
+  &.visible {
+    opacity: 1;
+    filter: blur(0);
+    transition: all 0.4s ease-in-out $delay;
+  }
+}
+
+
+@mixin heading-gradient{
+  background-image: linear-gradient(to left, rgb(91 82 82), #f2f2f2);
+}
+
+@mixin bento-box-gradient {
+  background-image: linear-gradient(to bottom, #333, #232323);
+}

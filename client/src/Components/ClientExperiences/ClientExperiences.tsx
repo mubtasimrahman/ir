@@ -90,7 +90,7 @@ function ClientExperiences({ id }: { id: string }) {
   };
 
   return (
-    <div id={id} className="container my-5">
+    <div id={id} className="container mb-5 mt-4">
       <div className="featured-title poppins-bold-heading">
         Client Experiences
       </div>

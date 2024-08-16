@@ -31,7 +31,7 @@
 .service-name {
   font-size: 1.4rem;
   color: #f2f2f2;
- line-height: 1.75rem;
+  line-height: 1.75rem;
 }
 
 .learn-more {
@@ -39,7 +39,7 @@
   border-style: solid;
   background: none;
   border-color: #f2f2f2;
-  border-radius: 10%/40%;
+  border-radius: 10% / 40%;
   transition: all 0.3s ease-in-out;
 
   &:hover {
@@ -48,5 +48,12 @@
   }
 }
 
+@media screen and (prefers-reduced-motion) {
 
-
+  .speciality .image-svg{
+    transition: none;
+  }
+  .learn-more{
+    transition: none;
+  }
+}

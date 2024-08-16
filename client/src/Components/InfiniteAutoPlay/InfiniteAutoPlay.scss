@@ -6,9 +6,8 @@
   );
 }
 
-$animation-speed-carousel: 25s;
-
 .slider {
+  --animation-speed-carousel: 25s;
   box-shadow: 0 10px 20px -5px rgb(0 0 0 / 100%);
   background-color: #0f0f0f;
   overflow: hidden;
@@ -38,7 +37,7 @@ $animation-speed-carousel: 25s;
   .slide-track {
     display: flex;
     width: calc(250px * 30); // Adjust width based on the number of slides
-    animation: scroll-infinite $animation-speed-carousel linear infinite;
+    animation: scroll-infinite var(--animation-speed-carousel) linear infinite;
 
     &:hover {
       animation-play-state: paused;
@@ -58,4 +57,10 @@ $animation-speed-carousel: 25s;
 
 .slide {
   padding: 0.5rem 3rem;
+}
+
+@media screen and (prefers-reduced-motion) {
+  .slider {
+    --animation-speed-carousel: 125s;
+  }
 }

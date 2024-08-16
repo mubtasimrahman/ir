@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import "./OurSpecialities.scss";
 import AIImage from "../../assets/ourSpecialities/AI Image Generation.json";
@@ -20,14 +21,31 @@ interface Services {
 }
 
 function OurSpecialities({ id }: { id: string }) {
-  const animationMap = new Map<number, AnimationItem>();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const animationMap = useRef<Map<number, AnimationItem>>(new Map());
+
+
+  //checks for prefers-reduced motion preference and updates if changed live
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
   function initializeLottie(
     container: HTMLDivElement | null,
     animationData: object,
     index: number
   ) {
-    if (container) {
+    if (container && !prefersReducedMotion) {
       const animation = lottie.loadAnimation({
         container: container,
         renderer: "svg",
@@ -35,12 +53,14 @@ function OurSpecialities({ id }: { id: string }) {
         autoplay: false,
         animationData: animationData,
       });
-      animationMap.set(index, animation);
+      animationMap.current.set(index, animation);
     }
   }
 
   function handleMouseEnter(index: number) {
-    const animation = animationMap.get(index);
+    if (prefersReducedMotion) return;
+
+    const animation = animationMap.current.get(index);
     if (animation) {
       animation.setDirection(1);
       animation.setSpeed(1);
@@ -49,20 +69,17 @@ function OurSpecialities({ id }: { id: string }) {
   }
 
   function handleMouseLeave(index: number) {
-    const animation = animationMap.get(index);
-    //checks to see if animation has completed(completes at penultimate frame so + 1 added)
+    if (prefersReducedMotion) return;
+
+    const animation = animationMap.current.get(index);
     if (animation) {
       const isAnimationComplete =
         animation.currentFrame + 1 === animation.totalFrames;
-      console.log(isAnimationComplete);
-      //reverses and speeds up
       if (!isAnimationComplete) {
         animation.setDirection(-1);
         animation.setSpeed(1.25);
         animation.goToAndPlay(animation.currentFrame, true);
-      }
-      //stops
-      else {
+      } else {
         animation.goToAndStop(0, true);
       }
     }
@@ -90,7 +107,7 @@ function OurSpecialities({ id }: { id: string }) {
   ];
 
   return (
-    <div className="mt-5 mb-4" id={id}>
+    <div className="mt-lg-2" id={id}>
       <div className="poppins-bold-heading">Our Specialities</div>
       <div className="container">
         <div className="row gy-3 justify-content-center">
@@ -104,8 +121,6 @@ function OurSpecialities({ id }: { id: string }) {
                 onMouseLeave={() => {
                   handleMouseLeave(index);
                 }}
-                /*interacive role, allows tabbing and mouse and keyboard events unlike 
-                button which needs them*/
                 role="textbox"
                 tabIndex={0}
                 aria-label={`Speciality: ${service.serviceName}`}
@@ -131,11 +146,9 @@ function OurSpecialities({ id }: { id: string }) {
                     type="button"
                     className="learn-more poppins-extralight ms-2 mt-1"
                   >
-                    {" "}
                     Learn More &gt;
                   </button>
                 </div>
-                {/* Add your button here in the future */}
                 <img
                   loading="lazy"
                   className="image-svg"

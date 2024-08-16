@@ -134,3 +134,25 @@
 /* mask bug where border radius and other props causes 
 whole button-container-ff to disappear with specific heights 
 of button-container-ff */
+
+@media screen and (prefers-reduced-motion) {
+  .footer-container {
+    transition: none;
+  }
+
+  .button-container-ff {
+    &::after,
+    &::before {
+      animation: none;
+      background: white;
+    }
+
+    .button-ff {
+      animation-duration: 0.01s;
+
+      &.clicked {
+        animation-duration: 0.01s;
+      }
+    }
+  }
+}

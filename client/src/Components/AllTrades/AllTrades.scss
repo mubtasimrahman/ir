@@ -61,14 +61,11 @@
   margin-right: 1rem;
   opacity: 0.3;
   transition: opacity 0.5s linear;
-  
 }
 
 .social-img:hover {
   opacity: 1;
 }
-
-
 
 @media screen and (width < 992px) {
   .photo {
@@ -85,5 +82,14 @@
 @media screen and (width<361px) {
   .intro {
     font-size: 1.6rem;
+  }
+}
+
+@media screen and (prefers-reduced-motion) {
+  .social-img {
+    transition: none;
+  }
+  .mask {
+    background-color: transparent;
   }
 }
