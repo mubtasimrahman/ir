@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 62.57 62.19">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.57 62.19">
   <defs>
     <style>
       .cls-1 {
-        fill: none;
-        stroke: #f2f2f2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+        fill: #1e1e1e;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
       }
 
       .cls-2 {
-        fill: #1e1e1e;
-        filter: url(#drop-shadow-1);
-        stroke-width: 0px;
+        fill: #f2f2f2;
       }
     </style>
-    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
-      <feOffset dx="0" dy="8"/>
-      <feGaussianBlur result="blur" stdDeviation="6"/>
-      <feFlood flood-color="#000" flood-opacity=".3"/>
-      <feComposite in2="blur" operator="in"/>
-      <feComposite in="SourceGraphic"/>
-    </filter>
   </defs>
-  <circle class="cls-2" cx="31.07" cy="31.47" r="30.5"/>
-  <polyline class="cls-1" points="12.77 40.62 30.05 22.32 49.37 40.62"/>
+  <circle class="cls-1" cx="31.07" cy="31.47" r="30.5"/>
+  <path class="cls-2" d="m49.37,41.12c-.12,0-.25-.05-.34-.14l-18.95-17.96-16.94,17.94c-.19.2-.51.21-.71.02-.2-.19-.21-.51-.02-.71l17.28-18.3c.09-.1.22-.15.35-.16.12,0,.26.04.36.14l19.32,18.3c.2.19.21.51.02.71-.1.1-.23.16-.36.16Z"/>
 </svg>

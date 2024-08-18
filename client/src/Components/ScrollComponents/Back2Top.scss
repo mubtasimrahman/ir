@@ -8,13 +8,19 @@
   transform: translate(-50%, 50%);
   padding: 0;
   opacity: 0;
-  cursor: pointer;
+  pointer-events: none;
   background-color: #1e1e1e;
-  transition: all 0.4s; /* Adding a transition for smoother appearance */
+  transition: opacity 0.4s ease-in-out, scale 0.3s ease-in-out,
+    filter 0.3s ease-in-out;
+  // to account for new origin after translate
+  transform-origin: bottom left;
 
-
-
+  &:hover {
+    filter: drop-shadow(0 0.25rem 0.4rem #f2f2f2);
+    scale: 1.1;
+  }
   &.visible {
+    pointer-events: initial;
     opacity: 1;
   }
 
@@ -23,5 +29,11 @@
     width: 1.75rem;
     // Button with inline block(default) causes extra height
     display: block;
+  }
+}
+
+@media screen and (prefers-reduced-motion) {
+  .to-top {
+    transition: none;
   }
 }
