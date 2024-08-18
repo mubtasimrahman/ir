@@ -164,7 +164,7 @@ ul {
 }
 
 .middle {
-  @include transition-effect();
+  @include transition-effect;
 }
 
 .top-right {
