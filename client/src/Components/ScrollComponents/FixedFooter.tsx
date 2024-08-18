@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import "./FixedFooter.scss";
-import Back2Top from "./Back2Top";
 
 function FixedFooter() {
-  const [isFooterVisible, setIsVisible] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 800) {
-      // Adjust this value to your desired scroll height
-      setIsVisible(true);
+    if (window.scrollY > 600) {
+      setIsFooterVisible(true);
     } else {
-      setIsVisible(false);
+      setIsFooterVisible(false);
     }
   };
 
@@ -39,7 +37,6 @@ function FixedFooter() {
 
   return (
     <>
-      <Back2Top visible={isFooterVisible} clicked={isClicked}></Back2Top>
       <div
         className={`d-flex justify-content-center footer-container ${
           isFooterVisible ? "visible" : ""

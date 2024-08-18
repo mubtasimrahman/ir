@@ -1,4 +1,5 @@
 import "./Back2Top.scss";
+import Back2TopSVG from "../../assets/Back2Top.svg"
 
 interface Props {
   visible: boolean;
@@ -14,8 +15,10 @@ function Back2Top({ visible }: Props) {
     <button
       className={`to-top ${visible ? "visible" : ""}`}
       onClick={scrollToTop}
+      type="button"
+      title="Back To Top"
     >
-      &#8593;
+      <img src={Back2TopSVG} alt="" className="arrow-img"/>
     </button>
   );
 }

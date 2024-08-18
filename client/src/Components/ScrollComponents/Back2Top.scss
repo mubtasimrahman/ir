@@ -1,17 +1,27 @@
 .to-top {
   z-index: 19;
-  max-width: max-content;
-  position: fixed;
+  border: none;
+  position: absolute;
+  border-radius: 100%;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  padding: 0;
   opacity: 0;
   cursor: pointer;
-  color: black;
-  background-color: white;
-  transition: opacity 0.4s; /* Adding a transition for smoother appearance */
+  background-color: #1e1e1e;
+  transition: all 0.4s; /* Adding a transition for smoother appearance */
+
+
 
   &.visible {
     opacity: 1;
+  }
+
+  .arrow-img {
+    height: 1.75rem;
+    width: 1.75rem;
+    // Button with inline block(default) causes extra height
+    display: block;
   }
 }
