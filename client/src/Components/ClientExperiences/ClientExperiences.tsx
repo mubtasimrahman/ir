@@ -35,8 +35,6 @@ const items = [
   },
 ];
 
-const visibleItems = 3;
-
 function ClientExperiences({ id }: { id: string }) {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
   const totalItems = items.length;
@@ -73,24 +71,24 @@ function ClientExperiences({ id }: { id: string }) {
 
   const goToNext = () => {
     setCurrentGroupIndex((index) => {
-      if (index >= totalItems - 3) return 0;
+      if (index >= totalItems - 2) return -1;
       return index + 1;
     });
   };
 
   const goToPrev = () => {
     setCurrentGroupIndex((index) => {
-      if (index === 0) return totalItems - 3;
+      if (index <= -1) return totalItems - 2;
       return index - 1;
     });
   };
 
   const handlePillClick = (index: number) => {
-    setCurrentGroupIndex(index);
+    setCurrentGroupIndex(index - 1);
   };
 
   return (
-    <div id={id} className="container mb-5 mt-4">
+    <div id={id} className="container-lg mb-5 mt-4">
       <div className="featured-title poppins-bold-heading">
         Client Experiences
       </div>
@@ -102,29 +100,38 @@ function ClientExperiences({ id }: { id: string }) {
         >
           &lt;
         </button>
-        {items.map((item, index) => (
-          <div
-            ref={(el) => (entryRef.current[index] = el)}
-            style={{ translate: `${(-100 * currentGroupIndex).toString()}%` }}
-            key={item.author}
-            className={`carousel-entry poppins-regular justify-content-between`}
-          >
-            <img
-              loading="lazy"
-              src={BlockQuote}
-              alt=""
-              className="quote-icon"
-            />
-            <blockquote>{item.text}</blockquote>
-            <div className="author-info ">
-              <img loading="lazy" src={item.image} alt={item.author} />
-              <div className="author-text ">
-                <p>{item.author}</p>
-                <p className="poppins-extralight">{item.company}</p>
+        <div className="carousel-entries">
+          {items.map((item, index) => (
+            <div
+              ref={(el) => (entryRef.current[index] = el)}
+              /* Translate -100% and account for total margin of 1 rem on each card
+              while also ensuring change in margin remains at 1 rem throughout using currentGroupIndex*/
+              style={{
+                translate: `calc(${(
+                  -100 * currentGroupIndex
+                ).toString()}% - 1rem * ${currentGroupIndex.toString()}`,
+              }}
+              key={item.author}
+              className={`carousel-entry poppins-regular justify-content-between`}
+              aria-label={`Slide ${(index + 1).toString()}`}
+            >
+              <img
+                loading="lazy"
+                src={BlockQuote}
+                alt=""
+                className="quote-icon"
+              />
+              <blockquote className="flex-fill">{item.text}</blockquote>
+              <div className="author-info ">
+                <img loading="lazy" src={item.image} alt={item.author} />
+                <div className="author-text ">
+                  <p>{item.author}</p>
+                  <p className="poppins-extralight">{item.company}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
         <button
           className="carousel-button right"
           onClick={goToNext}
@@ -133,27 +140,26 @@ function ClientExperiences({ id }: { id: string }) {
           &gt;
         </button>
         <div className="carousel-pills">
-          {Array.from({ length: totalItems - visibleItems + 1 }).map(
-            (_, index) => (
-              <div
-                key={index}
-                className={`pill ${
-                  currentGroupIndex === index ? "active" : ""
-                }`}
-                onClick={() => {
+          {Array.from({ length: totalItems }).map((_, index) => (
+            <div
+              key={index}
+              className={`pill ${
+                currentGroupIndex + 1 === index ? "active" : ""
+              }`}
+              onClick={() => {
+                console.log(index);
+                handlePillClick(index);
+              }}
+              tabIndex={0}
+              role="button"
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
                   handlePillClick(index);
-                }}
-                tabIndex={0}
-                role="button"
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    handlePillClick(index);
-                  }
-                }}
-                aria-label={`Go to slide ${index.toString() + "1"}`}
-              />
-            )
-          )}
+                }
+              }}
+              aria-label={`Go to slide ${(index + 1).toString()}`}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ function App() {
       data-bs-spy="scroll"
       /*Give "overflow-hidden" to stop horizontal scrolling, but this messes up data-bs-spy
       fix is just set overflow-x-hidden*/
-      className="d-flex flex-column "
+      className="d-flex flex-column overflow-x-hidden"
     >
       <NavBar />
       <BentoBox />

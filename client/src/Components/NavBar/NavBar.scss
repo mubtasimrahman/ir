@@ -17,16 +17,18 @@
 .fixed-top {
   background-color: #1e1e1e;
 }
+
 .navbar {
   transition: all 0.2s ease-in-out;
   box-shadow: none;
 }
+
 .scrolled {
-  box-shadow: 0rem calc(8rem / 24) 0.25rem rgb(0 0 0/70%);
+  box-shadow: 0 calc(8rem / 24) 0.25rem rgb(0 0 0 / 70%);
   transition: all 0.4s ease-in-out;
 }
 
-.IRLogo {
+.ir-logo {
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -35,15 +37,17 @@
   .contact-button {
     transition: none;
   }
+
   .navbar {
     transition: none;
   }
-  .scrolled{
+
+  .scrolled {
     transition: none;
   }
 }
 
-//stop shaking of navbar elements when scrolled because of box shadow
+// stop shaking of navbar elements when scrolled because of box shadow
 @media screen and (width<992px) {
   .will-box-shadow {
     will-change: transform;

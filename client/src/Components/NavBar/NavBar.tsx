@@ -49,7 +49,7 @@ function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <a className="navbar-brand ms-9 ms-sm-0 me-0" href="#bla">
-          <img src={IRLogo} alt="IR Logo" className="IRLogo" />
+          <img src={IRLogo} alt="ir-logo" className="IRLogo" />
         </a>
         <div
           className="collapse navbar-collapse ms-9 ms-sm-0"

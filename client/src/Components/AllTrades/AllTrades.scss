@@ -3,7 +3,7 @@
 .description-container {
   position: relative;
   color: #f2f2f2;
-  font-size: 0.8rem;
+  font-size: max(0.8rem, 11px);
   overflow: hidden;
   background-color: #282828;
 }
