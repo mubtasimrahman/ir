@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import "./ClientExperiences.scss";
 import BlockQuote from "../../assets/quote.svg";
+import { useSwipeable } from "react-swipeable";
 
 const items = [
   {
@@ -52,6 +53,7 @@ function ClientExperiences({ id }: { id: string }) {
 
   useEffect(() => {
     const entries = entryRef.current;
+    console.log(entries,entryRef)
     entries.forEach((entry) => {
       if (entry) {
         entry.addEventListener("mouseenter", hintBrowser);
@@ -86,13 +88,20 @@ function ClientExperiences({ id }: { id: string }) {
   const handlePillClick = (index: number) => {
     setCurrentGroupIndex(index - 1);
   };
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: goToNext,
+    onSwipedRight: goToPrev,
+    trackTouch: true,
+    trackMouse: false,
+    preventScrollOnSwipe: true,
+  });
 
   return (
-    <div id={id} className="container-lg mb-5 mt-4">
+    <div id={id} className="container-lg mb-5 mt-4 container-no-left-padding">
       <div className="featured-title poppins-bold-heading">
         Client Experiences
       </div>
-      <div className="carousel-container">
+      <div {...swipeHandlers} className="carousel-container">
         <button
           className="carousel-button left"
           onClick={goToPrev}
@@ -103,17 +112,17 @@ function ClientExperiences({ id }: { id: string }) {
         <div className="carousel-entries">
           {items.map((item, index) => (
             <div
+              key={item.author}
+              className={`carousel-entry poppins-regular justify-content-between`}
+              aria-label={`Slide ${(index + 1).toString()}`}
               ref={(el) => (entryRef.current[index] = el)}
-              /* Translate -100% and account for total margin of 1 rem on each card
+               /* Translate -100% and account for total margin of 1 rem on each card
               while also ensuring change in margin remains at 1 rem throughout using currentGroupIndex*/
               style={{
                 translate: `calc(${(
                   -100 * currentGroupIndex
-                ).toString()}% - 1rem * ${currentGroupIndex.toString()}`,
+                ).toString()}% - 1rem * ${currentGroupIndex.toString()})`,
               }}
-              key={item.author}
-              className={`carousel-entry poppins-regular justify-content-between`}
-              aria-label={`Slide ${(index + 1).toString()}`}
             >
               <img
                 loading="lazy"
@@ -147,7 +156,6 @@ function ClientExperiences({ id }: { id: string }) {
                 currentGroupIndex + 1 === index ? "active" : ""
               }`}
               onClick={() => {
-                console.log(index);
                 handlePillClick(index);
               }}
               tabIndex={0}

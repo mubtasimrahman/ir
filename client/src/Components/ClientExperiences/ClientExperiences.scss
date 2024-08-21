@@ -138,6 +138,10 @@
   .carousel-entry {
     left: 17.5%;
   }
+
+  .container-no-left-padding{
+    padding-left: 0;
+  }
 }
 
 @media screen and (width<576px) {
