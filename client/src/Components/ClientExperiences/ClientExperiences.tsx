@@ -101,13 +101,6 @@ function ClientExperiences({ id }: { id: string }) {
         Client Experiences
       </div>
       <div {...swipeHandlers} className="carousel-container">
-        <button
-          className="carousel-button left"
-          onClick={goToPrev}
-          type="button"
-        >
-          &lt;
-        </button>
         <div className="carousel-entries">
           {items.map((item, index) => (
             <div
@@ -140,6 +133,13 @@ function ClientExperiences({ id }: { id: string }) {
             </div>
           ))}
         </div>
+        <button
+          className="carousel-button left"
+          onClick={goToPrev}
+          type="button"
+        >
+          &lt;
+        </button>
         <button
           className="carousel-button right"
           onClick={goToNext}

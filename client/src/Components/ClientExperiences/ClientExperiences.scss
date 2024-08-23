@@ -7,6 +7,12 @@
   position: relative;
   overflow-x: hidden;
   padding: 2rem 0;
+
+  &:hover {
+    ~ .carousel-button {
+      opacity: 1;
+    }
+  }
 }
 
 .carousel-entry {
@@ -63,22 +69,29 @@
 }
 
 .carousel-button {
+  border-radius: 0.5rem;
+  height: calc(100% - 13.34rem);
+  font-size: larger;
   position: absolute;
-  top: 2%;
+  top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: rgba(0, 0, 0, 0.1);
   color: var(--website-white-colour);
-  opacity: 0.8;
+  opacity: 0;
   border: none;
   z-index: 1;
-  transition: opacity 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, scale 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 
   &.left {
-    right: 50%;
+    left: 0;
   }
 
   &.right {
-    left: 50%;
+    right: 0;
   }
 
   &:hover {
@@ -139,7 +152,7 @@
     left: 17.5%;
   }
 
-  .container-no-left-padding{
+  .container-no-left-padding {
     padding-left: 0;
   }
 }
