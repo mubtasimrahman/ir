@@ -53,7 +53,6 @@ function ClientExperiences({ id }: { id: string }) {
 
   useEffect(() => {
     const entries = entryRef.current;
-    console.log(entries,entryRef)
     entries.forEach((entry) => {
       if (entry) {
         entry.addEventListener("mouseenter", hintBrowser);
@@ -116,7 +115,7 @@ function ClientExperiences({ id }: { id: string }) {
               className={`carousel-entry poppins-regular justify-content-between`}
               aria-label={`Slide ${(index + 1).toString()}`}
               ref={(el) => (entryRef.current[index] = el)}
-               /* Translate -100% and account for total margin of 1 rem on each card
+              /* Translate -100% and account for total margin of 1 rem on each card
               while also ensuring change in margin remains at 1 rem throughout using currentGroupIndex*/
               style={{
                 translate: `calc(${(

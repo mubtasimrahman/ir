@@ -24,7 +24,6 @@ function OurSpecialities({ id }: { id: string }) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const animationMap = useRef<Map<number, AnimationItem>>(new Map());
 
-
   //checks for prefers-reduced motion preference and updates if changed live
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -112,7 +111,7 @@ function OurSpecialities({ id }: { id: string }) {
       <div className="container">
         <div className="row gy-3 justify-content-center">
           {services.map((service, index) => (
-            <div key={index} className="col-lg-6 col-sm-10 col-9">
+            <div key={index} className="col-lg-6 col-sm-12 col-9">
               <div
                 className="d-flex speciality py-3 px-2"
                 onMouseEnter={() => {

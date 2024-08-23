@@ -48,6 +48,17 @@
   }
 }
 
+@media screen  and (width<992px){
+  .image-animation{
+    width:7rem;
+    height:7rem;
+  }
+  .speciality .image-svg{
+    width:14rem;
+    height:14rem;
+  }
+}
+
 @media screen and (prefers-reduced-motion) {
   .speciality .image-svg{
     transition: none;

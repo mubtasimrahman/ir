@@ -1,19 +1,16 @@
 @import "../../../scss/mixins";
 
+$button-font-size: max(0.7rem, 11px);
+
 .featured-projects {
   .card {
     color: #f2f2f2;
     overflow: hidden; // hides overflowing img
     box-shadow: inset 0 -1.5rem 1rem 0.5rem rgb(0 0 0 / 75%);
     transition: box-shadow 0.4s ease-in-out;
+    aspect-ratio: 1 / 1;
 
     .card-body {
-      .card-title {
-        font-size: 1.5rem;
-        margin: 0;
-        padding: 0;
-      }
-
       .card-services {
         margin-top: 0.83rem;
         margin-bottom: 0.83rem;
@@ -26,6 +23,12 @@
   }
 }
 
+.card-title {
+  font-size: clamp(0.75rem, 0.2257rem + 2.184vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+}
+
 .service-tag {
   border-style: solid;
   border-color: #f2f2f2;
@@ -34,7 +37,7 @@
   display: inline-block;
   border-radius: 0.5rem;
   padding: 0.1rem 0.3rem;
-  font-size: 0.75rem;
+  font-size: max(0.75rem, 12px);
 }
 
 .service-tag:hover {
@@ -45,7 +48,7 @@
 
 .card-img-bottom {
   margin-bottom: 1rem;
-  max-height: 15rem; // temp
+  aspect-ratio: 1355 / 1000;
   filter: grayscale(100%);
   transition: filter 0.4s ease-in-out; /* Add transition for smooth effect */
 }
@@ -73,7 +76,7 @@
     pointer-events: auto;
     width: 101%;
     height: 100%;
-    font-size: 0.67rem;
+    font-size: $button-font-size;
 
     @include mask-button(
       black,
@@ -94,12 +97,14 @@
 }
 
 .mask-fp {
+  display: flex;
   position: absolute;
   color: #f2f2f2;
-  text-align: center;
   width: 101%;
-  font-size: 0.65rem;
-  margin-top: 0.4rem;
+  height: 100%;
+  font-size: $button-font-size;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -120,6 +125,12 @@
 
   to {
     mask-position: 0 0;
+  }
+}
+
+@media screen and (width<992px) {
+  .card-title {
+    font-size: clamp(0.75rem, 1rem + 2.184vw, 2rem);
   }
 }
 
