@@ -1,3 +1,5 @@
+$arrow-img-dimension: max(1.75rem, 30px);
+
 .to-top {
   z-index: 19;
   border: none;
@@ -27,8 +29,8 @@
   }
 
   .arrow-img {
-    height: 1.75rem;
-    width: 1.75rem;
+    height: $arrow-img-dimension;
+    width: $arrow-img-dimension;
 
     // Button with inline block(default) causes extra height
     display: block;
