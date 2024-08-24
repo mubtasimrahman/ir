@@ -111,7 +111,7 @@ function OurSpecialities({ id }: { id: string }) {
       <div className="container">
         <div className="row gy-3 justify-content-center">
           {services.map((service, index) => (
-            <div key={index} className="col-lg-6 col-sm-12 col-9">
+            <div key={index} className="col-lg-6">
               <div
                 className="d-flex speciality py-3 px-2"
                 onMouseEnter={() => {
@@ -137,7 +137,7 @@ function OurSpecialities({ id }: { id: string }) {
                   }}
                   aria-label={`Animation for ${service.serviceName}`}
                 />
-                <div className="d-flex flex-column justify-content-center align-items-start speciality-content">
+                <div className="d-flex flex-column justify-content-sm-center justify-content-evenly align-items-start speciality-content">
                   <div className="service-name poppins-semibold ms-2">
                     {service.serviceName}
                   </div>

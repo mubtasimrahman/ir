@@ -47,7 +47,7 @@ function FeaturedProjects({ id }: { id: string }) {
         <div className="row ">
           {clients.map((client, index) => (
             <div key={index} className="col-lg-6 mb-4 ">
-              <div className="card bg-transparent border-light mb-3">
+              <div className="card bg-transparent border-light mb-3 rounded-4">
                 <div className="card-body">
                   <div className="container">
                     <div className="row justify-content-between align-item-center">

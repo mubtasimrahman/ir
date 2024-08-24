@@ -48,24 +48,52 @@
   }
 }
 
-@media screen  and (width<992px){
-  .image-animation{
-    width:7rem;
-    height:7rem;
+@media screen and (width<992px) {
+  .image-animation {
+    width: 7rem;
+    height: 7rem;
   }
 
-  .speciality .image-svg{
-    width:14rem;
-    height:14rem;
+  .service-name {
+    font-size: 1.6rem;
+  }
+
+  .learn-more {
+    font-size: 1rem;
+  }
+
+  .speciality .image-svg {
+    width: 14rem;
+    height: 14rem;
+  }
+}
+
+@media screen and (width<576px) {
+  .image-animation {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .service-name {
+    font-size: 2rem;
+  }
+
+  .learn-more {
+    font-size: 1.3rem;
+  }
+
+  .speciality .image-svg {
+    width: 16rem;
+    height: 16rem;
   }
 }
 
 @media screen and (prefers-reduced-motion) {
-  .speciality .image-svg{
+  .speciality .image-svg {
     transition: none;
   }
 
-  .learn-more{
+  .learn-more {
     transition: none;
   }
 }

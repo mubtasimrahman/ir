@@ -6,6 +6,7 @@ function FixedFooter() {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleScroll = () => {
+    console.log(window.scrollY)
     if (window.scrollY > 600) {
       setIsFooterVisible(true);
     } else {

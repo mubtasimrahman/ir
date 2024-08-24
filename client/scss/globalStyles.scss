@@ -58,36 +58,10 @@ $spacers: map-merge(
   -moz-osx-font-smoothing: grayscale; /* for iOS Safari */
   text-size-adjust: none; /* for other mobile browsers */
 
+  --heading-font-size: clamp(1.5rem, 0.9757rem + 2.1844vw, 2.25rem);
+  --heading-letter-spacing-margin-right: 1.5rem;
   --website-white-colour: #f2f2f2;
   --website-282828-colour: #282828;
-}
-
-// Large Screens
-@include media-breakpoint-up(xl) {
-  :root {
-    font-size: 1.5rem;
-  }
-}
-
-// Medium screens (tablets and screens)
-@include media-breakpoint-between(md, xl) {
-  :root {
-    font-size: 1.25rem;
-  }
-}
-
-// Small screens (phones)
-@include media-breakpoint-between(sm, md) {
-  :root {
-    font-size: 1rem;
-  }
-}
-
-// Extra small screens (small phones)
-@include media-breakpoint-down(sm) {
-  :root {
-    font-size: 0.75rem;
-  }
 }
 
 body {
@@ -104,15 +78,15 @@ body {
 
   padding-top: 4.25rem;
   margin-bottom: 2.5rem;
-  font-size: 2.25rem;
+  font-size: var(--heading-font-size);
   text-transform: uppercase;
-  letter-spacing: 1.5rem;
+  letter-spacing: var(--heading-letter-spacing-margin-right);
   text-align: center;
   color: transparent;
   background-clip: text;
 
   // to compensate for last letter letter-spacing
-  margin-right: -1.5rem;
+  margin-right: calc(-1 * var(--heading-letter-spacing-margin-right));
 }
 
 .poppins-semibold {
@@ -142,4 +116,44 @@ body {
   font-family: Poppins, sans-serif;
   font-weight: 200;
   font-style: normal;
+}
+
+// Large Screens
+@include media-breakpoint-up(xl) {
+  :root {
+    font-size: 1.5rem;
+  }
+}
+
+// Medium screens (tablets and screens)
+@include media-breakpoint-between(md, xl) {
+  :root {
+    font-size: 1.25rem;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  :root {
+    font-size: 1.25rem;
+
+    --heading-font-size: clamp(1.5rem, 0.9rem + 2.844vw, 2.25rem);
+    --heading-letter-spacing-margin-right: 0.75rem;
+  }
+}
+
+// Small screens (phones)
+@include media-breakpoint-between(sm, md) {
+  :root {
+    font-size: 1rem;
+  }
+}
+
+// Extra small screens (small phones)
+@include media-breakpoint-down(sm) {
+  :root {
+    font-size: 0.75rem;
+
+    --heading-font-size: clamp(1.5rem, 1.5rem + 2.3vw, 3rem);
+    --heading-letter-spacing-margin-right: 0.5rem;
+  }
 }
