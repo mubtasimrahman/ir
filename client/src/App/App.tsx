@@ -12,19 +12,19 @@ function App() {
     <div
       //Gives live highlighting of which element is targeted
       data-bs-spy="scroll"
-      /*Give "overflow-hidden" to stop horizontal scrolling, but this messes up data-bs-spy
-      fix is just set overflow-x-hidden*/
-      className="d-flex flex-column overflow-x-hidden"
+      className="d-flex flex-column"
     >
-      <NavBar />
-      <BentoBox />
-      <InfiniteAutoPlay />
-
-      <FeaturedProjects id="FeaturedProjects" />
-      <OurSpecialities id="Specialities"></OurSpecialities>
-      <FixedFooter />
-      <ClientExperiences id="ClientExperiences"></ClientExperiences>
-      <AllTrades id="AllTrades" />
+      {/* Giving overflow attribute to div with spy breaks behaviour*/}
+      <div className="overflow-x-hidden">
+        <NavBar />
+        <BentoBox />
+        <InfiniteAutoPlay />
+        <FeaturedProjects id="FeaturedProjects" />
+        <OurSpecialities id="Specialities"></OurSpecialities>
+        <FixedFooter />
+        <ClientExperiences id="ClientExperiences"></ClientExperiences>
+        <AllTrades id="AllTrades" />
+      </div>
     </div>
   );
 }

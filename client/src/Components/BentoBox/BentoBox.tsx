@@ -3,7 +3,7 @@ import AdobeExpert from "../../assets/bentoBox/Adobecursor.svg";
 import IrrealVisuals from "../../assets/bentoBox/Bento logo.svg";
 import FBCursor from "../../assets/socialLogos/Facebookcursor.svg";
 import BHCursor from "../../assets/bentoBox/Behancecursor.svg";
-import IGCursor from "../../assets/Instagramcursor.svg";
+import IGCursor from "../../assets/socialLogos/Instagramcursor.svg";
 import AAE from "../../assets/bentoBox/Adobe After Effects.svg";
 import AA from "../../assets/bentoBox/Adobe Audition.svg";
 import AI from "../../assets/bentoBox/Adobe Illustrator.svg";
