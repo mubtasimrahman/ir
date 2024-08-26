@@ -1,7 +1,7 @@
 import "./BentoBox.scss";
 import AdobeExpert from "../../assets/bentoBox/Adobecursor.svg";
 import IrrealVisuals from "../../assets/bentoBox/Bento logo.svg";
-import FBCursor from "../../assets/Facebookcursor.svg";
+import FBCursor from "../../assets/socialLogos/Facebookcursor.svg";
 import BHCursor from "../../assets/bentoBox/Behancecursor.svg";
 import IGCursor from "../../assets/Instagramcursor.svg";
 import AAE from "../../assets/bentoBox/Adobe After Effects.svg";

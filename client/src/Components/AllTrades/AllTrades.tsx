@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import Photo from "../../assets/Mind copy.svg";
-import IGCursor from "../../assets/Instagramcursor.svg";
-import FBCursor from "../../assets/Facebookcursor.svg";
-import TTCursor from "../../assets/Tiktokcursor.svg";
+import IGCursor from "../../assets/socialLogos/Instagramcursor.svg";
+import FBCursor from "../../assets/socialLogos/Facebookcursor.svg";
+import TTCursor from "../../assets/socialLogos/Tiktokcursor.svg";
 import LazyMask from "../WrapperComponents/LazyMask";
 import "./AllTrades.scss";
 
