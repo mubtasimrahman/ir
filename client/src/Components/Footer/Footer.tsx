@@ -1,5 +1,5 @@
 function Footer() {
-  return <div>Footer</div>;
+  return <div className="d-flex"></div>;
 }
 
 export default Footer;

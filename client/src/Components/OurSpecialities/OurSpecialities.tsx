@@ -124,7 +124,7 @@ function OurSpecialities({ id }: { id: string }) {
                 tabIndex={0}
                 aria-label={`Speciality: ${service.serviceName}`}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
+                  if (e.key === "Enter") {
                     handleMouseEnter(index);
                   }
                 }}

@@ -1,5 +1,6 @@
 @import "./mixins";
 @import "../node_modules/bootstrap/scss/functions";
+$progress-bg: #f2f2f230;
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/variables-dark";
 
@@ -39,6 +40,7 @@ $spacers: map-merge(
 @import "../node_modules/bootstrap/scss/carousel";
 @import "../node_modules/bootstrap/scss/offcanvas";
 @import "../node_modules/bootstrap/scss/close";
+@import "../node_modules//bootstrap/scss/progress";
 
 // @import "../node_modules/bootstrap/scss/bootstrap.scss";
 

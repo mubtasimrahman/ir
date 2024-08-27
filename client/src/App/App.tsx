@@ -2,6 +2,7 @@ import NavBar from "../Components/NavBar/NavBar";
 import BentoBox from "../Components/BentoBox/BentoBox";
 import InfiniteAutoPlay from "../Components/InfiniteAutoPlay/InfiniteAutoPlay";
 import FeaturedProjects from "../Components/FeaturedProjects/FeaturedProjects";
+import AllClients from "../Components/AllClients/AllClients";
 import OurSpecialities from "../Components/OurSpecialities/OurSpecialities";
 import FixedFooter from "../Components/ScrollComponents/FixedFooter";
 import ClientExperiences from "../Components/ClientExperiences/ClientExperiences";
@@ -20,6 +21,7 @@ function App() {
         <BentoBox />
         <InfiniteAutoPlay />
         <FeaturedProjects id="FeaturedProjects" />
+        <AllClients></AllClients>
         <OurSpecialities id="Specialities"></OurSpecialities>
         <FixedFooter />
         <ClientExperiences id="ClientExperiences"></ClientExperiences>
