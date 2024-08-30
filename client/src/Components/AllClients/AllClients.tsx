@@ -133,8 +133,16 @@ function AllClients() {
   useEffect(() => {
     if (isPlaying) {
       const timer = window.setInterval(() => {
-        setElapsedTime((prevTime) => (prevTime + 1000) % totalDuration);
+        setElapsedTime((prevTime) => {
+          // Check if we've reached the total duration
+          if (prevTime + 1000 >= totalDuration) {
+            setCurrentIndex(0); // sync currentIndex and elapsedTime resets
+            return 0; // Reset elapsedTime
+          }
+          return prevTime + 1000;
+        });
       }, 1000);
+
       // console.log("as");
       return () => {
         window.clearInterval(timer);
@@ -170,7 +178,7 @@ function AllClients() {
         changes to true, this effect gets re-run and so interval is run again. Have to subtract time
         alreay spent on previous slide from slideduration */
       }, slideDuration - (elapsedTime - currentIndex * slideDuration));
-
+      // console.log(slideDuration - (elapsedTime - currentIndex * slideDuration));
       return () => {
         window.clearInterval(interval);
       };
