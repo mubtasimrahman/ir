@@ -16,6 +16,7 @@ import SA4 from "../../assets/allClients/Smart Air 4.webp";
 import SA5 from "../../assets/allClients/Smart Air 5.webp";
 import PlayPause from "./PlayPause";
 import "./AllClients.scss";
+import { useSwipeable } from "react-swipeable";
 
 interface Slide {
   id: number;
@@ -108,8 +109,9 @@ function AllClients() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [elapsedTime, setElapsedTime] = useState(0);
+  // const [slideChanged,setSlideChanged] = useState(false);
   const canvasRef = useRef<HTMLDivElement | null>(null);
-  const elapsedTimeRef = useRef<HTMLDivElement | null>(null); // Use ref to hold elapsed time
+  // const elapsedTimeRef = useRef<HTMLDivElement | null>(null); // Use ref to hold elapsed time
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -137,42 +139,43 @@ function AllClients() {
       return () => {
         window.clearInterval(timer);
       };
-    }
+    } /*currentIndex is also crucial to maintain accuracy when manually changing slides
+    It causes a fresh 1000ms timer to start just as handleSlideChange changes the time*/
   }, [isPlaying]);
 
   useEffect(() => {
-    const currentTime = elapsedTimeRef.current?.textContent;
-    let timeInMilliseconds = 0;
-    if (currentTime) {
-      // Extract the time before the slash by using [0]
-      const timeString = currentTime.split("/")[0].trim(); // "0:25" from "0:25 / 1:15"
+    // const currentTime = elapsedTimeRef.current?.textContent;
+    // let timeInMilliseconds = 0;
+    // if (currentTime) {
+    //   // Extract the time before the slash by using [0]
+    //   const timeString = currentTime.split("/")[0].trim(); // "0:25" from "0:25 / 1:15"
 
-      // Regular expression to extract minutes and seconds as two groups in parenthesis (format mm:ss)
-      const timeParts = /(\d+):(\d+)/.exec(timeString);
-      // console.log(timeParts);
-      if (timeParts) {
-        const minutes = parseInt(timeParts[1], 10); // Minutes part
-        const seconds = parseInt(timeParts[2], 10); // Seconds part
+    //   // Regular expression to extract minutes and seconds as two groups in parenthesis (format mm:ss)
+    //   const timeParts = /(\d+):(\d+)/.exec(timeString);
+    //   // console.log(timeParts);
+    //   if (timeParts) {
+    //     const minutes = parseInt(timeParts[1], 10); // Minutes part
+    //     const seconds = parseInt(timeParts[2], 10); // Seconds part
 
-        // Convert to milliseconds
-        timeInMilliseconds = (minutes * 60 + seconds) * 1000;
+    //     // Convert to milliseconds
+    //     timeInMilliseconds = (minutes * 60 + seconds) * 1000;
 
-        // console.log(timeInMilliseconds); // Output in milliseconds
-      }
-    }
+    //     console.log(timeInMilliseconds); // Output in milliseconds
+    //   }
+    // }
     if (isPlaying) {
       const interval = window.setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
         /*Normally, setIndex changes after the alotted slide duration. When visibilitystate is false, and then 
         changes to true, this effect gets re-run and so interval is run again. Have to subtract time
         alreay spent on previous slide from slideduration */
-      }, slideDuration - (timeInMilliseconds - currentIndex * slideDuration));
+      }, slideDuration - (elapsedTime - currentIndex * slideDuration));
 
       return () => {
         window.clearInterval(interval);
       };
     }
-  }, [isPlaying, currentIndex]);
+  }, [isPlaying, currentIndex, elapsedTime]);
 
   useEffect(() => {
     const canvasElement = canvasRef.current;
@@ -211,6 +214,18 @@ function AllClients() {
     return `${minutes.toString()}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      handleSlideChange((currentIndex + 1) % slides.length);
+    },
+    onSwipedRight: () => {
+      handleSlideChange((currentIndex - 1 + slides.length) % slides.length);
+    },
+    trackTouch: true,
+    trackMouse: false,
+    preventScrollOnSwipe: true,
+  });
+
   const togglePlay = useCallback(() => {
     setIsPlaying(!isPlaying);
   }, [isPlaying]);
@@ -220,7 +235,7 @@ function AllClients() {
       className="container-fluid all-clients-container mb-2 mt-4 py-5"
       ref={canvasRef}
     >
-      <div className="container slides">
+      <div {...swipeHandlers} className="container slides">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -257,7 +272,8 @@ function AllClients() {
               <div className="title">{slides[currentIndex].title}</div>
             </div>
             <div className="sub-line justify-content-end">
-              <div ref={elapsedTimeRef} className="time">
+              {/* used elapsedTimeRef */}
+              <div className="time">
                 {formatTime(elapsedTime)} / {formatTime(totalDuration)}
               </div>
             </div>
@@ -284,3 +300,9 @@ function AllClients() {
 }
 
 export default AllClients;
+/*Still problem when clicking the middle slide continuously.It causes the 
+slide to change even though time stays the same. This is because the 
+setCurrentIndex useEffect does not get re-run as the value of currentIndex 
+does not actually change. To fix this, I had to then add a trigger 
+button in the onClick event handler which then caused the effect to run again.This along with other
+considerations made me choose the path of re-rendering the componenent every second instead*/
