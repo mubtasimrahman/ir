@@ -1,5 +1,17 @@
+@property --primary-color {
+  syntax: "<color>";
+  initial-value: black;
+  inherits: false;
+}
+
 .all-clients-container {
-  --width-slide-and-player: 60%;
+  /* 3 slides has to add up to 1320px(for largest viewport). The left and right slides only have exposed 
+  440px *0.8scale * 0.4translate =  140.8px. So 3 slides had width = 721.6px. Following, 1320px = x * 721.6px = 1.829
+  lastly, 1.829*100 = 182.9/3 = 60.976%   */
+  --width-slide-and-player: 60.976%;
+
+  background: radial-gradient(circle, var(--primary-color) 0%, #000 85%);
+  transition: --primary-color 0.8s ease-in-out;
 }
 
 .slides {
@@ -7,29 +19,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 300px;
+  aspect-ratio: 2/1;
 }
 
 .client-slide {
   position: absolute;
   width: var(--width-slide-and-player);
-  height: 100%;
-  margin: 0 20px;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  aspect-ratio: 1.36/1;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
   cursor: pointer;
+  border-radius: 0.5rem;
 
   img {
-    width: 100%;
+    aspect-ratio: 1.36/1;
     height: 100%;
-    border-radius: 10px;
+    border-radius: inherit;
   }
 
   &.center-slide {
     transform: translateX(0) scale(1);
     opacity: 1;
     z-index: 2;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
   }
 
   &.right-slide {
@@ -53,31 +63,38 @@
 .player {
   margin-inline: auto;
   background-color: #232323;
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-top: 20px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
   width: var(--width-slide-and-player);
-  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 
   .song-info {
     .title {
       color: #f2f2f2;
-      font-size: 1rem;
-      margin-left: 2rem;
+      margin-left: 1rem;
     }
 
     .sub-line {
       display: flex;
       justify-content: space-between;
-      margin-top: 5px;
+      margin-top: 0.25rem;
 
       .time {
-        font-size: 14px;
         color: #f2f2f2;
       }
     }
   }
 }
+
 .progress {
   height: 0.35rem;
+}
+
+@media screen and (prefers-reduced-motion) {
+  .all-clients-container {
+    transition: none;
+  }
+  .client-slide {
+    transition: none;
+  }
 }
