@@ -7,6 +7,7 @@ import OurSpecialities from "../Components/OurSpecialities/OurSpecialities";
 import FixedFooter from "../Components/ScrollComponents/FixedFooter";
 import ClientExperiences from "../Components/ClientExperiences/ClientExperiences";
 import AllTrades from "../Components/AllTrades/AllTrades";
+import Footer from "../Components/Footer/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <FixedFooter />
         <ClientExperiences id="ClientExperiences"></ClientExperiences>
         <AllTrades id="AllTrades" />
+        <Footer></Footer>
       </div>
     </div>
   );

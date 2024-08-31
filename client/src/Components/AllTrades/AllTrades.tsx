@@ -41,7 +41,7 @@ function AllTrades({ id }: { id: string }) {
   return (
     <div
       id={id}
-      className="container-fluid description-container px-4 mt-5 text-lg-start text-center poppins-light"
+      className="container-fluid description-container px-4 pb-4 mt-5 text-lg-start text-center poppins-light"
     >
       <div className="row gx-5 justify-content-center align-items-start">
         <div className="col-xxl-5 col-lg-6  ">

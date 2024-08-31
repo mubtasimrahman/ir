@@ -1,0 +1,42 @@
+.footer-style {
+  color: #f2f2f2;
+  text-align: left;
+}
+
+.footer-style img {
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.3;
+  transition: opacity 0.5s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.designer > img {
+  margin-right: 1.5rem;
+}
+
+.developer img {
+  margin-left: 1.5rem;
+}
+
+.footer-line {
+  color: #f2f2f2;
+}
+
+.ir-image{
+    max-width:8rem;
+    max-height:8rem;
+}
+.copy-right{
+    color: #f2f2f2;
+    font-size: max(0.5rem,9px);
+}
+
+@media screen and (prefers-reduced-motion) {
+  .footer-style img {
+    transition: none;
+  }
+}
