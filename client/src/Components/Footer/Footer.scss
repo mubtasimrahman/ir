@@ -1,6 +1,10 @@
 .footer-style {
-  color: #f2f2f2;
+  color: var(--website-white-colour);
   text-align: right;
+}
+
+.designer > img {
+  margin-right: 1.5rem;
 }
 
 .footer-style img {
@@ -14,24 +18,21 @@
   }
 }
 
-.designer > img {
-  margin-right: 1.5rem;
-}
-
 .developer a {
   margin-left: 1.5rem;
 }
 
 .footer-line {
-  color: #f2f2f2;
+  color: var(--website-white-colour);
 }
 
 .ir-image {
   max-width: 8rem;
   max-height: 8rem;
 }
+
 .copy-right {
-  color: #f2f2f2;
+  color: var(--website-white-colour);
   font-size: max(0.5rem, 9px);
 }
 
@@ -39,10 +40,4 @@
   .footer-style img {
     transition: none;
   }
-}
-.temp{
-  text-align: left;
-}
-.temp-2{
-  max-width: fit-content;
 }

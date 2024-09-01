@@ -30,7 +30,7 @@
 
 .service-name {
   font-size: 1.4rem;
-  color: #f2f2f2;
+  color: var(--website-white-colour);
   line-height: 1.75rem;
 }
 
@@ -38,13 +38,13 @@
   font-size: 0.8rem;
   border-style: solid;
   background: none;
-  border-color: #f2f2f2;
+  border-color: var(--website-white-colour);
   border-radius: 10% / 40%;
   transition: all 0.3s ease-in-out;
 
   &:hover {
     color: #0f0f0f;
-    background-color: #f2f2f2;
+    background-color: var(--website-white-colour);
   }
 }
 

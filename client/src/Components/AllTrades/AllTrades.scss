@@ -2,7 +2,7 @@
 
 .description-container {
   position: relative;
-  color: #f2f2f2;
+  color: var(--website-white-colour);
   font-size: max(0.8rem, 11px);
   overflow: hidden;
   background-color: #282828;
@@ -18,7 +18,7 @@
     2300%,
     100%,
     none,
-    #f2f2f2
+    var(--website-white-colour)
   );
 
   &.animate-mask {
@@ -51,7 +51,7 @@
 }
 
 .intro {
-  color: #f2f2f2;
+  color: var(--website-white-colour);
   font-size: 2.5rem;
 }
 

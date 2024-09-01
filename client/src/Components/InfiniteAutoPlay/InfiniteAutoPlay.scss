@@ -15,7 +15,7 @@
   position: relative;
   border-top-style: solid;
   border-bottom-style: solid;
-  border-color: #f2f2f2;
+  border-color: var(--website-white-colour);
   border-width: 0.01rem;
 
   &::before,

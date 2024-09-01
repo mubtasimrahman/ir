@@ -1,3 +1,4 @@
+import { useAllTradesRef } from "../Components/Hooks/forwardRef";
 import NavBar from "../Components/NavBar/NavBar";
 import BentoBox from "../Components/BentoBox/BentoBox";
 import InfiniteAutoPlay from "../Components/InfiniteAutoPlay/InfiniteAutoPlay";
@@ -10,6 +11,7 @@ import AllTrades from "../Components/AllTrades/AllTrades";
 import Footer from "../Components/Footer/Footer";
 
 function App() {
+  const allTradesRef = useAllTradesRef();
   return (
     <div
       //Gives live highlighting of which element is targeted
@@ -24,9 +26,10 @@ function App() {
         <FeaturedProjects id="FeaturedProjects" />
         <AllClients></AllClients>
         <OurSpecialities id="Specialities"></OurSpecialities>
-        <FixedFooter />
+
         <ClientExperiences id="ClientExperiences"></ClientExperiences>
-        <AllTrades id="AllTrades" />
+        <AllTrades id="AllTrades" ref={allTradesRef} />
+        <FixedFooter allTradesRef={allTradesRef} />
         <Footer></Footer>
       </div>
     </div>

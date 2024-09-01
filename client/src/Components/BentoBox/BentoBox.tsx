@@ -172,7 +172,7 @@ function BentoBox() {
               ref={bottomRightRef}
             >
               <div className="d-flex flex-column justify-content-between ir custom-fb padding-less">
-                <div className="poppins-semibold temp"> OUR STACK</div>
+                <div className="poppins-semibold "> OUR STACK</div>
 
                 <div className="our-stack-slider">
                   <div className=" our-stack-slide-track">
