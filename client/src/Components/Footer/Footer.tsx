@@ -9,18 +9,18 @@ import "./Footer.scss";
 function Footer() {
   return (
     <div className="container pt-8 pb-4">
-      <div className="d-flex justify-content-between footer-style">
-        <div className="designer">
+      <div className="d-flex justify-content-between align-items-end footer-style">
+        <div className="d-flex designer">
           <img loading="lazy" src={FB} alt="" />
           <img loading="lazy" src={BH} alt="" />
           <img loading="lazy" src={IG} alt="" />
         </div>
-        <div className="row gx-2 developer poppins-regular">
-          <div className="col">
-            <div>Developed By</div>
-            <div> Mubtasim Rahman</div>
+        <div className="row gx-0 developer">
+          <div className="col-lg-auto">
+            <div className="poppins-light">Developed By</div>
+            <div className="poppins-regular"> Mubtasim Rahman</div>
           </div>
-          <div className="col">
+          <div className="col-lg">
             <a
               title="Developer Github Profile"
               href="https://github.com/mubtasimrahman"
@@ -43,7 +43,7 @@ function Footer() {
       <hr className="footer-line" />
       <div className="d-flex justify-content-between align-items-center">
         <img className="ir-image" src={IR} alt="" />
-        <span className="poppins-light copy-right">Irreal Visuals</span>
+        <span className="poppins-light copy-right">&copy; Irreal Visuals</span>
       </div>
     </div>
   );

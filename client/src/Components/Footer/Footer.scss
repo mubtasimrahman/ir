@@ -1,6 +1,6 @@
 .footer-style {
   color: #f2f2f2;
-  text-align: left;
+  text-align: right;
 }
 
 .footer-style img {
@@ -18,7 +18,7 @@
   margin-right: 1.5rem;
 }
 
-.developer img {
+.developer a {
   margin-left: 1.5rem;
 }
 
@@ -26,17 +26,23 @@
   color: #f2f2f2;
 }
 
-.ir-image{
-    max-width:8rem;
-    max-height:8rem;
+.ir-image {
+  max-width: 8rem;
+  max-height: 8rem;
 }
-.copy-right{
-    color: #f2f2f2;
-    font-size: max(0.5rem,9px);
+.copy-right {
+  color: #f2f2f2;
+  font-size: max(0.5rem, 9px);
 }
 
 @media screen and (prefers-reduced-motion) {
   .footer-style img {
     transition: none;
   }
+}
+.temp{
+  text-align: left;
+}
+.temp-2{
+  max-width: fit-content;
 }
