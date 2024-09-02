@@ -38,7 +38,7 @@
 .carousel-entries {
   display: flex;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-bottom: 2rem;
 
   &:hover {
@@ -138,6 +138,20 @@
   background-color: #1e1e1e;
   width: 100%;
   border-top-left-radius: 0.5rem;
+}
+
+@media screen and (prefers-reduced-motion) {
+  .carousel-button {
+    transition: none;
+  }
+  .carousel-entry {
+    transition: none;
+  }
+  .carousel-pills {
+    .pill {
+      transition: none;
+    }
+  }
 }
 
 @media screen and (width<992px) {

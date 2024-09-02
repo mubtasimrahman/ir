@@ -1,5 +1,7 @@
 @import "../../../scss/mixins";
 
+$footer-container-radius: 0rem;
+
 @property --angle {
   syntax: "<angle>";
   initial-value: 0deg;
@@ -13,23 +15,21 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%) scale(0); // Start off-screen and scaled down
-  border-radius: 0.33rem; // Pill shape
+  border-radius: $footer-container-radius; // Pill shape
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out; // Smooth transition
 
   &.visible-first {
     transform: translate(-50%, 0%) scale(1); // Move to visible position and scale up
-    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out; 
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
     &:hover {
       opacity: 1;
     }
   }
 
-  &.visible-second {
-    transform: translate(-50%, 100%) scale(0);
-    transition: transform 0.001s, opacity 0.001s linear; // Different transition properties
-    &:hover {
-      opacity: 1;
-    }
+  &.invisible-second {
+    transform: translate(5%, 100%);
+    transition: transform 0.07s linear, opacity 0.07s linear; // Different transition properties
+    opacity: 0;
   }
 }
 .button-container-ff {
@@ -96,18 +96,31 @@
   height: 100%;
 }
 
-
-.permanent-footer-container{
-  background-image: linear-gradient( #0f0f0f,  #282828);
+.permanent-footer-container {
+  position: relative;
+  background-image: linear-gradient(to right, #0f0f0f, #282828, #0f0f0f);
+  border-image: linear-gradient(
+      to left,
+      rgba(91, 82, 82, 0.4),
+      var(--website-white-colour),
+      rgba(91, 82, 82, 0.4)
+    )
+    1;
+  border-top: solid;
+  border-bottom: solid;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
 }
 
-.footer-text{
+.footer-text {
   color: var(--website-white-colour);
 }
-.temp{
+.footer-container-extra {
   z-index: 19;
   position: relative;
-  transform: translate(0,0) !important;
+  transform: none;
+  left: 0;
 }
 
 @keyframes border-animation-angle-control {
@@ -160,6 +173,12 @@ of button-container-ff */
 @media screen and (prefers-reduced-motion) {
   .footer-container {
     transition: none;
+    &.visible-first {
+      transition: none;
+    }
+    &.invisible-second {
+      transition: none;
+    }
   }
 
   .button-container-ff {
@@ -175,6 +194,14 @@ of button-container-ff */
       &.clicked {
         animation-duration: 0.01s;
       }
+    }
+  }
+}
+
+@media screen and (width<992px) {
+  .footer-container {
+    &.invisible-second {
+      transform: translate(-50%, 100%);
     }
   }
 }

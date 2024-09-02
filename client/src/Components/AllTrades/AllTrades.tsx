@@ -1,4 +1,4 @@
-import { useEffect, useRef,forwardRef } from "react";
+import { useEffect, useRef } from "react";
 import Photo from "../../assets/Mind copy.svg";
 import IGCursor from "../../assets/socialLogos/Instagramcursor.svg";
 import FBCursor from "../../assets/socialLogos/Facebookcursor.svg";
@@ -6,7 +6,7 @@ import TTCursor from "../../assets/socialLogos/Tiktokcursor.svg";
 import LazyMask from "../WrapperComponents/LazyMask";
 import "./AllTrades.scss";
 
-const AllTrades = forwardRef<HTMLDivElement, { id: string }>(function AllTrades({ id }: { id: string },ref) {
+function AllTrades({ id }: { id: string }) {
   const maskRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const maskElement = maskRef.current;
@@ -39,11 +39,10 @@ const AllTrades = forwardRef<HTMLDivElement, { id: string }>(function AllTrades(
 
   return (
     <div
-    ref={ref}
       id={id}
-      className="container-fluid description-container px-4 pb-4 my-10 text-lg-start text-center poppins-light"
+      className="container-fluid description-container px-4 pt-8 pb-4 mb-8 text-lg-start text-center poppins-light"
     >
-      <div className="row gx-5 justify-content-center align-items-start">
+      <div className="row gx-5 temp justify-content-center align-items-start">
         <div className="col-xxl-5 col-lg-6  ">
           <img className="photo mt-3" src={Photo} alt="" />
         </div>
@@ -86,6 +85,6 @@ const AllTrades = forwardRef<HTMLDivElement, { id: string }>(function AllTrades(
       </div>
     </div>
   );
-})
+}
 
 export default AllTrades;

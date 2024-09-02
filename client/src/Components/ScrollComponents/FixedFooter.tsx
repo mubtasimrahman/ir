@@ -16,13 +16,12 @@ function FixedFooter() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Hide the fixed footer when it intersects the child footer
           setIsPermanentFooterVisible(true);
         } else {
           setIsPermanentFooterVisible(false);
         }
       },
-      { threshold: 1 } // Adjust threshold based on when you want the effect to trigger
+      { rootMargin:"5%" } 
     );
     if (permanentFooter) {
       observer.observe(permanentFooter);
@@ -69,7 +68,7 @@ function FixedFooter() {
         ref={fixedFooterRef}
         className={`d-flex justify-content-center footer-container ${
           isFooterVisible &&!isPermanentFooterVisible ? "visible-first" : ""
-        } ${isPermanentFooterVisible ? "visible-second" : ""}`}
+        } ${isPermanentFooterVisible ? "invisible-second" : ""}`}
       >
         <div className={`button-container-ff poppins-regular`}>
           <span className="mask-ff">Copied</span>
@@ -83,22 +82,24 @@ function FixedFooter() {
           </button>
         </div>
       </div>
-      <div className="d-flex permanent-footer-container">
-        <div className="footer-text poppins-regular">For Any & All Queries Message Us At</div>
-        <div
-          ref={permanentFooterRef}
-          className={`d-flex justify-content-center footer-container visible-first temp`}
-        >
-          <div className={`button-container-ff poppins-regular`}>
-            <span className="mask-ff">Copied</span>
-            <button
-              className={`button-ff ${isClicked ? "clicked" : ""}`}
-              type="button"
-              name="Hover"
-              onClick={handleClick}
-            >
-              work@irrealvisuals.com
-            </button>
+      <div className="container-fluid mb-lg-4 mb-2">
+        <div className="row permanent-footer-container align-items-center">
+          <div className="col-lg footer-text poppins-regular text-lg-end text-center">For Any & All Queries Message Us At</div>
+          <div
+            ref={permanentFooterRef}
+            className={`d-flex col-lg mt-lg-0 mt-1 footer-container footer-container-extra justify-content-lg-start justify-content-center`}
+          >
+            <div className={`button-container-ff poppins-regular`}>
+              <span className="mask-ff">Copied</span>
+              <button
+                className={`button-ff ${isClicked ? "clicked" : ""}`}
+                type="button"
+                name="Hover"
+                onClick={handleClick}
+              >
+                work@irrealvisuals.com
+              </button>
+            </div>
           </div>
         </div>
       </div>

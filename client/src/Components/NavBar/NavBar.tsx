@@ -48,7 +48,7 @@ function NavBar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <a className="navbar-brand ms-9 ms-sm-0 me-0" href="#bla">
+        <a className="navbar-brand ms-9 ms-sm-0 me-0" href="/">
           <img src={IRLogo} alt="IR Logo" className="ir-logo" />
         </a>
         <div
