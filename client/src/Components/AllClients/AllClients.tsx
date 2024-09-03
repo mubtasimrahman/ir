@@ -185,22 +185,33 @@ function AllClients() {
     }
   }, [isPlaying, currentIndex, elapsedTime]);
 
+  // Effect to draw the image on canvas to get the primary color
   useEffect(() => {
     const canvasElement = canvasRef.current;
-    const imageObject = new Image();
-    imageObject.src = slides[currentIndex].image;
+    const imageElement: HTMLImageElement | null = document.querySelector(
+      `.client-slide[data-index="${currentIndex.toString()}"] img`
+    );
 
-    imageObject.onload = () => {
+    if (imageElement && canvasElement) {
       const canvas = document.createElement("canvas");
       const context = canvas.getContext("2d");
 
-      if (context && canvasElement) {
-        context.drawImage(imageObject, 0, 0, 1, 1);
-        const i = context.getImageData(0, 0, 1, 1).data;
-        const rgba = `rgba(${[i[0], i[1], i[2], i[3] / 255].join(",")})`;
-        canvasElement.style.setProperty("--primary-color", rgba);
+      const drawImage = () => {
+        if (context) {
+          context.drawImage(imageElement, 0, 0, 1, 1);
+          const i = context.getImageData(0, 0, 1, 1).data;
+          const rgba = `rgba(${[i[0], i[1], i[2], i[3] / 255].join(",")})`;
+          canvasElement.style.setProperty("--primary-color", rgba);
+        }
+      };
+      // pass drawImage CB for when image is loaded(Mainly for first image)
+      imageElement.onload = drawImage;
+
+      // Force draw if image is already loaded(All Images after first)
+      if (imageElement.complete) {
+        drawImage();
       }
-    };
+    }
   }, [currentIndex]);
 
   const handleSlideChange = (index: number) => {
@@ -247,6 +258,7 @@ function AllClients() {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
+            data-index={index}
             className={`client-slide ${getSlideClass(index)}`}
             role="button"
             tabIndex={0}
