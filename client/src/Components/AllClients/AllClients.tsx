@@ -194,7 +194,7 @@ function AllClients() {
 
     if (imageElement && canvasElement) {
       const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", { willReadFrequently: true });
 
       const drawImage = () => {
         if (context) {

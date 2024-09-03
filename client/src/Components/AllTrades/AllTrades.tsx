@@ -42,7 +42,7 @@ function AllTrades({ id }: { id: string }) {
       id={id}
       className="container-fluid description-container px-4 pt-8 pb-4 mb-8 text-lg-start text-center poppins-light"
     >
-      <div className="row gx-5 temp justify-content-center align-items-start">
+      <div className="row gx-5 all-trades-bg justify-content-center align-items-start">
         <div className="col-xxl-5 col-lg-6  ">
           <img className="photo mt-3" src={Photo} alt="" />
         </div>

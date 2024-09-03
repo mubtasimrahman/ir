@@ -1,6 +1,6 @@
 @import "../../../scss/mixins";
 
-$footer-container-radius: 0rem;
+$footer-container-radius: 0;
 
 @property --angle {
   syntax: "<angle>";
@@ -21,6 +21,7 @@ $footer-container-radius: 0rem;
   &.visible-first {
     transform: translate(-50%, 0%) scale(1); // Move to visible position and scale up
     transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+
     &:hover {
       opacity: 1;
     }
@@ -32,6 +33,7 @@ $footer-container-radius: 0rem;
     opacity: 0;
   }
 }
+
 .button-container-ff {
   background: black;
   width: 14rem;
@@ -101,9 +103,9 @@ $footer-container-radius: 0rem;
   background-image: linear-gradient(to right, #0f0f0f, #282828, #0f0f0f);
   border-image: linear-gradient(
       to left,
-      rgba(91, 82, 82, 0.4),
+      rgb(91 82 82 / 40%),
       var(--website-white-colour),
-      rgba(91, 82, 82, 0.4)
+      rgb(91 82 82 / 40%)
     )
     1;
   border-top: solid;
@@ -116,6 +118,7 @@ $footer-container-radius: 0rem;
 .footer-text {
   color: var(--website-white-colour);
 }
+
 .footer-container-extra {
   z-index: 19;
   position: relative;
@@ -173,9 +176,11 @@ of button-container-ff */
 @media screen and (prefers-reduced-motion) {
   .footer-container {
     transition: none;
+
     &.visible-first {
       transition: none;
     }
+
     &.invisible-second {
       transition: none;
     }
