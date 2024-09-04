@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import "./OurSpecialities.scss";
 import AIImage from "../../assets/ourSpecialities/AI Image Generation.json";
@@ -22,7 +22,51 @@ interface Services {
 
 function OurSpecialities({ id }: { id: string }) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const intersectionMap = useRef<Map<number, boolean>>(new Map());
   const animationMap = useRef<Map<number, AnimationItem>>(new Map());
+
+  // Check for touchscreen and viewport width under 992px
+  function isTouchScreenAndSmallViewport() {
+    return (
+      window.innerWidth < 992 &&
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0)
+    );
+  }
+
+  const handleMouseEnter = useCallback(
+    (index: number) => {
+      if (prefersReducedMotion) return;
+
+      const animation = animationMap.current.get(index);
+      if (animation) {
+        animation.setDirection(1);
+        animation.setSpeed(1);
+        animation.goToAndPlay(animation.currentFrame, true);
+      }
+    },
+    [prefersReducedMotion]
+  );
+
+  const handleMouseLeave = useCallback(
+    (index: number) => {
+      if (prefersReducedMotion) return;
+
+      const animation = animationMap.current.get(index);
+      if (animation) {
+        const isAnimationComplete =
+          animation.currentFrame + 1 === animation.totalFrames;
+        if (!isAnimationComplete) {
+          animation.setDirection(-1);
+          animation.setSpeed(1.25);
+          animation.goToAndPlay(animation.currentFrame, true);
+        } else {
+          animation.goToAndStop(0, true);
+        }
+      }
+    },
+    [prefersReducedMotion]
+  );
 
   //checks for prefers-reduced motion preference and updates if changed live
   useEffect(() => {
@@ -39,11 +83,46 @@ function OurSpecialities({ id }: { id: string }) {
     };
   }, []);
 
+  // Observe animation elements for intersection
+  useEffect(() => {
+    elementsRef.current.forEach((element, index) => {
+      if (!element || !isTouchScreenAndSmallViewport()) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                handleMouseEnter(index);
+                element.classList.add("hover");
+                intersectionMap.current.set(index, true);
+              }, 300);
+            } else if (intersectionMap.current.get(index)) {
+              handleMouseLeave(index);
+              element.classList.remove("hover");
+              intersectionMap.current.set(index, false);
+            }
+          });
+        },
+        { threshold: 1, rootMargin: "-20% 0px -15% 0px" }
+      );
+
+      observer.observe(element);
+      return () => {
+        observer.disconnect();
+      };
+    });
+  }, [handleMouseEnter, handleMouseLeave]);
+
   function initializeLottie(
     container: HTMLDivElement | null,
     animationData: object,
     index: number
   ) {
+    if (animationMap.current.has(index)) {
+      return;
+    }
+
     if (container && !prefersReducedMotion) {
       const animation = lottie.loadAnimation({
         container: container,
@@ -52,38 +131,10 @@ function OurSpecialities({ id }: { id: string }) {
         autoplay: false,
         animationData: animationData,
       });
+      // add new entry to current map
       animationMap.current.set(index, animation);
     }
   }
-
-  function handleMouseEnter(index: number) {
-    if (prefersReducedMotion) return;
-
-    const animation = animationMap.current.get(index);
-    if (animation) {
-      animation.setDirection(1);
-      animation.setSpeed(1);
-      animation.goToAndPlay(animation.currentFrame, true);
-    }
-  }
-
-  function handleMouseLeave(index: number) {
-    if (prefersReducedMotion) return;
-
-    const animation = animationMap.current.get(index);
-    if (animation) {
-      const isAnimationComplete =
-        animation.currentFrame + 1 === animation.totalFrames;
-      if (!isAnimationComplete) {
-        animation.setDirection(-1);
-        animation.setSpeed(1.25);
-        animation.goToAndPlay(animation.currentFrame, true);
-      } else {
-        animation.goToAndStop(0, true);
-      }
-    }
-  }
-
   const services: Services[] = [
     { serviceName: "Graphic Design", jsonAnimation: GD, svgImg: GDSVG },
     {
@@ -113,6 +164,7 @@ function OurSpecialities({ id }: { id: string }) {
           {services.map((service, index) => (
             <div key={index} className="col-lg-6">
               <div
+                data-index={index}
                 className="d-flex speciality py-3 px-2"
                 onMouseEnter={() => {
                   handleMouseEnter(index);
@@ -132,8 +184,11 @@ function OurSpecialities({ id }: { id: string }) {
                 <div
                   role="img"
                   className="image-animation me-1"
-                  ref={(el) => {
-                    initializeLottie(el, service.jsonAnimation, index);
+                  ref={(element) => {
+                    // console.log(element)
+                    // initialize current element lottie and add it to elementsRef for intersection tracking
+                    elementsRef.current[index] = element;
+                    initializeLottie(element, service.jsonAnimation, index);
                   }}
                   aria-label={`Animation for ${service.serviceName}`}
                 />

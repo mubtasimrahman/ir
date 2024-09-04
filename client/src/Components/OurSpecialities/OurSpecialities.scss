@@ -3,6 +3,11 @@
   height: 5.5rem;
   min-width: max-content;
   min-height: max-content;
+
+  &.hover~.image-svg{
+    transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
+    opacity: 1;
+  }
 }
 
 .speciality {
@@ -26,6 +31,7 @@
     transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
     opacity: 1;
   }
+  
 }
 
 .service-name {

@@ -245,6 +245,8 @@ function AllClients() {
     preventScrollOnSwipe: true,
   });
 
+  /* needs useCallback so that different function(object) is not passed 
+  every time component re-renders unless isPlaying changes*/
   const togglePlay = useCallback(() => {
     setIsPlaying(!isPlaying);
   }, [isPlaying]);
