@@ -10,7 +10,22 @@
   lastly, 1.829*100 = 182.9/3 = 60.976%   */
   --width-slide-and-player: 60.976%;
 
-  background: radial-gradient(circle, var(--primary-color) 0%, #000 85%);
+  /*two gradients at left and right corner, offset by 2.5% up to account for non-centred nature of cards within
+  container. Used color-mix to change opacity of colours and used gradeint color-stops to ensure smooth
+  color shifts. Could not use rgba directly as it is not animatable*/
+  background-image: radial-gradient(
+      farthest-corner at 0% 47.5%,
+      color-mix(in srgb, var(--primary-color) 70%, transparent) 0%,
+      color-mix(in srgb, var(--primary-color) 40%, transparent) 30%,
+      transparent 65%
+    ),
+    radial-gradient(
+      farthest-corner at 100% 47.5%,
+      color-mix(in srgb, var(--primary-color) 70%, transparent) 0%,
+      color-mix(in srgb, var(--primary-color) 40%, transparent) 30%,
+      transparent 65%
+    );
+
   transition: --primary-color 0.8s ease-in-out;
 }
 

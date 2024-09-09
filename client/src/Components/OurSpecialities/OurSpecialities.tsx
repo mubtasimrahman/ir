@@ -192,7 +192,7 @@ function OurSpecialities({ id }: { id: string }) {
                   }}
                   aria-label={`Animation for ${service.serviceName}`}
                 />
-                <div className="d-flex flex-column justify-content-sm-center justify-content-evenly align-items-start speciality-content">
+                <div className="d-flex flex-column justify-content-lg-center justify-content-evenly align-items-start speciality-content">
                   <div className="service-name poppins-semibold ms-2">
                     {service.serviceName}
                   </div>
