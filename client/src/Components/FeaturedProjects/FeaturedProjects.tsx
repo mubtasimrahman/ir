@@ -1,5 +1,5 @@
 import "./FeaturedProjects.scss";
-import IPDC from "../../assets/featuredClients/IPDC.png"
+import IPDC from "../../assets/featuredProjects/IPDC.png"
 import LazyMask from "../WrapperComponents/LazyMask";
 
 const clients = [
