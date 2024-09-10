@@ -1,15 +1,3 @@
-.image-animation {
-  width: 5.5rem;
-  height: 5.5rem;
-  min-width: max-content;
-  min-height: max-content;
-
-  &.hover ~ .image-svg {
-    transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
-    opacity: 1;
-  }
-}
-
 .speciality {
   background-image: linear-gradient(to right, #0f0f0f, #000);
   border-radius: 5% / 20%;
@@ -28,6 +16,18 @@
   }
 
   &:hover .image-svg {
+    transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
+    opacity: 1;
+  }
+}
+
+.image-animation {
+  width: 5.5rem;
+  height: 5.5rem;
+  min-width: max-content;
+  min-height: max-content;
+
+  &.hover ~ .image-svg {
     transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
     opacity: 1;
   }

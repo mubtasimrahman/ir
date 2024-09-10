@@ -1,5 +1,5 @@
 import "./FeaturedProjects.scss";
-import demoLogo from "../../assets/vite.svg";
+import IPDC from "../../assets/featuredClients/IPDC.png"
 import LazyMask from "../WrapperComponents/LazyMask";
 
 const clients = [
@@ -82,9 +82,9 @@ function FeaturedProjects({ id }: { id: string }) {
                     ))}
                   </div>
                 </div>
-                <div>
+                <div className="card-img-container">
                   <img
-                    src={demoLogo}
+                    src={IPDC}
                     className="card-img-bottom"
                     alt={client.name}
                   />
