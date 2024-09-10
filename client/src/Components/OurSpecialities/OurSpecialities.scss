@@ -4,7 +4,7 @@
   min-width: max-content;
   min-height: max-content;
 
-  &.hover~.image-svg{
+  &.hover ~ .image-svg {
     transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
     opacity: 1;
   }
@@ -31,11 +31,10 @@
     transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
     opacity: 1;
   }
-  
 }
 
 .service-name {
-  font-size: 1.4rem;
+  font-size: clamp(0.75rem, 0.2257rem + 2.184vw, 1.5rem);
   color: var(--website-white-colour);
   line-height: 1.75rem;
 }
@@ -61,7 +60,8 @@
   }
 
   .service-name {
-    font-size: 1.6rem;
+    font-size: clamp(0.75rem, 1rem + 2.184vw, 2rem);
+    line-height: 2.25rem;
   }
 
   .learn-more {

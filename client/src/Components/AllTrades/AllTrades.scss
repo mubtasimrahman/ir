@@ -5,9 +5,6 @@
   color: var(--website-white-colour);
   font-size: max(0.8rem, 11px);
   overflow: hidden;
-}
-
-.all-trades-bg {
   background-color: #282828;
 }
 
@@ -55,7 +52,8 @@
 
 .intro {
   color: var(--website-white-colour);
-  font-size: 2.5rem;
+  font-size: 2.75rem;
+  line-height:1;
 }
 
 .social-img {
@@ -78,13 +76,13 @@
 
 @media screen and (width >= 992px) and (width < 1400px) {
   .intro {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
   }
 }
 
-@media screen and (width<361px) {
+@media screen and (width<394px) {
   .intro {
-    font-size: 1.6rem;
+    font-size: 2.25rem;
   }
 }
 

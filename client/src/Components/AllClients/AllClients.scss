@@ -34,19 +34,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 2/1;
+  aspect-ratio: 1.5/1; // changed
 }
 
 .client-slide {
   position: absolute;
   width: var(--width-slide-and-player);
-  aspect-ratio: 1.36/1;
+  aspect-ratio: 1/1; // changed
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
   cursor: pointer;
   border-radius: 0.5rem;
 
   img {
-    aspect-ratio: 1.36/1;
+    aspect-ratio: 1/1; // changed
     height: 100%;
     border-radius: inherit;
   }

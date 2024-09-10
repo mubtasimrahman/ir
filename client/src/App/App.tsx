@@ -16,7 +16,7 @@ function App() {
       data-bs-spy="scroll"
       className="d-flex flex-column"
     >
-      {/* Giving overflow attribute to div with spy breaks behaviour*/}
+      {/* Giving overflow property to div with spy breaks behaviour*/}
       <div className="overflow-x-hidden">
         <NavBar />
         <BentoBox />
