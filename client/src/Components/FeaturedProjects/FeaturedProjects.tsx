@@ -1,6 +1,8 @@
 import "./FeaturedProjects.scss";
-import IPDC from "../../assets/featuredProjects/IPDC.png"
+import IPDC from "../../assets/featuredProjects/IPDC.png";
+import { isTouchScreenAndSmallViewport } from "../Utils/Touch&Viewport";
 import LazyMask from "../WrapperComponents/LazyMask";
+import { useEffect, useRef } from "react";
 
 const clients = [
   {
@@ -38,6 +40,32 @@ const clients = [
 ];
 
 function FeaturedProjects({ id }: { id: string }) {
+  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
+  useEffect(() => {
+    elementsRef.current.forEach((element) => {
+      if (!element || !isTouchScreenAndSmallViewport()) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              console.log("yaa");
+              element.classList.add("hover");
+            } else {
+              console.log("naaa");
+              element.classList.remove("hover");
+            }
+          });
+        },
+        { threshold: 0.9, rootMargin: "15% 0px -10% 0px" }
+      );
+
+      observer.observe(element);
+
+      return () => {
+        observer.disconnect();
+      };
+    });
+  });
   return (
     <div id={id} className="featured-projects mt-4">
       <div className="featured-title poppins-bold-heading">
@@ -47,7 +75,12 @@ function FeaturedProjects({ id }: { id: string }) {
         <div className="row ">
           {clients.map((client, index) => (
             <div key={index} className="col-lg-6 mb-4 ">
-              <div className="card bg-transparent border-light mb-3 rounded-4">
+              <div
+                ref={(element) => {
+                  elementsRef.current[index] = element;
+                }}
+                className="card bg-transparent border-light mb-3 rounded-4"
+              >
                 <div className="card-body">
                   <div className="container">
                     <div className="row justify-content-between align-item-center">

@@ -19,6 +19,12 @@ $card-padding-margin: 1rem;
         margin-right: 10px;
       }
     }
+    &.hover {
+      box-shadow: none;
+      .card-img-bottom {
+        filter: grayscale(0%);
+      }
+    }
   }
 }
 
@@ -54,14 +60,13 @@ $card-padding-margin: 1rem;
 
 .card:hover {
   box-shadow: none;
-
   .card-img-bottom {
     filter: grayscale(0%);
   }
 }
 
 .card-img-container {
-  padding-inline: $card-padding-margin
+  padding-inline: $card-padding-margin;
 }
 
 .button-container-fp {

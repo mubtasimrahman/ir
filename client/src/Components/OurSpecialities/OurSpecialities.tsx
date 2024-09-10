@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import "./OurSpecialities.scss";
+import { isTouchScreenAndSmallViewport } from "../Utils/Touch&Viewport";
 import AIImage from "../../assets/ourSpecialities/AI Image Generation.json";
 import ARTILL from "../../assets/ourSpecialities/Artwork & Illustrations.json";
 import GD from "../../assets/ourSpecialities/Graphic Design.json";
@@ -23,16 +24,8 @@ interface Services {
 function OurSpecialities({ id }: { id: string }) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const intersectionMap = useRef<Map<number, boolean>>(new Map());
+  // const intersectionMap = useRef<Map<number, boolean>>(new Map());
   const animationMap = useRef<Map<number, AnimationItem>>(new Map());
-
-  // Check for touchscreen and viewport width under 992px
-  function isTouchScreenAndSmallViewport() {
-    return (
-      window.innerWidth < 992 &&
-      ("ontouchstart" in window || navigator.maxTouchPoints > 0)
-    );
-  }
 
   const handleMouseEnter = useCallback(
     (index: number) => {
@@ -95,12 +88,13 @@ function OurSpecialities({ id }: { id: string }) {
               setTimeout(() => {
                 handleMouseEnter(index);
                 element.classList.add("hover");
-                intersectionMap.current.set(index, true);
+                // intersectionMap.current.set(index, true);
               }, 300);
-            } else if (intersectionMap.current.get(index)) {
+            } else {
+              // else if (intersectionMap.current.get(index))
               handleMouseLeave(index);
               element.classList.remove("hover");
-              intersectionMap.current.set(index, false);
+              // intersectionMap.current.set(index, false);
             }
           });
         },
