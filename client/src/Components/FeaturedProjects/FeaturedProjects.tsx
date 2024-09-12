@@ -1,5 +1,8 @@
 import "./FeaturedProjects.scss";
-import IPDC from "../../assets/featuredProjects/IPDC.png";
+import IPDC from "../../assets/featuredProjects/IPDC.webp";
+import ANN from "../../assets/featuredProjects/ANN.webp";
+import SA from "../../assets/featuredProjects/Smart Air.webp";
+import UNI from "../../assets/featuredProjects/Unimart.webp";
 import { isTouchScreenAndSmallViewport } from "../Utils/Touch&Viewport";
 import LazyMask from "../WrapperComponents/LazyMask";
 import { useEffect, useRef } from "react";
@@ -14,7 +17,7 @@ const clients = [
       "AI Image Generation",
       "Artwork and Illustrations",
     ],
-    imageUrl: "path_to_image_1",
+    imageUrl: IPDC,
   },
   {
     name: "Smart Air",
@@ -25,17 +28,17 @@ const clients = [
       "Video Editing",
       "AI Image Generation",
     ],
-    imageUrl: "path_to_image_2",
+    imageUrl: SA,
   },
   {
-    name: "Lueur Bakery",
-    services: ["Graphic Design", "AI Image Generation"],
-    imageUrl: "path_to_image_3",
+    name: "Amra Notun Network",
+    services: ["Video Editing", "Videography"],
+    imageUrl: ANN,
   },
   {
     name: "Unimart",
     services: ["Video Editing", "Videography", "Motion Design"],
-    imageUrl: "path_to_image_4",
+    imageUrl: UNI,
   },
 ];
 
@@ -117,7 +120,7 @@ function FeaturedProjects({ id }: { id: string }) {
                 </div>
                 <div className="card-img-container">
                   <img
-                    src={IPDC}
+                    src={client.imageUrl}
                     className="card-img-bottom"
                     alt={client.name}
                   />
