@@ -6,9 +6,12 @@
 
 .all-clients-container {
   /* 3 slides has to add up to 1320px(for largest viewport). The left and right slides only have exposed 
-  440px *0.8scale * 0.4translate =  140.8px. So 3 slides had width = 721.6px. Following, 1320px = x * 721.6px = 1.829
-  lastly, 1.829*100 = 182.9/3 = 60.976%   */
-  --width-slide-and-player: 60.976%;
+  440px *0.8scale * 0.7translate =  246.4px. So 3 slides had width = 932.8px. Following, 1320px = x * 932.8px = 1.415
+  lastly, 1.415*100 = 141.5/3 = 47.1698%,  Unfortunalely the estimate here is off as scaling and trasnlations
+  are not uniform when calculating width */
+  --width-slide-and-player: 45.5%;
+  --exposed-cards: 70%;
+  --container-aspect-ratio: 2/1;
 
   /* two gradients at left and right corner, offset by 2.5% up to account for non-centred nature of cards within
   container. Used color-mix to change opacity of colours and used gradeint color-stops to ensure smooth
@@ -33,7 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1.5/1; // changed
+  aspect-ratio: var(--container-aspect-ratio); // changed
 }
 
 .client-slide {
@@ -57,13 +60,13 @@
   }
 
   &.right-slide {
-    transform: translateX(40%) scale(0.8);
+    transform: translateX(var(--exposed-cards)) scale(0.8);
     opacity: 0.5;
     z-index: 1;
   }
 
   &.left-slide {
-    transform: translateX(-40%) scale(0.8);
+    transform: translateX(calc(var(--exposed-cards) * -1)) scale(0.8);
     opacity: 0.5;
     z-index: 1;
   }
@@ -79,7 +82,8 @@
   background-color: #232323;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  margin-top: 1rem;
+
+  // margin-top: 1rem;
   width: var(--width-slide-and-player);
 
   .song-info {
@@ -111,5 +115,28 @@
 
   .client-slide {
     transition: none;
+  }
+}
+
+@media screen and (width<1200px) {
+  .all-clients-container {
+    --width-slide-and-player: 55.5%;
+    --exposed-cards: 50%;
+    --container-aspect-ratio: 1.6/1;
+  }
+}
+
+@media screen and (width<992px) {
+  .all-clients-container {
+    --width-slide-and-player: 60%;
+    --exposed-cards: 44%;
+    --container-aspect-ratio: 1.45/1;
+  }
+}
+
+@media screen and (width<768px) {
+  .all-clients-container {
+    --width-slide-and-player: 62%;
+    --exposed-cards: 40%;
   }
 }

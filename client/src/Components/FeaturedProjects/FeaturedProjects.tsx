@@ -31,7 +31,7 @@ const clients = [
     imageUrl: SA,
   },
   {
-    name: "Amra Notun Network",
+    name: "ANN",
     services: ["Video Editing", "Videography"],
     imageUrl: ANN,
   },
@@ -51,10 +51,10 @@ function FeaturedProjects({ id }: { id: string }) {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              console.log("yaa");
+              // console.log("yaa");
               element.classList.add("hover");
             } else {
-              console.log("naaa");
+              // console.log("naaa");
               element.classList.remove("hover");
             }
           });

@@ -21,6 +21,14 @@
   }
 }
 
+.image-svg-static {
+  width: 5.5rem;
+  height: 5.5rem;
+  min-width: max-content;
+  min-height: max-content;
+  position: static;
+}
+
 .image-animation {
   width: 5.5rem;
   height: 5.5rem;
@@ -59,6 +67,11 @@
     height: 7rem;
   }
 
+  .image-svg-static {
+    width: 7rem;
+    height: 7rem;
+  }
+
   .service-name {
     font-size: clamp(0.75rem, 1rem + 2.184vw, 2rem);
     line-height: 2.25rem;
@@ -76,6 +89,11 @@
 
 @media screen and (width<576px) {
   .image-animation {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .image-svg-static {
     width: 9rem;
     height: 9rem;
   }

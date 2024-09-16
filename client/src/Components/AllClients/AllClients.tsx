@@ -276,7 +276,6 @@ function AllClients() {
           >
             <img
               className="all-clients-img"
-              loading="lazy"
               src={slide.image}
               alt={slide.title}
             />

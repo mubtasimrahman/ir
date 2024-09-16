@@ -1,7 +1,10 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import "./OurSpecialities.scss";
-import { isTouchScreenAndSmallViewport } from "../Utils/Touch&Viewport";
+import {
+  isTouchScreenAndSmallViewport,
+  getOperatingSystem,
+} from "../Utils/Touch&Viewport";
 import AIImage from "../../assets/ourSpecialities/AI Image Generation.json";
 import ARTILL from "../../assets/ourSpecialities/Artwork & Illustrations.json";
 import GD from "../../assets/ourSpecialities/Graphic Design.json";
@@ -23,9 +26,20 @@ interface Services {
 
 function OurSpecialities({ id }: { id: string }) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [oS, setOS] = useState("");
   const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
   // const intersectionMap = useRef<Map<number, boolean>>(new Map());
   const animationMap = useRef<Map<number, AnimationItem>>(new Map());
+
+  function getElementsArray() {
+    if (elementsRef.current.length === 0) {
+      /* Check if elementsRef.current is empty by checking 
+      its length and initialzing on first use*/
+      elementsRef.current = new Array<HTMLDivElement>();
+    }
+
+    return elementsRef.current; // Return the map
+  }
 
   const handleMouseEnter = useCallback(
     (index: number) => {
@@ -61,6 +75,11 @@ function OurSpecialities({ id }: { id: string }) {
     [prefersReducedMotion]
   );
 
+  // could possibly use useLayoutEffect to avoid FOUC
+  useEffect(() => {
+    setOS(getOperatingSystem());
+  }, []);
+
   //checks for prefers-reduced motion preference and updates if changed live
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -78,35 +97,41 @@ function OurSpecialities({ id }: { id: string }) {
 
   // Observe animation elements for intersection
   useEffect(() => {
-    elementsRef.current.forEach((element, index) => {
-      if (!element || !isTouchScreenAndSmallViewport()) return;
+    // console.log(oS)
+    if (oS != "") {
+      elementsRef.current.forEach((element, index) => {
+        if (!element || !isTouchScreenAndSmallViewport()) {
+          return;
+        }
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                handleMouseEnter(index);
-                element.classList.add("hover");
-                // intersectionMap.current.set(index, true);
-              }, 300);
-            } else {
-              // else if (intersectionMap.current.get(index))
-              handleMouseLeave(index);
-              element.classList.remove("hover");
-              // intersectionMap.current.set(index, false);
-            }
-          });
-        },
-        { threshold: 1, rootMargin: "-20% 0px -15% 0px" }
-      );
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setTimeout(() => {
+                  handleMouseEnter(index);
+                  // console.log("intersect");
+                  element.classList.add("hover");
+                  // intersectionMap.current.set(index, true);
+                }, 300);
+              } else {
+                // else if (intersectionMap.current.get(index))
+                handleMouseLeave(index);
+                element.classList.remove("hover");
+                // intersectionMap.current.set(index, false);
+              }
+            });
+          },
+          { threshold: 1, rootMargin: "-20% 0px -15% 0px" }
+        );
 
-      observer.observe(element);
-      return () => {
-        observer.disconnect();
-      };
-    });
-  }, [handleMouseEnter, handleMouseLeave]);
+        observer.observe(element);
+        return () => {
+          observer.disconnect();
+        };
+      });
+    }
+  }, [handleMouseEnter, handleMouseLeave, oS]);
 
   function initializeLottie(
     container: HTMLDivElement | null,
@@ -126,6 +151,7 @@ function OurSpecialities({ id }: { id: string }) {
         animationData: animationData,
       });
       // add new entry to current map
+      // console.log("added");
       animationMap.current.set(index, animation);
     }
   }
@@ -175,17 +201,30 @@ function OurSpecialities({ id }: { id: string }) {
                   }
                 }}
               >
-                <div
-                  role="img"
-                  className="image-animation me-1"
-                  ref={(element) => {
-                    // console.log(element)
-                    // initialize current element lottie and add it to elementsRef for intersection tracking
-                    elementsRef.current[index] = element;
-                    initializeLottie(element, service.jsonAnimation, index);
-                  }}
-                  aria-label={`Animation for ${service.serviceName}`}
-                />
+                {["Windows", "Android", "Linux"].includes(oS) ? (
+                  <div
+                    role="img"
+                    className="image-animation me-1"
+                    ref={(element) => {
+                      // Initialize current element lottie and add it to elementsRef for intersection tracking
+                      // Do not directly write ref.current during render
+                      const array = getElementsArray();
+                      if (element) {
+                        array[index] = element;
+                      }
+                      // elementsRef.current[index] = element;
+                      initializeLottie(element, service.jsonAnimation, index);
+                    }}
+                    aria-label={`Animation for ${service.serviceName}`}
+                  ></div>
+                ) : (
+                  <img
+                    loading="lazy"
+                    className="image-svg-static"
+                    src={service.svgImg}
+                    alt=""
+                  />
+                )}
                 <div className="d-flex flex-column justify-content-lg-center justify-content-evenly align-items-start speciality-content">
                   <div className="service-name poppins-bold ms-2">
                     {service.serviceName}
