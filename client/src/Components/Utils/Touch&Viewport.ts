@@ -8,7 +8,7 @@ export function isTouchScreenAndSmallViewport(): boolean {
 
 export function getOperatingSystem(): string {
   const userAgent = window.navigator.userAgent.toLowerCase();
-  console.log(userAgent);
+  // console.log(userAgent);
   if (userAgent.includes("win")) {
     return "Windows";
   } else if (userAgent.includes("android")) {
