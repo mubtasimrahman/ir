@@ -6,9 +6,9 @@ import GH from "../../assets/socialLogos/Githubcursor.svg";
 import LI from "../../assets/socialLogos/LinkedIncursor.svg";
 import "./Footer.scss";
 
-function Footer() {
+function Footer({ id }: { id: string }) {
   return (
-    <div className="container pt-8 pb-4">
+    <div id={id} className="container pt-8 pb-4">
       <div className="d-flex justify-content-between align-items-end footer-style">
         <div className="d-flex designer">
           <img loading="lazy" src={FB} alt="" />

@@ -27,7 +27,7 @@ function App() {
         <ClientExperiences id="ClientExperiences"></ClientExperiences>
         <AllTrades id="AllTrades" />
         <FixedFooter />
-        <Footer></Footer>
+        <Footer id="ContactUs"></Footer>
       </div>
     </div>
   );

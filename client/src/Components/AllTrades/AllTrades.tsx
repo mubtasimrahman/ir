@@ -67,7 +67,7 @@ function AllTrades({ id }: { id: string }) {
                 clients.
               </div>
               <div className="mb-3">
-                I have also recetly started my journey as a digital content
+                I have also recently started my journey as a digital content
                 creator to gain a better understanding of popular social media
                 platforms, with an aim to better serve our clients.
               </div>

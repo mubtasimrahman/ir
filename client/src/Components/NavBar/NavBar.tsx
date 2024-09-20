@@ -66,7 +66,7 @@ function NavBar() {
           <img src={IRLogo} alt="IR Logo" className="ir-logo" />
         </a>
         <div
-          className="collapse navbar-collapse ms-9 ms-sm-0"
+          className="collapse navbar-collapse"
           id="navbarSupportedContent"
           ref={navbarCollapseRef}
         >
@@ -109,9 +109,9 @@ function NavBar() {
             </li>
           </ul>
 
-          <button type="button" className="contact-button mb-lg-0 mb-3">
+          <a className="contact-button mb-lg-0 mb-3" href="#ContactUs">
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </nav>

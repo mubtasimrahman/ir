@@ -6,6 +6,8 @@
   border-color: var(--website-white-colour);
   border-radius: 2rem;
   transition: all 0.4s ease-in-out;
+  text-decoration:none;
+  display: inline-block;
 
   &:hover {
     background-color: var(--website-white-colour);
