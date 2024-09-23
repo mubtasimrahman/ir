@@ -119,6 +119,13 @@ $card-padding-margin: 1rem;
   overflow: hidden;
 }
 
+.color-burns {
+  background-image: url("../../assets/colorBurn/Featured 1.webp"),
+    url("../../assets/colorBurn/Featured 2.webp");
+  background-repeat: no-repeat;
+  background-position: -5% 20%, 105% 100%;
+}
+
 @keyframes ani {
   from {
     mask-position: 0 0;
@@ -142,6 +149,12 @@ $card-padding-margin: 1rem;
 @media screen and (width<992px) {
   .card-title {
     font-size: clamp(0.75rem, 1rem + 2.184vw, 2rem);
+  }
+}
+
+@media screen and (width<768px){
+  .color-burns{
+    background-image: none;
   }
 }
 

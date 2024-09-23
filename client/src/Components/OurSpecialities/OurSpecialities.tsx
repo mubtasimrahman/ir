@@ -11,17 +11,25 @@ import GD from "../../assets/ourSpecialities/Graphic Design.json";
 import MG from "../../assets/ourSpecialities/Motion Graphics.json";
 import VVE from "../../assets/ourSpecialities/Videography & Video Editing.json";
 import WD from "../../assets/ourSpecialities/Web Design.json";
-import AIImageSVG from "../../assets/ourSpecialities/static/Ai Image Generation.svg";
-import ARTILLASVG from "../../assets/ourSpecialities/static/Artwork & Illustrations.svg";
-import GDSVG from "../../assets/ourSpecialities/static/Graphic Design.svg";
-import MGSVG from "../../assets/ourSpecialities/static/Motion Graphics.svg";
-import VVESVG from "../../assets/ourSpecialities/static/Videography & Video Editing.svg";
-import WDSVG from "../../assets/ourSpecialities/static/Web Design.svg";
+import AIImageBG from "../../assets/ourSpecialities/static/Ai Image Generation.svg";
+import ARTILLABG from "../../assets/ourSpecialities/static/Artwork & Illustrations.svg";
+import GDBG from "../../assets/ourSpecialities/static/Graphic Design.svg";
+import MGBG from "../../assets/ourSpecialities/static/Motion Graphics.svg";
+import VVEBG from "../../assets/ourSpecialities/static/Videography & Video Editing.svg";
+import WDBG from "../../assets/ourSpecialities/static/Web Design.svg";
+import AIImageSVG from "../../assets/ourSpecialities/static/AI Image Gen-01.svg";
+import ARTILLASVG from "../../assets/ourSpecialities/static/Artwork-01.svg";
+import GDSVG from "../../assets/ourSpecialities/static/Graphic Design-01.svg";
+import MGSVG from "../../assets/ourSpecialities/static/Motion Design-01.svg";
+import VVESVG from "../../assets/ourSpecialities/static/Videography-01.svg";
+import WDSVG from "../../assets/ourSpecialities/static/Web Design-01.svg";
+
 
 interface Services {
   serviceName: string;
   jsonAnimation: object;
   svgImg: string;
+  bgIMG: string
 }
 
 function OurSpecialities({ id }: { id: string }) {
@@ -156,24 +164,36 @@ function OurSpecialities({ id }: { id: string }) {
     }
   }
   const services: Services[] = [
-    { serviceName: "Graphic Design", jsonAnimation: GD, svgImg: GDSVG },
+    {
+      serviceName: "Graphic Design", jsonAnimation: GD, svgImg: GDSVG,
+      bgIMG: GDBG
+    },
     {
       serviceName: "AI Image Generation",
       jsonAnimation: AIImage,
       svgImg: AIImageSVG,
+      bgIMG: AIImageBG
     },
     {
       serviceName: "Artwork & Illustations",
       jsonAnimation: ARTILL,
       svgImg: ARTILLASVG,
+      bgIMG: ARTILLABG
     },
-    { serviceName: "Motion Graphics", jsonAnimation: MG, svgImg: MGSVG },
+    {
+      serviceName: "Motion Graphics", jsonAnimation: MG, svgImg: MGSVG,
+      bgIMG: MGBG
+    },
     {
       serviceName: "Videography & Video Editing",
       jsonAnimation: VVE,
       svgImg: VVESVG,
+      bgIMG: VVEBG
     },
-    { serviceName: "Web Design", jsonAnimation: WD, svgImg: WDSVG },
+    {
+      serviceName: "Web Design", jsonAnimation: WD, svgImg: WDSVG,
+      bgIMG: WDBG
+    },
   ];
 
   return (
@@ -239,7 +259,7 @@ function OurSpecialities({ id }: { id: string }) {
                 <img
                   loading="lazy"
                   className="image-svg"
-                  src={service.svgImg}
+                  src={service.bgIMG}
                   alt=""
                 />
               </div>
