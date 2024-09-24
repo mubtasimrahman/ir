@@ -105,6 +105,16 @@ const slides: Slide[] = [
 const slideDuration = 5000; // 5 seconds per slide
 const totalDuration = slides.length * slideDuration; // Total duration for all slides
 
+/* Register houdidi @property just once.This does not seem to make the component impure, as setting 
+the propert later on with setPropertysets it specifically for THAT canvasElement. So having multiple 
+AllClients is also not problematic*/
+CSS.registerProperty({
+  name: "--primary-color",
+  syntax: "<color>",
+  inherits: false,
+  initialValue: "black",
+});
+
 function AllClients() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -201,6 +211,8 @@ function AllClients() {
           context.drawImage(imageElement, 0, 0, 1, 1);
           const i = context.getImageData(0, 0, 1, 1).data;
           const rgba = `rgba(${[i[0], i[1], i[2], i[3] / 255].join(",")})`;
+
+          // set new color to pre-registered houdini property every time Index changes
           canvasElement.style.setProperty("--primary-color", rgba);
         }
       };

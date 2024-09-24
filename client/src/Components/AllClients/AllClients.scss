@@ -1,8 +1,9 @@
-@property --primary-color {
-  syntax: "<color>";
-  initial-value: black;
-  inherits: false;
-}
+// @property --primary-color {
+//   syntax: "<color>";
+//   initial-value: black;
+//   inherits: false;
+// }
+// ^^ Above caused crashes with chromium with window resize and zooming in/out
 
 .all-clients-container {
   /* 3 slides has to add up to 1320px(for largest viewport). The left and right slides only have exposed 
