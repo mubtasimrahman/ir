@@ -3,11 +3,11 @@ import BentoBox from "../Components/BentoBox/BentoBox";
 import InfiniteAutoPlay from "../Components/InfiniteAutoPlay/InfiniteAutoPlay";
 import FeaturedProjects from "../Components/FeaturedProjects/FeaturedProjects";
 import AllClients from "../Components/AllClients/AllClients";
-import OurSpecialities from "../Components/OurSpecialities/OurSpecialities";
 import FixedFooter from "../Components/ScrollComponents/FixedFooter";
-import ClientExperiences from "../Components/ClientExperiences/ClientExperiences";
+import SpecialitiesWithExperiences from "../Components/Composites/SpecialitiesWithExperiences/SpecialitiesWithExperiences";
 import AllTrades from "../Components/AllTrades/AllTrades";
 import Footer from "../Components/Footer/Footer";
+
 
 function App() {
   return (
@@ -23,8 +23,7 @@ function App() {
         <InfiniteAutoPlay />
         <FeaturedProjects id="FeaturedProjects" />
         <AllClients></AllClients>
-        <OurSpecialities id="Specialities"></OurSpecialities>
-        <ClientExperiences id="ClientExperiences"></ClientExperiences>
+        <SpecialitiesWithExperiences></SpecialitiesWithExperiences>
         <AllTrades id="AllTrades" />
         <FixedFooter />
         <Footer id="ContactUs"></Footer>

@@ -17,19 +17,18 @@ import GDBG from "../../assets/ourSpecialities/static/Graphic Design.svg";
 import MGBG from "../../assets/ourSpecialities/static/Motion Graphics.svg";
 import VVEBG from "../../assets/ourSpecialities/static/Videography & Video Editing.svg";
 import WDBG from "../../assets/ourSpecialities/static/Web Design.svg";
-import AIImageSVG from "../../assets/ourSpecialities/static/AI Image Gen-01.svg";
-import ARTILLASVG from "../../assets/ourSpecialities/static/Artwork-01.svg";
-import GDSVG from "../../assets/ourSpecialities/static/Graphic Design-01.svg";
-import MGSVG from "../../assets/ourSpecialities/static/Motion Design-01.svg";
-import VVESVG from "../../assets/ourSpecialities/static/Videography-01.svg";
-import WDSVG from "../../assets/ourSpecialities/static/Web Design-01.svg";
-
+import AIImageSVG from "../../assets/ourSpecialities/static/AI Image Gen-Apple.svg";
+import ARTILLASVG from "../../assets/ourSpecialities/static/Artwork-Apple.svg";
+import GDSVG from "../../assets/ourSpecialities/static/Graphic Design-Apple.svg";
+import MGSVG from "../../assets/ourSpecialities/static/Motion Design-Apple.svg";
+import VVESVG from "../../assets/ourSpecialities/static/Videography-Apple.svg";
+import WDSVG from "../../assets/ourSpecialities/static/Web Design-Apple.svg";
 
 interface Services {
   serviceName: string;
   jsonAnimation: object;
   svgImg: string;
-  bgIMG: string
+  bgIMG: string;
 }
 
 function OurSpecialities({ id }: { id: string }) {
@@ -46,7 +45,7 @@ function OurSpecialities({ id }: { id: string }) {
       elementsRef.current = new Array<HTMLDivElement>();
     }
 
-    return elementsRef.current; // Return the map
+    return elementsRef.current; // Return the Array
   }
 
   const handleMouseEnter = useCallback(
@@ -165,34 +164,40 @@ function OurSpecialities({ id }: { id: string }) {
   }
   const services: Services[] = [
     {
-      serviceName: "Graphic Design", jsonAnimation: GD, svgImg: GDSVG,
-      bgIMG: GDBG
+      serviceName: "Graphic Design",
+      jsonAnimation: GD,
+      svgImg: GDSVG,
+      bgIMG: GDBG,
     },
     {
       serviceName: "AI Image Generation",
       jsonAnimation: AIImage,
       svgImg: AIImageSVG,
-      bgIMG: AIImageBG
+      bgIMG: AIImageBG,
     },
     {
       serviceName: "Artwork & Illustations",
       jsonAnimation: ARTILL,
       svgImg: ARTILLASVG,
-      bgIMG: ARTILLABG
+      bgIMG: ARTILLABG,
     },
     {
-      serviceName: "Motion Graphics", jsonAnimation: MG, svgImg: MGSVG,
-      bgIMG: MGBG
+      serviceName: "Motion Graphics",
+      jsonAnimation: MG,
+      svgImg: MGSVG,
+      bgIMG: MGBG,
     },
     {
       serviceName: "Videography & Video Editing",
       jsonAnimation: VVE,
       svgImg: VVESVG,
-      bgIMG: VVEBG
+      bgIMG: VVEBG,
     },
     {
-      serviceName: "Web Design", jsonAnimation: WD, svgImg: WDSVG,
-      bgIMG: WDBG
+      serviceName: "Web Design",
+      jsonAnimation: WD,
+      svgImg: WDSVG,
+      bgIMG: WDBG,
     },
   ];
 
@@ -249,12 +254,13 @@ function OurSpecialities({ id }: { id: string }) {
                   <div className="service-name poppins-bold ms-2">
                     {service.serviceName}
                   </div>
-                  <button
+                  {/* For beta version, no learn more */}
+                  {/* <button
                     type="button"
                     className="learn-more poppins-extralight ms-2 mt-1"
                   >
                     Learn More &gt;
-                  </button>
+                  </button> */}
                 </div>
                 <img
                   loading="lazy"

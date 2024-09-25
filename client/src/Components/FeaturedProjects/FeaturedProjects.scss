@@ -119,11 +119,11 @@ $card-padding-margin: 1rem;
   overflow: hidden;
 }
 
-.color-burns {
-  background-image: url("../../assets/colorBurn/Featured 1.webp"),
-    url("../../assets/colorBurn/Featured 2.webp");
+.color-burns-fp {
+  background-image: url("../../assets/colorBurn/Featured Client 1.webp"),
+    url("../../assets/colorBurn/Featured Client 2.webp");
   background-repeat: no-repeat;
-  background-position: -5% 20%, 105% 100%;
+  background-position: 0% 20%, 100% 100%;
 }
 
 @keyframes ani {
@@ -150,17 +150,38 @@ $card-padding-margin: 1rem;
   .card-title {
     font-size: clamp(0.75rem, 1rem + 2.184vw, 2rem);
   }
+  .color-burns-fp {
+    background-position: 0% 20%, 115% 100%;
+  }
 }
 
-@media screen and (width<768px){
-  .color-burns{
-    background-image: none;
+@media screen and (width<768px) {
+  .color-burns-fp {
+    background-position: -40% 20%, 125% 100%;
+  }
+}
+
+@media screen and (width<576px) {
+  .color-burns-fp {
+    background-position: -100% 20%, 150% 100%;
+  }
+}
+
+/* Because of how background position works and importatnly, does
+not work with container size where background image is bigger, absolute units
+have been used at smaller sizes*/
+@media screen and (width<450px) {
+  .color-burns-fp {
+    background-position: -12.5rem 20%, 150% 100%;
   }
 }
 
 @media screen and (width<400px) {
   .custom-width-smaller {
     max-width: 70%;
+  }
+  .color-burns-fp {
+    background-position: -15rem 20%, 250% 100%;
   }
 }
 

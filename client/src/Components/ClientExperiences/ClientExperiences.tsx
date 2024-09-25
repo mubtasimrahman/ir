@@ -34,6 +34,7 @@ const items = [
     author: "John Doe Ali",
     company: "Company XYZ",
   },
+  
 ];
 
 function ClientExperiences({ id }: { id: string }) {

@@ -4,7 +4,7 @@ import ANN from "../../assets/featuredProjects/ANN.webp";
 import SA from "../../assets/featuredProjects/Smart Air.webp";
 import UNI from "../../assets/featuredProjects/Unimart.webp";
 import { isTouchScreenAndSmallViewport } from "../Utils/Touch&Viewport";
-import LazyMask from "../WrapperComponents/LazyMask";
+// import LazyMask from "../WrapperComponents/LazyMask";
 import { useEffect, useRef } from "react";
 
 const clients = [
@@ -70,7 +70,7 @@ function FeaturedProjects({ id }: { id: string }) {
     });
   });
   return (
-    <div id={id} className="featured-projects mt-4 color-burns">
+    <div id={id} className="featured-projects mt-4 color-burns-fp">
       <div className="featured-title poppins-bold-heading">
         Featured Clients
       </div>
@@ -90,7 +90,8 @@ function FeaturedProjects({ id }: { id: string }) {
                       <h5 className="col-9 poppins-semibold card-title custom-width-smaller">
                         {client.name}
                       </h5>
-                      <div className="col  button-container-fp poppins-regular ">
+                      {/* For beta version, no learn more */}
+                      {/* <div className="col  button-container-fp poppins-regular ">
                         <span className="mask-fp">GO</span>
                         <LazyMask
                           maskImageUrl="https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png"
@@ -104,7 +105,7 @@ function FeaturedProjects({ id }: { id: string }) {
                             Learn More
                           </button>
                         </LazyMask>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="card-services">

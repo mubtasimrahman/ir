@@ -17,14 +17,14 @@
 
   &:hover .image-svg {
     transform: scale(1.1) skew(-10deg, 10deg) translateX(20%);
-    opacity: 0.4;// temp, was 1
+    opacity: 0.4; // temp, was 1
   }
 }
 
 .image-svg-static {
   width: 5.5rem;
   height: 5.5rem;
-  // 
+  //
   // min-width: max-content;
   // min-height: max-content;
   position: static;
@@ -100,7 +100,9 @@
   }
 
   .service-name {
-    font-size: 2rem;
+    text-wrap: pretty;
+    font-size: 2.25rem;
+    line-height: 3rem;
   }
 
   .learn-more {

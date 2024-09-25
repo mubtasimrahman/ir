@@ -1,0 +1,29 @@
+.color-burns-combined {
+  background-image: url("../../../assets/colorBurn/Our Specialities 1.webp"),
+    url("../../../assets/colorBurn/Our Specialities 2.webp");
+  background-repeat: no-repeat;
+  background-position: 0% 0%, 105% 75%;
+}
+
+@media screen and (width<992px) {
+  .color-burns-combined {
+    background-position: 0% 0%, 100% 100%;
+  }
+}
+
+@media screen and (width<768px) {
+  .color-burns-combined {
+    background-position: -20% 0%, 135% 100%;
+  }
+}
+
+@media screen and (width<576px) {
+  .color-burns-combined {
+    background-position: -50% 0%, 180% 100%;
+  }
+}
+@media screen and (width<400px) {
+  .color-burns-combined {
+    background-position: -10rem 0%, 10rem 100%;
+  }
+}
