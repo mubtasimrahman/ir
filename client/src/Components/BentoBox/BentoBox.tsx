@@ -128,6 +128,7 @@ function BentoBox() {
                 href="https://www.facebook.com/ishraqur.rahman2"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Facebook Profile"
               >
                 <img className="media-img" src={FBCursor} alt="" />
               </a>
@@ -135,6 +136,7 @@ function BentoBox() {
                 href="https://www.behance.net/irrealvisuals1"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Behance Profile"
               >
                 <img className="media-img" src={BHCursor} alt="" />
               </a>
@@ -142,6 +144,7 @@ function BentoBox() {
                 href="https://www.instagram.com/irreal_visuals/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Instagram Profile"
               >
                 <img className="media-img" src={IGCursor} alt="" />
               </a>

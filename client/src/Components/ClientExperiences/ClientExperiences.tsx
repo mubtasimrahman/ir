@@ -1,38 +1,47 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import "./ClientExperiences.scss";
-import BlockQuote from "../../assets/quote.svg";
+import BlockQuote from "../../assets/clientExperiences/quote.svg";
 import { useSwipeable } from "react-swipeable";
+import CA from "../../assets/clientExperiences/Clink Advisory.svg"
+import IPDC from "../../assets/clientExperiences/IPDC Finance.svg"
+import MD from "../../assets/clientExperiences/Madmen Digital.svg"
+import SA from "../../assets/clientExperiences/Smart Air.svg"
 
 const items = [
   {
-    image: "https://via.placeholder.com/50",
-    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-    author: "John Doe Akbar",
-    company: "Company XYZ",
+    image: SA,
+    text: "I’ve been working with Ishraq and Irreal Visuals for nearly three years, and during this time, they’ve consistently delivered exceptional, cutting-edge visuals and creative solutions.",
+    author: "Boudewijn Sterk",
+    role: "Founder",
+    company: "Smart Air Bangladesh",
   },
   {
-    image: "https://via.placeholder.com/50",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a viverra justo. Nam convallis eros eu sem semper dapibus. Nam tempor ante sit amet quam.",
-    author: "John Doe Islam",
-    company: "Company XYZ",
+    image: IPDC,
+    text: "My work with Irreal Visuals has been precise and perfect. Their understanding of the requirements is very detailed, which ultimately provides top-level output.",
+    author: "Tareq Islam",
+    role: "CBO and CMO",
+    company: "DX Group",
   },
   {
-    image: "https://via.placeholder.com/50",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula massa, eleifend vel scelerisque eget.",
-    author: "John Doe Muzamil",
-    company: "Company XYZ",
+    image: CA,
+    text: "As a business owner, relying on a single provider for a wide range of branding, digital, and print solutions has saved me significant time and effort. ",
+    author: "Mominul Islam",
+    role: "Founder",
+    company: "Clink Advisory",
   },
   {
-    image: "https://via.placeholder.com/50",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean eleifend libero.",
-    author: "John Doe Khan",
-    company: "Company XYZ",
+    image: IPDC,
+    text: "What really impressed us with Irreal Visuals, is their ability to quickly understand and meet our expectations, while their expertise in AI-generated statics brings a cutting-edge touch to their work.",
+    author: "Tarif Sherhan",
+    role:"Sr.Manager",
+    company: "IPDC Finance",
   },
   {
-    image: "https://via.placeholder.com/50",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    author: "John Doe Ali",
-    company: "Company XYZ",
+    image: MD,
+    text: "Irreal Visuals consistently delivered top-notch videography and editing that our clients loved. Their work was always on-trend.",
+    author: "Moazzem Mottakin",
+    role:"Account Manager",
+    company: "Madmen Digital",
   },
   
 ];
@@ -125,10 +134,10 @@ function ClientExperiences({ id }: { id: string }) {
               />
               <blockquote className="flex-fill">{item.text}</blockquote>
               <div className="author-info ">
-                <img loading="lazy" src={item.image} alt={item.author} />
+                <img loading="lazy" src={item.image} alt={item.company} />
                 <div className="author-text ">
                   <p>{item.author}</p>
-                  <p className="poppins-extralight">{item.company}</p>
+                  <p className="poppins-extralight">{item.role + ", " + item.company}</p>
                 </div>
               </div>
             </div>

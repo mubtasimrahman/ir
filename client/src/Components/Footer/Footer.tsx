@@ -15,6 +15,7 @@ function Footer({ id }: { id: string }) {
             href="https://www.facebook.com/ishraqur.rahman2"
             target="_blank"
             rel="noreferrer"
+            aria-label="Facebook Profile"
           >
             <img className="media-img" src={FB} alt="" />
           </a>
@@ -22,6 +23,7 @@ function Footer({ id }: { id: string }) {
             href="https://www.behance.net/irrealvisuals1"
             target="_blank"
             rel="noreferrer"
+            aria-label="Behance Profile"
           >
             <img className="media-img" src={BH} alt="" />
           </a>
@@ -29,6 +31,7 @@ function Footer({ id }: { id: string }) {
             href="https://www.instagram.com/irreal_visuals/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Instagram Profile"
           >
             <img className="media-img" src={IG} alt="" />
           </a>
@@ -40,7 +43,7 @@ function Footer({ id }: { id: string }) {
           </div>
           <div className="col-lg">
             <a
-              title="Developer Github Profile"
+              aria-label="Developer Github Profile"
               href="https://github.com/mubtasimrahman"
               target="_blank"
               rel="noreferrer"
@@ -48,7 +51,7 @@ function Footer({ id }: { id: string }) {
               <img loading="lazy" src={GH} alt="" />
             </a>
             <a
-              title="Developer LinkedIn Profile"
+              aria-label="Developer LinkedIn Profile"
               href="https://www.linkedin.com/in/mubtasimrahman/"
               target="_blank"
               rel="noreferrer"

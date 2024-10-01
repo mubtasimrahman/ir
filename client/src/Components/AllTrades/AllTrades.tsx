@@ -49,7 +49,7 @@ function AllTrades({ id }: { id: string }) {
               <img className="photo mt-3" src={Photo} alt="" />
             </div>
             <div className="col-lg-7 pointer-events-enabled">
-              <div className="intro poppins-bold mt-3">JACK OF ALL TRADES</div>
+              <div className="intro poppins-bold mt-3">CREATIVE GENERALIST</div>
               <div className="mb-2">
                 Hi, I'm Ishraqur Rahman, the design-obsessed marketer behind
                 Irreal Visuals. After graduating with a degree in marketing, I
@@ -76,6 +76,7 @@ function AllTrades({ id }: { id: string }) {
                   href="https://www.facebook.com/ishraqur.rahman2"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Facebook Profile"
                 >
                   <img
                     loading="lazy"
@@ -88,6 +89,7 @@ function AllTrades({ id }: { id: string }) {
                   href="https://www.instagram.com/ishraqur.rahman/"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Instagram Profile"
                 >
                   <img
                     loading="lazy"
@@ -100,6 +102,7 @@ function AllTrades({ id }: { id: string }) {
                   href="https://www.tiktok.com/@ishraqurrahman3"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Tiktok Profile"
                 >
                   <img
                     loading="lazy"
