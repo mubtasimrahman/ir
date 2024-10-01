@@ -72,24 +72,42 @@ function AllTrades({ id }: { id: string }) {
                 platforms, with an aim to better serve our clients.
               </div>
               <div>
-                <img
-                  loading="lazy"
-                  className="social-img"
-                  src={FBCursor}
-                  alt=""
-                />
-                <img
-                  loading="lazy"
-                  className="social-img"
-                  src={IGCursor}
-                  alt=""
-                />
-                <img
-                  loading="lazy"
-                  className="social-img"
-                  src={TTCursor}
-                  alt=""
-                />
+                <a
+                  href="https://www.facebook.com/ishraqur.rahman2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    loading="lazy"
+                    className="social-img"
+                    src={FBCursor}
+                    alt=""
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/ishraqur.rahman/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    loading="lazy"
+                    className="social-img"
+                    src={IGCursor}
+                    alt=""
+                  />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@ishraqurrahman3"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    loading="lazy"
+                    className="social-img"
+                    src={TTCursor}
+                    alt=""
+                  />
+                </a>
               </div>
             </div>
             <LazyMask

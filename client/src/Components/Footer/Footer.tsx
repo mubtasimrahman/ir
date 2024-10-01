@@ -11,9 +11,27 @@ function Footer({ id }: { id: string }) {
     <div id={id} className="container pt-8 pb-4">
       <div className="d-flex justify-content-between align-items-end footer-style">
         <div className="d-flex designer">
-          <img loading="lazy" src={FB} alt="" />
-          <img loading="lazy" src={BH} alt="" />
-          <img loading="lazy" src={IG} alt="" />
+          <a
+            href="https://www.facebook.com/ishraqur.rahman2"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="media-img" src={FB} alt="" />
+          </a>
+          <a
+            href="https://www.behance.net/irrealvisuals1"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="media-img" src={BH} alt="" />
+          </a>
+          <a
+            href="https://www.instagram.com/irreal_visuals/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="media-img" src={IG} alt="" />
+          </a>
         </div>
         <div className="row gx-0 developer">
           <div className="col-lg-auto">

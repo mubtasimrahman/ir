@@ -124,9 +124,27 @@ function BentoBox() {
               className="col-2 d-flex justify-content-around align-items-center transformed ir padding-less min-width-img middle hidden"
               ref={middleRef}
             >
-              <img className="media-img" src={FBCursor} alt="" />
-              <img className="media-img" src={BHCursor} alt="" />
-              <img className="media-img" src={IGCursor} alt="" />
+              <a
+                href="https://www.facebook.com/ishraqur.rahman2"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img className="media-img" src={FBCursor} alt="" />
+              </a>
+              <a
+                href="https://www.behance.net/irrealvisuals1"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img className="media-img" src={BHCursor} alt="" />
+              </a>
+              <a
+                href="https://www.instagram.com/irreal_visuals/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img className="media-img" src={IGCursor} alt="" />
+              </a>
             </div>
             <div className="col-md-10 col-9 d-flex justify-content-center">
               <div className="row gy-2 negative-margin justify-content-end">
