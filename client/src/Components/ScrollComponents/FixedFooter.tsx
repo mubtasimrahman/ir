@@ -43,7 +43,7 @@ function FixedFooter() {
   const handleClick = () => {
     setIsClicked(true);
     navigator.clipboard
-      .writeText("work@irrealvisuals.com")
+      .writeText("design@irrealvisuals.com")
       .then(() => {
         console.log("Email copied to clipboard");
       })
@@ -78,7 +78,7 @@ function FixedFooter() {
             name="Hover"
             onClick={handleClick}
           >
-            work@irrealvisuals.com
+            design@irrealvisuals.com
           </button>
         </div>
       </div>
@@ -97,7 +97,7 @@ function FixedFooter() {
                 name="Hover"
                 onClick={handleClick}
               >
-                work@irrealvisuals.com
+                design@irrealvisuals.com
               </button>
             </div>
           </div>

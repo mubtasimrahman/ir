@@ -12,7 +12,7 @@ function Footer({ id }: { id: string }) {
       <div className="d-flex justify-content-between align-items-end footer-style">
         <div className="d-flex designer">
           <a
-            href="https://www.facebook.com/ishraqur.rahman2"
+            href="https://www.facebook.com/irrealvisuals"
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook Profile"

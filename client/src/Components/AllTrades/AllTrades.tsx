@@ -61,7 +61,7 @@ function AllTrades({ id }: { id: string }) {
               </div>
               <div className="mb-2">
                 Although Irreal Visuals began as a one-man operation, it has
-                evolved to a fully remote team of employess and freelance
+                evolved to a fully remote team of employees and freelance
                 partners. Operating remotely has allowed us to be
                 cost-effective, enabling us to pass these savings on to our
                 clients.

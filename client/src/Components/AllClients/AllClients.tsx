@@ -28,7 +28,7 @@ const slides: Slide[] = [
   {
     id: 1,
     image: IPDC1,
-    title: "IPDC",
+    title: "IPDC Finance",
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ const slides: Slide[] = [
   {
     id: 3,
     image: IPDC2,
-    title: "IPDC",
+    title: "IPDC Finance",
   },
   {
     id: 4,
@@ -63,12 +63,12 @@ const slides: Slide[] = [
   {
     id: 8,
     image: Leur1,
-    title: "Leur",
+    title: "Lueur Bakery",
   },
   {
     id: 9,
     image: IPDC3,
-    title: "IPDC",
+    title: "IPDC Finance",
   },
   {
     id: 10,
@@ -78,7 +78,7 @@ const slides: Slide[] = [
   {
     id: 11,
     image: Leur2,
-    title: "Leur",
+    title: "Lueur Bakery",
   },
   {
     id: 12,
@@ -88,7 +88,7 @@ const slides: Slide[] = [
   {
     id: 13,
     image: IPDC4,
-    title: "IPDC",
+    title: "IPDC Finance",
   },
   {
     id: 14,

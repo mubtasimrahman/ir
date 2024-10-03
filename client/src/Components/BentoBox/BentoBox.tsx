@@ -125,7 +125,7 @@ function BentoBox() {
               ref={middleRef}
             >
               <a
-                href="https://www.facebook.com/ishraqur.rahman2"
+                href="https://www.facebook.com/irrealvisuals"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook Profile"
@@ -159,13 +159,13 @@ function BentoBox() {
                   <div className="text-start">
                     <ul className="poppins-regular">
                       <li>IPDC Finance</li>
-                      <li>Click Advisory</li>
+                      <li>Clink Advisory</li>
                     </ul>
                   </div>
                   <div className="text-start">
                     <ul className="poppins-regular">
                       <li>Smart Air</li>
-                      <li>Leuer Bakery</li>
+                      <li>Lueur Bakery</li>
                     </ul>
                   </div>
                 </div>
@@ -174,14 +174,14 @@ function BentoBox() {
                   ref={middleRightRef}
                 >
                   <div>
-                    Our primary experties lies in
+                    Our primary expertise lies in
                     <div className="poppins-semibold mb-2">
                       AI Image Generation, Graphic Design and Motion Design.
                     </div>
                   </div>
 
                   <div>
-                    We pride ourlseves on early tech & trend adoption to
+                    We pride ourselves on early tech & trend adoption to
                     maximize our client's ROI
                   </div>
                 </div>
