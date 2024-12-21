@@ -106,7 +106,7 @@ function ClientExperiences({ id }: { id: string }) {
   });
 
   return (
-    <div id={id} className="container-lg mb-5 mt-4 container-no-left-padding">
+    (<div id={id} className="container-lg mb-5 mt-4 container-no-left-padding">
       <div className="featured-title poppins-bold-heading">
         Client Experiences
       </div>
@@ -117,7 +117,9 @@ function ClientExperiences({ id }: { id: string }) {
               key={item.author}
               className={`carousel-entry poppins-regular justify-content-between`}
               aria-label={`Slide ${(index + 1).toString()}`}
-              ref={(el) => (entryRef.current[index] = el)}
+              ref={el => {
+                (entryRef.current[index] = el);
+              }}
               /* Translate -100% and account for total margin of 1 rem on each card
               while also ensuring change in margin remains at 1 rem throughout using currentGroupIndex*/
               style={{
@@ -179,7 +181,7 @@ function ClientExperiences({ id }: { id: string }) {
           ))}
         </div>
       </div>
-    </div>
+    </div>)
   );
 }
 
