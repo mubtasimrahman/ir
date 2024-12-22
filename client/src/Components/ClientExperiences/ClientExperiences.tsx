@@ -2,10 +2,11 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import "./ClientExperiences.scss";
 import BlockQuote from "../../assets/clientExperiences/quote.svg";
 import { useSwipeable } from "react-swipeable";
-import CA from "../../assets/clientExperiences/Clink Advisory.svg"
-import IPDC from "../../assets/clientExperiences/IPDC Finance.svg"
-import MD from "../../assets/clientExperiences/Madmen Digital.svg"
-import SA from "../../assets/clientExperiences/Smart Air.svg"
+import IPDC from "../../assets/clientExperiences/IPDC Finance.svg";
+import MD from "../../assets/clientExperiences/Madmen Digital.svg";
+import SA from "../../assets/clientExperiences/Smart Air.svg";
+import DX from "../../assets/clientExperiences/DXNE.svg";
+import FB from "../../assets/clientExperiences/Foodpanda.svg";
 
 const items = [
   {
@@ -16,34 +17,33 @@ const items = [
     company: "Smart Air Bangladesh",
   },
   {
-    image: IPDC,
+    image: DX,
     text: "My work with Irreal Visuals has been precise and perfect. Their understanding of the requirements is very detailed, which ultimately provides top-level output.",
     author: "Tareq Islam",
     role: "CBO and CMO",
     company: "DX Group",
   },
   {
-    image: CA,
-    text: "As a business owner, relying on a single provider for a wide range of branding, digital, and print solutions has saved me significant time and effort. ",
-    author: "Mominul Islam",
-    role: "Founder",
-    company: "Clink Advisory",
+    image: FB,
+    text: `"Ishraq is my go-to for precise, standout designs. He understands my vision perfectly and consistently delivers fresh, relevant work. It never feels like working with an agency, he just "gets it" every time. "`,
+    author: "Afifa Sultana",
+    role: "Lead, Public Relations",
+    company: "Foodpanda Bangladesh",
   },
   {
     image: IPDC,
     text: "What really impressed us with Irreal Visuals, is their ability to quickly understand and meet our expectations, while their expertise in AI-generated statics brings a cutting-edge touch to their work.",
     author: "Tarif Sherhan",
-    role:"Sr.Manager",
+    role: "Sr.Manager",
     company: "IPDC Finance",
   },
   {
     image: MD,
     text: "Irreal Visuals consistently delivered top-notch videography and editing that our clients loved. Their work was always on-trend.",
     author: "Moazzem Mottakin",
-    role:"Account Manager",
+    role: "Account Manager",
     company: "Madmen Digital",
   },
-  
 ];
 
 function ClientExperiences({ id }: { id: string }) {
@@ -106,7 +106,7 @@ function ClientExperiences({ id }: { id: string }) {
   });
 
   return (
-    (<div id={id} className="container-lg mb-5 mt-4 container-no-left-padding">
+    <div id={id} className="container-lg mb-5 mt-4 container-no-left-padding">
       <div className="featured-title poppins-bold-heading">
         Client Experiences
       </div>
@@ -117,8 +117,8 @@ function ClientExperiences({ id }: { id: string }) {
               key={item.author}
               className={`carousel-entry poppins-regular justify-content-between`}
               aria-label={`Slide ${(index + 1).toString()}`}
-              ref={el => {
-                (entryRef.current[index] = el);
+              ref={(el) => {
+                entryRef.current[index] = el;
               }}
               /* Translate -100% and account for total margin of 1 rem on each card
               while also ensuring change in margin remains at 1 rem throughout using currentGroupIndex*/
@@ -139,7 +139,9 @@ function ClientExperiences({ id }: { id: string }) {
                 <img loading="lazy" src={item.image} alt={item.company} />
                 <div className="author-text ">
                   <p>{item.author}</p>
-                  <p className="poppins-extralight">{item.role + ", " + item.company}</p>
+                  <p className="poppins-extralight">
+                    {item.role + ", " + item.company}
+                  </p>
                 </div>
               </div>
             </div>
@@ -181,7 +183,7 @@ function ClientExperiences({ id }: { id: string }) {
           ))}
         </div>
       </div>
-    </div>)
+    </div>
   );
 }
 
