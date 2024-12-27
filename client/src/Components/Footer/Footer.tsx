@@ -71,3 +71,4 @@ function Footer({ id }: { id: string }) {
 }
 
 export default Footer;
+//Something
