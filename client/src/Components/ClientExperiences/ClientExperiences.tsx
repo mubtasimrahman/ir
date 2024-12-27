@@ -25,7 +25,7 @@ const items = [
   },
   {
     image: FB,
-    text: `"Ishraq is my go-to for precise, standout designs. He understands my vision perfectly and consistently delivers fresh, relevant work. It never feels like working with an agency, he just "gets it" every time. "`,
+    text: `Ishraq is my go-to for precise, standout designs. He understands my vision perfectly and consistently delivers fresh, relevant work. It never feels like working with an agency, he just "gets it" every time. `,
     author: "Afifa Sultana",
     role: "Lead, Public Relations",
     company: "Foodpanda Bangladesh",
