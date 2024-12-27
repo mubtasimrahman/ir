@@ -18,7 +18,7 @@ function App() {
     >
       {/* Giving overflow property to div with spy breaks behaviour*/}
       <div className="overflow-x-hidden">
-        <NavBar />
+        
         <BentoBox />
         <InfiniteAutoPlay />
         <FeaturedProjects id="FeaturedProjects" />
