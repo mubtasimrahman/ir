@@ -30,7 +30,7 @@ jobs:
         with:
           path: client/dist
 
-   deploy:
+  deploy:
     name: Deploy
     needs: build
     runs-on: windows-latest
