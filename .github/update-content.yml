@@ -1,0 +1,37 @@
+name: Update Content
+
+on:
+  workflow_dispatch:
+    inputs:
+      content:
+        description: "Updated JSON content"
+        required: true
+        type: string
+      filePath:
+        description: "Path to the JSON file"
+        required: true
+        type: string
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update JSON file
+        run: |
+          echo "${{ inputs.content }}" > ${{ inputs.filePath }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add ${{ inputs.filePath }}
+          git commit -m "Update content via GitHub Actions"
+          git push
+
+      - name: Notify Hostinger
+        run: |
+          curl -X POST https://your-hostinger-webhook-url -H "Content-Type: application/json" -d '{"message": "Content updated and deployed"}'

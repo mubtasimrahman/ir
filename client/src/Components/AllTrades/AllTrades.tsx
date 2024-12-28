@@ -5,6 +5,7 @@ import FBCursor from "../../assets/socialLogos/Facebookcursor.svg";
 import TTCursor from "../../assets/socialLogos/Tiktokcursor.svg";
 import LazyMask from "../WrapperComponents/LazyMask";
 import "./AllTrades.scss";
+import allTrades from "../../../../server/content/allTrades.json";
 
 function AllTrades({ id }: { id: string }) {
   const maskRef = useRef<HTMLDivElement | null>(null);
@@ -49,28 +50,10 @@ function AllTrades({ id }: { id: string }) {
               <img className="photo mt-3" src={Photo} alt="" />
             </div>
             <div className="col-lg-7 pointer-events-enabled">
-              <div className="intro poppins-bold mt-3">CREATIVE GENERALIST</div>
-              <div className="mb-2">
-                Hi, I'm Ishraqur Rahman, the design-obsessed marketer behind
-                Irreal Visuals. After graduating with a degree in marketing, I
-                started my career at a young digital marketing agency where I
-                learned the ropes of the trade. I eventually decided to go on my
-                own way, with the aim of placing a greater emphasis on
-                creativity and design to improve the visual appearance of client
-                communications. This vision gave rise to "Irreal Visuals"
-              </div>
-              <div className="mb-2">
-                Although Irreal Visuals began as a one-man operation, it has
-                evolved to a fully remote team of employees and freelance
-                partners. Operating remotely has allowed us to be
-                cost-effective, enabling us to pass these savings on to our
-                clients.
-              </div>
-              <div className="mb-3">
-                I have also recently started my journey as a digital content
-                creator to gain a better understanding of popular social media
-                platforms, with an aim to better serve our clients.
-              </div>
+              <div className="intro poppins-bold mt-3">{allTrades.intro}</div>
+              <div className="mb-2">{allTrades.paragraph1}</div>
+              <div className="mb-2">{allTrades.paragraph2}</div>
+              <div className="mb-3">{allTrades.paragraph3}</div>
               <div>
                 <a
                   href="https://www.facebook.com/ishraqur.rahman2"
