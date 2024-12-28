@@ -20,7 +20,7 @@ const AdminApp = () => {
     const fetchContent = async () => {
       try {
         const response = await fetch(
-          `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+          `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=backend-cms-integration`,
           {
             headers: { Accept: "application/vnd.github.v3+json" },
           }
