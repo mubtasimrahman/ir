@@ -52,11 +52,11 @@ const AdminApp = () => {
             signal: controller.signal, // Pass the abort signal
           }
         );
-        console.log(response);
+        // console.log(response);
         const decodedContent = atob(response.data.content);
-        console.log(decodedContent);
+        // console.log(decodedContent);
         const parsedContent: unknown = JSON.parse(decodedContent);
-        console.log(parsedContent);
+        // console.log(parsedContent);
 
         setFormData(parsedContent as FormData);
       } catch (error: unknown) {
@@ -87,13 +87,13 @@ const AdminApp = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
+  console.log(formData)
   const triggerUpdateWorkflow = async () => {
     try {
       const response = await axios.post(
         `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/update-content.yml/dispatches`,
         {
-          ref: "main",
+          ref: "backend-cms-integration",
           inputs: {
             content: JSON.stringify(formData, null, 2),
             filePath: FILE_PATH,
@@ -110,7 +110,7 @@ const AdminApp = () => {
       if (response.status === 204) {
         setStatus("Workflow triggered successfully.");
       } else {
-        throw new Error("Failed to trigger workflow.");
+        console.log("Failed to trigger workflow.");
       }
     } catch (error) {
       console.error("Error triggering workflow:", error);
@@ -155,7 +155,7 @@ const AdminApp = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="button" onClick={() => triggerUpdateWorkflow}>
+        <button type="button" onClick={ triggerUpdateWorkflow}>
           Save and Deploy
         </button>
       </form>
