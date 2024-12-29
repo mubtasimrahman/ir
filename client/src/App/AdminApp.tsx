@@ -88,6 +88,7 @@ const AdminApp = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   console.log(formData)
+  console.log(JSON.stringify(formData, null, 2))
   const triggerUpdateWorkflow = async () => {
     try {
       const response = await axios.post(
@@ -103,6 +104,7 @@ const AdminApp = () => {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
+            Authorization: "Placeholder",
           },
         }
       );
