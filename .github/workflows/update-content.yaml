@@ -1,29 +1,25 @@
+---
 name: Update Content
-
 on:
   workflow_dispatch:
     inputs:
       content:
-        description: "Updated JSON content"
+        description: Updated JSON content
         required: true
         type: string
       filePath:
-        description: "Path to the JSON file"
+        description: Path to the JSON file
         required: true
         type: string
-
 jobs:
   update-json:
     runs-on: windows-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Update JSON file
         run: |
           echo "${{ inputs.content }}" > ${{ inputs.filePath }}
-
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions Bot"
