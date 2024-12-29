@@ -5,10 +5,19 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_run:
+    workflows: ["update-content.yaml"]
+    types:
+      - completed
 
 jobs:
   build:
     runs-on: windows-latest
+
+    # condition to check if triggered by workflow_run and ensure success or check main (Push/Pull)
+    if: >
+      (github.event_name != 'workflow_run') || 
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
 
     steps:
       - name: Checkout
@@ -24,7 +33,6 @@ jobs:
           cd client
           npm run build
 
-
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -35,7 +43,11 @@ jobs:
     name: Deploy
     needs: build
     runs-on: windows-latest
-    if: github.ref == 'refs/heads/main'
+
+    # condition for deployment similar to the build job
+    if: >
+      (github.event_name != 'workflow_run') || 
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
 
     steps:
       - name: Download artifact
