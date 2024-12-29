@@ -11,6 +11,9 @@ on:
         description: Path to the JSON file
         required: true
         type: string
+  push: # Add this temporarily
+    branches:
+      - backend-cms-integration
 jobs:
   update-json:
     runs-on: windows-latest
