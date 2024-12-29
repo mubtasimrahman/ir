@@ -91,7 +91,7 @@ const AdminApp = () => {
   const triggerUpdateWorkflow = async () => {
     try {
       const response = await axios.post(
-        `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/update-content.yml/dispatches`,
+        `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/update-content.yaml/dispatches`,
         {
           ref: "backend-cms-integration",
           inputs: {
