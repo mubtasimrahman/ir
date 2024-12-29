@@ -14,7 +14,7 @@ on:
 
 jobs:
   update-json:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
@@ -31,7 +31,3 @@ jobs:
           git add ${{ inputs.filePath }}
           git commit -m "Update content via GitHub Actions"
           git push
-
-      - name: Notify Hostinger
-        run: |
-          curl -X POST https://your-hostinger-webhook-url -H "Content-Type: application/json" -d '{"message": "Content updated and deployed"}'

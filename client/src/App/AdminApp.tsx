@@ -1,14 +1,38 @@
-
-
 import React, { useState, useEffect } from "react";
+import axios, { CanceledError } from "axios";
 
 const GITHUB_API_BASE_URL = "https://api.github.com";
 const REPO_OWNER = "mubtasimrahman";
 const REPO_NAME = "ir";
 const FILE_PATH = "server/content/allTrades.json";
 
+interface FileMetadata {
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  url: string;
+  html_url: string;
+  git_url: string;
+  download_url: string;
+  type: string;
+  content: string;
+  encoding: string;
+  _links: {
+    self: string;
+    git: string;
+    html: string;
+  };
+}
+interface FormData {
+  intro: string;
+  paragraph1: string;
+  paragraph2: string;
+  paragraph3: string;
+}
+
 const AdminApp = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     intro: "",
     paragraph1: "",
     paragraph2: "",
@@ -17,56 +41,73 @@ const AdminApp = () => {
   const [status, setStatus] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchContent = async () => {
+    const controller = new AbortController();
+    async function fetchContent() {
       try {
-        const response = await fetch(
+        // Explicitly typing the Axios GET request response
+        const response = await axios.get<FileMetadata>(
           `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=backend-cms-integration`,
           {
             headers: { Accept: "application/vnd.github.v3+json" },
+            signal: controller.signal, // Pass the abort signal
           }
         );
+        console.log(response);
+        const decodedContent = atob(response.data.content);
+        console.log(decodedContent);
+        const parsedContent: unknown = JSON.parse(decodedContent);
+        console.log(parsedContent);
 
-        if (!response.ok) throw new Error("Failed to fetch content");
-
-        const data = await response.json();
-        const decodedContent = atob(data.content);
-        const parsedContent = JSON.parse(decodedContent);
-
-        setFormData(parsedContent);
-      } catch (error) {
-        console.error("Error fetching file content:", error);
+        setFormData(parsedContent as FormData);
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          throw error;
+        } else {
+          throw error;
+        }
       }
-    };
+    }
 
-    fetchContent();
+    // Check to see if error is from controller.abort due to dismount in strict mode
+    fetchContent().catch((error: unknown) => {
+      if (error instanceof CanceledError) {
+        return;
+      }
+      console.error("Unhandled fetchContent error:", error);
+    });
+
+    return () => {
+      controller.abort();
+    }; // Cleanup and cancel the request if needed
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const triggerUpdateWorkflow = async () => {
     try {
-      const response = await fetch(
+      const response = await axios.post(
         `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/update-content.yml/dispatches`,
         {
-          method: "POST",
+          ref: "main",
+          inputs: {
+            content: JSON.stringify(formData, null, 2),
+            filePath: FILE_PATH,
+          },
+        },
+        {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
           },
-          body: JSON.stringify({
-            ref: "main",
-            inputs: {
-              content: JSON.stringify(formData, null, 2),
-              filePath: FILE_PATH,
-            },
-          }),
         }
       );
 
-      if (response.ok) {
+      if (response.status === 204) {
         setStatus("Workflow triggered successfully.");
       } else {
         throw new Error("Failed to trigger workflow.");
@@ -114,7 +155,7 @@ const AdminApp = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="button" onClick={triggerUpdateWorkflow}>
+        <button type="button" onClick={() => triggerUpdateWorkflow}>
           Save and Deploy
         </button>
       </form>

@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PublicApp />} />
         <Route
-          path="/admin"
+          path="/tuntuni"
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <AdminApp />
