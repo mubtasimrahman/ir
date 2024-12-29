@@ -22,7 +22,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Update JSON file
         run: |
-          echo '${{ inputs.content }}' > ${{ inputs.filePath }}
+          $content = @"
+          ${{ inputs.content }}
+          "@
+          Set-Content -Path "${{ inputs.filePath }}" -Value $content
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions Bot"
