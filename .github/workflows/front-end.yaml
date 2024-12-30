@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
   workflow_run:
-    workflows: ["update-content.yaml"]
+    workflows: [update-content.yaml]
     types:
       - completed
 
@@ -15,9 +15,9 @@ jobs:
     runs-on: windows-latest
 
     # condition to check if triggered by workflow_run and ensure success or check main (Push/Pull)
-    if: >
-      (github.event_name != 'workflow_run') || 
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    # if: >
+    #   (github.event_name != 'workflow_run') || 
+    #   (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
 
     steps:
       - name: Checkout
@@ -44,10 +44,10 @@ jobs:
     needs: build
     runs-on: windows-latest
 
-    # condition for deployment similar to the build job
-    if: >
-      (github.event_name != 'workflow_run') || 
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    # # condition for deployment similar to the build job
+    # if: >
+    #   (github.event_name != 'workflow_run') || 
+    #   (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
 
     steps:
       - name: Download artifact
