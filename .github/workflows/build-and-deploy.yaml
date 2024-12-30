@@ -56,7 +56,7 @@ jobs:
           name: production-files
           path: client/dist
       - name: Set up GitHub PAT as environment variable
-        run: echo "GITHUB_PAT=${{ secrets.GITHUB_PAT }}" >> $GITHUB_ENV
+        run: echo "VITE_GITHUB_PAT=${{ secrets.VITE_GITHUB_PAT }}" >> $GITHUB_ENV
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
