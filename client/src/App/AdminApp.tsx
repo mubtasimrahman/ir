@@ -39,6 +39,8 @@ const AdminApp = () => {
     paragraph3: "",
   });
   const [status, setStatus] = useState<string | null>(null);
+  const token = import.meta.env.VITE_GITHUB_PAT as string;
+  console.log(token)
 
   useEffect(() => {
     const controller = new AbortController();
@@ -104,7 +106,7 @@ const AdminApp = () => {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
-            Authorization: "Placeholder",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
