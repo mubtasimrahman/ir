@@ -1,5 +1,4 @@
----
-name: Update Content
+name: update-content
 on:
   workflow_dispatch:
     inputs:
