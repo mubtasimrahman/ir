@@ -28,14 +28,13 @@ jobs:
           cd client
           npm install
 
-      - name: Set up GitHub PAT as environment variable
-        env: 
-          VITE_GITHUB_PAT: ${{ secrets.VITE_GITHUB_PAT }}
-
       - name: Build
+        env:
+          VITE_GITHUB_PAT: ${{ secrets.GITHUB_PAT }} # Pass the secret as an env variable
         run: |
           cd client
           npm run build
+
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
