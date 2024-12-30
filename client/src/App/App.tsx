@@ -1,11 +1,11 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // Correct import
+import {  Routes, Route, HashRouter } from "react-router-dom"; // Correct import
 import PublicApp from "./PublicApp";
 const AdminApp = lazy(() => import("./AdminApp"));
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<PublicApp />} />
         <Route
@@ -17,7 +17,7 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
