@@ -29,7 +29,8 @@ jobs:
           npm install
 
       - name: Set up GitHub PAT as environment variable
-        run: echo "VITE_GITHUB_PAT=${{ secrets.VITE_GITHUB_PAT }}" >> $GITHUB_ENV
+        env: 
+          VITE_GITHUB_PAT: ${{ secrets.VITE_GITHUB_PAT }}
 
       - name: Build
         run: |
