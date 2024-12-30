@@ -30,7 +30,7 @@ jobs:
 
       - name: Build
         env:
-          VITE_GITHUB_PAT: ${{ secrets.GITHUB_PAT }} # Pass the secret as an env variable
+          VITE_GITHUB_PAT: ${{ secrets.VITE_GITHUB_PAT }} # Pass the PAT as an env secret
         run: |
           cd client
           npm run build
