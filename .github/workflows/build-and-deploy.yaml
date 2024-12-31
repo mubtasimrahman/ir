@@ -29,8 +29,6 @@ jobs:
           npm install
 
       - name: Build
-        env:
-          VITE_GITHUB_PAT: ${{ secrets.VITE_GITHUB_PAT }} # Pass the PAT as an env secret
         run: |
           cd client
           npm run build

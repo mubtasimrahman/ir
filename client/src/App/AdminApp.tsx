@@ -39,8 +39,7 @@ const AdminApp = () => {
     paragraph3: "",
   });
   const [status, setStatus] = useState<string | null>(null);
-  const token = import.meta.env.VITE_GITHUB_PAT as string;
-  console.log(token)
+  // const token = import.meta.env.VITE_GITHUB_PAT as string;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -89,32 +88,26 @@ const AdminApp = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  console.log(formData)
-  console.log(JSON.stringify(formData, null, 2))
+
   const triggerUpdateWorkflow = async () => {
     try {
-      const response = await axios.post(
-        `${GITHUB_API_BASE_URL}/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/update-content.yaml/dispatches`,
+      const response = await axios.post<FormData>(
+        "https://us-central1-mythic-attic-446309-k5.cloudfunctions.net/updateAllTrades/triggerAllTrades",
         {
-          ref: "backend-cms-integration",
-          inputs: {
-            content: JSON.stringify(formData, null, 2),
-            filePath: FILE_PATH,
-          },
+          content: formData,
         },
         {
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/vnd.github.v3+json",
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json", 
           },
         }
       );
 
-      if (response.status === 204) {
+      if (response.status === 200) {
         setStatus("Workflow triggered successfully.");
       } else {
         console.log("Failed to trigger workflow.");
+        setStatus("Failed to trigger workflow.");
       }
     } catch (error) {
       console.error("Error triggering workflow:", error);
@@ -159,7 +152,7 @@ const AdminApp = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="button" onClick={ triggerUpdateWorkflow}>
+        <button type="button" onClick={triggerUpdateWorkflow}>
           Save and Deploy
         </button>
       </form>
