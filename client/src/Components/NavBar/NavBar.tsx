@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import "./NavBar.scss";
 import Back2Top from "../ScrollComponents/Back2Top";
 import IRLogo from "../../assets/Header.svg";
-import { HashLink } from "react-router-hash-link";
 
 function NavBar() {
   const [BoxShadow, setBoxShadow] = useState(false);
@@ -73,46 +72,46 @@ function NavBar() {
         >
           <ul className="navbar-nav mb-2 mb-lg-0 flex-fill justify-content-evenly">
             <li className="nav-item">
-              <HashLink
+              <a
                 className="nav-link"
-                to="#FeaturedProjects"
+                href="#FeaturedProjects"
                 onClick={handleLinkClick}
               >
                 Our Work
-              </HashLink>
+              </a>
             </li>
             <li className="nav-item">
-              <HashLink
+              <a
                 className="nav-link"
-                to="#Specialities"
+                href="#Specialities"
                 onClick={handleLinkClick}
               >
                 Specialities
-              </HashLink>
+              </a>
             </li>
             <li className="nav-item">
-              <HashLink
+              <a
                 className="nav-link"
-                to="#ClientExperiences"
+                href="#ClientExperiences"
                 onClick={handleLinkClick}
               >
                 Testimonials
-              </HashLink>
+              </a>
             </li>
             <li className="nav-item">
-              <HashLink
+              <a
                 className="nav-link"
-                to="#AllTrades"
+                href="#AllTrades"
                 onClick={handleLinkClick}
               >
                 About
-              </HashLink>
+              </a>
             </li>
           </ul>
 
-          <HashLink className="contact-button mb-lg-0 mb-3" to="#ContactUs">
+          <a className="contact-button mb-lg-0 mb-3" href="#ContactUs">
             Contact Us
-          </HashLink>
+          </a>
         </div>
       </div>
     </nav>
