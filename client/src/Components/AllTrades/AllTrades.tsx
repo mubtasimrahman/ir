@@ -6,8 +6,6 @@ import TTCursor from "../../assets/socialLogos/Tiktokcursor.svg";
 import LazyMask from "../WrapperComponents/LazyMask";
 import "./AllTrades.scss";
 import allTrades from "../../../../server/content/allTrades.json";
-console.log(allTrades)
-console.log(typeof(allTrades))
 
 function AllTrades({ id }: { id: string }) {
   const maskRef = useRef<HTMLDivElement | null>(null);

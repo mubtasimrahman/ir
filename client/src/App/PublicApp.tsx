@@ -15,6 +15,7 @@ function PublicApp() {
       //Gives live highlighting of which element is targeted
       data-bs-spy="scroll"
       className="d-flex flex-column"
+      data-bs-target="#NavBar"
     >
       {/* Giving overflow property to div with spy breaks behaviour*/}
       <div className="overflow-x-hidden">
