@@ -1,5 +1,6 @@
 import "./FeaturedProjects.scss";
 import featuredProjects from "../../../../server/content/featuredProjects.json";
+import ResolveImage from "../Utils/ResolveImage";
 // import IPDC from "../../assets/featuredProjects/IPDC.webp";
 // import ANN from "../../assets/featuredProjects/ANN.webp";
 // import SA from "../../assets/featuredProjects/Smart Air.webp";
@@ -76,13 +77,6 @@ function FeaturedProjects({ id }: { id: string }) {
     });
   });
 
-  /*This allows relative paths from json to be resolved and not just left as strings.
-  The dynamic part {filename} works as long as it is deterministic(vite knows all options
-  and is not determined during runtime eg, user input and fetch reqs)*/
-  function resolveImage(filename: string): string {
-    return new URL(`../../assets/featuredProjects/${filename}`, import.meta.url)
-      .href;
-  }
   return (
     <div id={id} className="featured-projects mt-4 color-burns-fp">
       <div className="featured-title poppins-bold-heading">
@@ -135,7 +129,7 @@ function FeaturedProjects({ id }: { id: string }) {
                 </div>
                 <div className="card-img-container">
                   <img
-                    src={resolveImage(featuedProject.imageUrl)}
+                    src={ResolveImage(featuedProject.imageUrl)}
                     className="card-img-bottom"
                     alt={featuedProject.name}
                   />

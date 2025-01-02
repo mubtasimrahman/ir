@@ -1,4 +1,4 @@
-import AllTradesAdmin from "../Components/AllTrades/AllTradesAdmin";
+// import AllTradesAdmin from "../Components/AllTrades/AllTradesAdmin";
 import FeaturedProjectsAdmin from "../Components/FeaturedProjects/FeaturedProjectsAdmin";
 
 const AdminApp = () => {

@@ -27,6 +27,7 @@ interface FormData {
   paragraph3: string;
 }
 const filePath = "server/content/allTrades.json";
+const endPoint = "https://us-central1-mythic-attic-446309-k5.cloudfunctions.net/updateAllTrades/triggerAllTrades"
 function AllTradesAdmin() {
   const [formData, setFormData] = useState<FormData>({
     intro: "",
@@ -97,7 +98,7 @@ function AllTradesAdmin() {
         <button
           type="button"
           onClick={() => {
-            TriggerUpdateWorkflow({ formData, setStatus }).catch(
+            TriggerUpdateWorkflow<FormData>({ formData, setStatus,endPoint }).catch(
               (error: unknown) => {
                 console.log(error);
               }

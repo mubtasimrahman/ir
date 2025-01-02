@@ -3,11 +3,12 @@ import axios from "axios";
 interface Props<U> {
   formData: U;
   setStatus: React.Dispatch<React.SetStateAction<string | null>>;
+  endPoint:string;
 }
 
-async function TriggerUpdateWorkflow<U>({ formData, setStatus }: Props<U>) {
+async function TriggerUpdateWorkflow<U>({ formData, setStatus,endPoint }: Props<U>) {
   const response = await axios.post<U>(
-    "https://us-central1-mythic-attic-446309-k5.cloudfunctions.net/updateAllTrades/triggerAllTrades",
+    endPoint,
     {
       content: formData,
     },
