@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: windows-latest
 
-    condition to check if triggered by workflow_run and ensure success or check main (Push/Pull)
+    # condition to check if triggered by workflow_run and ensure success or check main (Push/Pull)
     if: >
       (github.event_name != 'workflow_run') || 
       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
