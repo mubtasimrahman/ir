@@ -30,19 +30,17 @@ interface FileMetadata {
 }
 
 const jsonFilePath = "server/content/featuredProjects.json";
-const imageFilePath = "client/src/asset/featuredProjects"
-const endPoint = "https://asia-southeast1-mythic-attic-446309-k5.cloudfunctions.net/updateFeaturedProjects/triggerFeaturedProjects"
+const imageFilePath = "client/src/asset/featuredProjects";
+const endPoint =
+  "https://us-central1-mythic-attic-446309-k5.cloudfunctions.net/updateFeaturedClients/triggerFeaturedProjects";
 
 function FeaturedProjectsAdmin() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [status, setStatus] = useState<string | null>(null);
 
-  
-
-  console.log(projects);
   // Fetch JSON data and resolve image paths
   FetchJSON<FileMetadata, Project[]>({
-    filePath:jsonFilePath,
+    filePath: jsonFilePath,
     setFormData: setProjects,
   });
 
@@ -71,13 +69,46 @@ function FeaturedProjectsAdmin() {
 
     // Update project data
     setProjects((prev) => {
+      console.log(prev);
       const updated = [...prev];
+      console.log(updated);
       updated[index] = { ...updated[index], [field]: value };
+      console.log(updated);
       return updated;
     });
   };
 
-  const handleSave =async () => {
+  const handleServiceChange = (index: number, serviceIndex: number, value: string) => {
+    setProjects((prev) => {
+      const updated = [...prev];
+      const updatedServices = [...updated[index].services];
+      updatedServices[serviceIndex] = value; // Update the specific service
+      updated[index] = { ...updated[index], services: updatedServices };
+      return updated;
+    });
+  };
+  
+  const addService = (index: number) => {
+    setProjects((prev) => {
+      const updated = [...prev];
+      const updatedServices = [...updated[index].services, ""]; // Add an empty service
+      updated[index] = { ...updated[index], services: updatedServices };
+      return updated;
+    });
+  };
+  
+  const removeService = (index: number, serviceIndex: number) => {
+    setProjects((prev) => {
+      const updated = [...prev];
+      const updatedServices = [...updated[index].services];
+      updatedServices.splice(serviceIndex, 1); // Remove the specific service
+      updated[index] = { ...updated[index], services: updatedServices };
+      return updated;
+    });
+  };
+  
+
+  const handleSave = async () => {
     const updatedProjects = projects.map((project) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { image, ...rest } = project;
@@ -85,31 +116,32 @@ function FeaturedProjectsAdmin() {
     });
 
     const formData = new FormData();
-    console.log(formData);
     formData.append("content", JSON.stringify(updatedProjects));
-    console.log(formData);
     formData.append("jsonFilePath", jsonFilePath);
     formData.append("imageFilePath", imageFilePath);
-    console.log(formData.getAll("filePath"));
+    console.log(formData.getAll("jsonFilePath"));
 
     // Add new images to formData
-    projects.forEach((project, index) => {
+    projects.forEach((project) => {
       if (project.image) {
-        formData.append(`image_${index.toString()}`, project.image);
+        formData.append(project.image.name, project.image);
+        console.log(formData.getAll(project.image.name))
       }
     });
-    console.log(formData.getAll("image_0"));
+    // Debugging: Log the FormData content
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
 
     try {
-      await TriggerUpdateWorkflow({
+      await TriggerUpdateWorkflow<FormData>({
         formData,
         setStatus,
-        endPoint
+        endPoint,
+        contentType: "multipart/form-data",
       });
-      setStatus("Successfully updated and deployed!");
     } catch (error) {
       console.error(error);
-      setStatus("Failed to update. Check console for details.");
     }
   };
 
@@ -129,20 +161,31 @@ function FeaturedProjectsAdmin() {
                 }}
               />
             </label>
-            <label>
-              Services:
-              <input
-                type="text"
-                value={project.services}
-                onChange={(e) => {
-                  handleInputChange(index, "services", e.target.value);
-                }}
-              />
-            </label>
+            {project.services.map((service, serviceIndex) => (
+              <div key={serviceIndex} className="service-item">
+                <input
+                  type="text"
+                  value={service}
+                  onChange={(e) =>
+                    { handleServiceChange(index, serviceIndex, e.target.value); }
+                  }
+                />
+                <button
+                  type="button"
+                  onClick={() => { removeService(index, serviceIndex); }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button type="button" onClick={() => { addService(index); }}>
+              Add Service
+            </button>
+
             <label htmlFor={`image ${index.toString()}`}>
               Current Image:
               <img
-                id={`image ${index.toString()}`}
+                id={`image-${index.toString()}`}
                 src={ResolveImage(project.imageUrl)}
                 alt={project.name}
                 className="preview"
@@ -159,7 +202,6 @@ function FeaturedProjectsAdmin() {
                     handleInputChange(index, "image", file);
                   }
                 }}
-                
               />
               <div className="thumbnail-img" data-index={index}></div>
             </label>
