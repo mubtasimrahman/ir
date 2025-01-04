@@ -31,6 +31,7 @@ jobs:
 
       # Step 2: Conditional JSON update
       - name: Update JSON file
+        id: update-json-file
         if: inputs.content && inputs.filePath
         run: |
           echo "Updating JSON file..."
@@ -42,9 +43,8 @@ jobs:
               content4=$(echo "$content3" | jq -r '."1.sm.webp"')
               content5=$(echo "$content3" | jq -r '."2.sm.webp"')
 
-              echo "Content3: $content3"
-              echo "Content4: $content4"
-              echo "Content5: $content5"
+              # Save content4 to GITHUB_ENV for use in subsequent steps
+              echo "CONTENT4=$content4" >> $GITHUB_ENV
 
           # Parse JSON content to remove "uploadedFiles"
           echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
@@ -53,7 +53,7 @@ jobs:
         uses: akiojin/decode-base64-github-action@v0.1.0
         id: decode-base64
         with:
-          base64: <Base64>
+          base64: ${{ env.CONTENT4 }}
       - run: |
           echo ${{ steps.decode-base64.outputs.decoded }}  
 
