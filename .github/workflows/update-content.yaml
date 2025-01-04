@@ -25,34 +25,49 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Write the updated JSON content to the file
+      # Step 2: Load and Update JSON file selectively
       - name: Update JSON file
-        run: |
-          $content = @"
-          ${{ inputs.content }}
-          "@
-          Set-Content -Path "${{ inputs.filePath }}" -Value $content
-
-      # Step 3: Decode and save base64-encoded images
-      - name: Decode and Save Images
         shell: pwsh
         run: |
-          # Create the directory if it doesn't exist
-          New-Item -ItemType Directory -Force -Path "${{ inputs.imageFilePath }}" | Out-Null
+          $jsonFilePath = "${{ inputs.filePath }}"
+          $updatedContent = ConvertFrom-Json -InputObject "${{ inputs.content }}"
 
-          # Parse JSON content to find image mappings
-          $content = Get-Content -Path "${{ inputs.filePath }}" | ConvertFrom-Json
-          $content | ForEach-Object {
-            $uploadedFiles = $_.uploadedFiles
-            if ($uploadedFiles -ne $null) {
-              foreach ($fileName in $uploadedFiles.Keys) {
-                $base64Content = $uploadedFiles[$fileName]
-                $filePath = Join-Path "${{ inputs.imageFilePath }}" $fileName
+          # Read existing JSON file
+          $existingContent = Get-Content -Path $jsonFilePath -Raw | ConvertFrom-Json
 
-                # Decode base64 and write to file
-                [IO.File]::WriteAllBytes($filePath, [Convert]::FromBase64String($base64Content))
-                Write-Host "Saved $fileName to $filePath"
+          # Update only the provided fields
+          foreach ($updatedProject in $updatedContent) {
+            $projectToUpdate = $existingContent | Where-Object { $_.name -eq $updatedProject.name }
+            if ($projectToUpdate) {
+              foreach ($field in $updatedProject.PSObject.Properties.Name) {
+                $projectToUpdate.$field = $updatedProject.$field
               }
+            }
+          }
+
+          # Save the updated JSON back to the file
+          $existingContent | ConvertTo-Json -Depth 10 | Set-Content -Path $jsonFilePath
+
+      # Step 3: Decode and Replace Images using mapping
+      - name: Decode and Replace Images
+        shell: pwsh
+        run: |
+          $imageDir = "${{ inputs.imageFilePath }}"
+          mkdir -Force -Path $imageDir
+
+          # Extract mapping from `content`
+          $projects = ConvertFrom-Json -InputObject "${{ inputs.content }}"
+          foreach ($project in $projects) {
+            $imageName = $project.imageUrl
+            $imageFilePath = Join-Path $imageDir $imageName
+
+            # Check if corresponding base64 image file exists using mapping
+            $uploadedImage = "$imageName" -replace '\.webp$', '.sm.webp'
+            if (Test-Path $uploadedImage) {
+              # Decode and save image to target path
+              $base64Image = Get-Content -Path $uploadedImage -Raw
+              $imageBytes = [Convert]::FromBase64String($base64Image)
+              Set-Content -Path $imageFilePath -Value $imageBytes -AsByteStream
             }
           }
 
@@ -61,7 +76,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git add ${{ inputs.filePath }}
+          git add "${{ inputs.filePath }}"
           git add "${{ inputs.imageFilePath }}/*"
           git commit -m "Update content and upload images via GitHub Actions" || echo "No changes to commit"
           git push

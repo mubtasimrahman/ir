@@ -125,6 +125,8 @@ function FeaturedProjectsAdmin() {
     projects.forEach((project) => {
       if (project.image) {
         formData.append(project.image.name, project.image);
+         // Map the file name to the project's `imageUrl`
+        formData.append(`mapping[${project.image.name}]`, project.imageUrl);
         console.log(formData.getAll(project.image.name))
       }
     });
