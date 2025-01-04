@@ -35,8 +35,12 @@ jobs:
         run: |
           echo "Updating JSON file..."
           content='${{ inputs.content }}'
-          content2='${{ $content[4] }}'
-          content3='${{ $content2.uploadedFiles }}'
+              content2=$(echo "$content" | jq -r '.[4]')
+
+              content3=$(echo "$content2" | jq -r '.uploadedFiles')
+
+              echo "Content2: $content2"
+              echo "Content3: $content3"
 
           # Parse JSON content to remove "uploadedFiles"
           echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
