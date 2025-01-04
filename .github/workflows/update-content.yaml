@@ -54,8 +54,15 @@ jobs:
         id: decode-base64
         with:
           base64: ${{ env.CONTENT4 }}
-      - run: |
-          echo ${{ steps.decode-base64.outputs.decoded }}  
+      - name: Save Decoded Image
+        run: |
+          # Save the decoded binary data into an image file
+          echo "${{ steps.decode-base64.outputs.decoded }}" | base64 --decode > decoded_image.webp
+
+          # Verify that the file was successfully created
+          file decoded_image.webp
+          ls -lh decoded_image.webp
+
 
       # Step 3: Decode and replace images if mapping is provided
       - name: Decode and replace images
