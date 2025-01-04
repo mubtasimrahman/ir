@@ -121,12 +121,12 @@ function FeaturedProjectsAdmin() {
     formData.append("imageFilePath", imageFilePath);
     console.log(formData.getAll("jsonFilePath"));
 
+    const mapping: string[] = []
     // Add new images to formData
     projects.forEach((project) => {
       if (project.image) {
         formData.append(project.image.name, project.image);
          // Map the file name to the project's `imageUrl`
-        const mapping = []
         mapping.push(project.imageUrl)
         formData.append("mapping", JSON.stringify(mapping));
         console.log(formData.getAll(project.image.name))
