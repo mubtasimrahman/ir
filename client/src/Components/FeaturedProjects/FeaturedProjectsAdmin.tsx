@@ -124,13 +124,14 @@ function FeaturedProjectsAdmin() {
     formData.append("imageFilePath", imageFilePath);
     console.log(formData.getAll("jsonFilePath"));
 
-    const mapping: Record<string, Record<string, File>> = {};
+    const mapping: Record<string, string> = {};
 
     // Add new images to formData
     projects.forEach((project) => {
       if (project.image) {
+        formData.append(project.image.name, project.image); // Append file 
         // Map the file name to the project's `imageUrl`
-        mapping[project.imageUrl] = { [project.image.name]: project.image };
+        mapping[project.image.name] = project.imageUrl
       }
     });
     formData.append("mapping", JSON.stringify(mapping));
