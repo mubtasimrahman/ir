@@ -78,7 +78,11 @@ function FeaturedProjectsAdmin() {
     });
   };
 
-  const handleServiceChange = (index: number, serviceIndex: number, value: string) => {
+  const handleServiceChange = (
+    index: number,
+    serviceIndex: number,
+    value: string
+  ) => {
     setProjects((prev) => {
       const updated = [...prev];
       const updatedServices = [...updated[index].services];
@@ -87,7 +91,7 @@ function FeaturedProjectsAdmin() {
       return updated;
     });
   };
-  
+
   const addService = (index: number) => {
     setProjects((prev) => {
       const updated = [...prev];
@@ -96,7 +100,7 @@ function FeaturedProjectsAdmin() {
       return updated;
     });
   };
-  
+
   const removeService = (index: number, serviceIndex: number) => {
     setProjects((prev) => {
       const updated = [...prev];
@@ -106,7 +110,6 @@ function FeaturedProjectsAdmin() {
       return updated;
     });
   };
-  
 
   const handleSave = async () => {
     const updatedProjects = projects.map((project) => {
@@ -121,21 +124,21 @@ function FeaturedProjectsAdmin() {
     formData.append("imageFilePath", imageFilePath);
     console.log(formData.getAll("jsonFilePath"));
 
-    const mapping: string[] = []
+    const mapping: Record<string, Record<string, File>> = {};
+
     // Add new images to formData
     projects.forEach((project) => {
       if (project.image) {
-        formData.append(project.image.name, project.image);
-         // Map the file name to the project's `imageUrl`
-        mapping.push(project.imageUrl)
-        formData.append("mapping", JSON.stringify(mapping));
-        console.log(formData.getAll(project.image.name))
+        // Map the file name to the project's `imageUrl`
+        mapping[project.imageUrl] = { [project.image.name]: project.image };
       }
     });
+    formData.append("mapping", JSON.stringify(mapping));
+
     // Debugging: Log the FormData content
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
-  }
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
 
     try {
       await TriggerUpdateWorkflow<FormData>({
@@ -170,19 +173,26 @@ function FeaturedProjectsAdmin() {
                 <input
                   type="text"
                   value={service}
-                  onChange={(e) =>
-                    { handleServiceChange(index, serviceIndex, e.target.value); }
-                  }
+                  onChange={(e) => {
+                    handleServiceChange(index, serviceIndex, e.target.value);
+                  }}
                 />
                 <button
                   type="button"
-                  onClick={() => { removeService(index, serviceIndex); }}
+                  onClick={() => {
+                    removeService(index, serviceIndex);
+                  }}
                 >
                   Remove
                 </button>
               </div>
             ))}
-            <button type="button" onClick={() => { addService(index); }}>
+            <button
+              type="button"
+              onClick={() => {
+                addService(index);
+              }}
+            >
               Add Service
             </button>
 
