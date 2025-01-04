@@ -35,8 +35,18 @@ jobs:
         run: |
           echo "Updating JSON file..."
           content='${{ inputs.content }}'
+          content2='${{ content[4] }}'
+          content3='${{ content2.uploadedFiles }}'
+
           # Parse JSON content to remove "uploadedFiles"
           echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
+
+      - uses: akiojin/decode-base64-github-action@v0.1.0
+        id: decode-base64
+        with:
+          base64: <Base64>
+      - run: |
+          echo ${{ steps.decode-base64.outputs.decoded }}  
 
       # Step 3: Decode and replace images if mapping is provided
       - name: Decode and replace images
