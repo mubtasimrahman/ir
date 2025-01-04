@@ -38,8 +38,8 @@ jobs:
 
               content3=$(echo "$content2" | jq -r '.uploadedFiles')
 
-              content4=$(echo "$content3" | jq -r '.1.sm.webp')
-              content5=$(echo "$content3" | jq -r '.2.sm.webp')
+              content4=$(echo "$content3" | jq -r '."1.sm.webp"')
+              content5=$(echo "$content3" | jq -r '."2.sm.webp"')
 
               echo "Content3: $content3"
               echo "Content4: $content4"
