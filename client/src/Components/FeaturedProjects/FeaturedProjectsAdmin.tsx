@@ -126,7 +126,9 @@ function FeaturedProjectsAdmin() {
       if (project.image) {
         formData.append(project.image.name, project.image);
          // Map the file name to the project's `imageUrl`
-        formData.append(`mapping[${project.image.name}]`, project.imageUrl);
+        const mapping = []
+        mapping.push(project.imageUrl)
+        formData.append("mapping", JSON.stringify(mapping));
         console.log(formData.getAll(project.image.name))
       }
     });
