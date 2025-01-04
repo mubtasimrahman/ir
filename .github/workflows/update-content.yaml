@@ -16,41 +16,48 @@ on:
         required: false
         type: string
       mapping:
-        description: Mapping between old and new image
+        description: Mapping between old and new images
         required: false
         type: string
 
 jobs:
   update-content:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Write the updated JSON content to the file
+      # Step 2: Conditional JSON update
       - name: Update JSON file
+        if: inputs.content && inputs.filePath
         run: |
-          $content = @"
-          ${{ inputs.content }}
-          "@
-          Set-Content -Path "${{ inputs.filePath }}" -Value $content
+          echo "Updating JSON file..."
+          content='${{ inputs.content }}'
+          # Parse JSON content to remove "uploadedFiles"
+          echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
 
-      # Step 3: Upload images if any exist
-      - name: Upload new images
+      # Step 3: Decode and replace images if mapping is provided
+      - name: Decode and replace images
+        if: inputs.imageFilePath && inputs.mapping
         run: |
-          mkdir -p "${{ inputs.imageFilePath }}"
-          for image in *.webp; do
-            [ -f "$image" ] && mv "$image" "${{ inputs.imageFilePath }}"
-          done
+          echo "Decoding and replacing images..."
+          mapping='${{ inputs.mapping }}'
+          imageFilePath='${{ inputs.imageFilePath }}'
+
+          # Iterate over mapping
+          echo "$mapping" | jq -r 'to_entries[] | "echo \"\(.key)\" | base64 --decode > \"$imageFilePath/\(.value)\""' | bash
 
       # Step 4: Commit and push changes
       - name: Commit and push changes
         run: |
+          echo "Committing changes..."
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git add ${{ inputs.filePath }}
-          git add ${{ inputs.imageFilePath }}
-          git commit -m "Update content and upload images via GitHub Actions" || echo "No changes to commit"
+          git add "${{ inputs.filePath }}"
+          if [ -n "${{ inputs.imageFilePath }}" ]; then
+            git add "${{ inputs.imageFilePath }}"
+          fi
+          git commit -m "Update content and images via GitHub Actions" || echo "No changes to commit"
           git push

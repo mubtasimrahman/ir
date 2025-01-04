@@ -50,6 +50,20 @@ function FeaturedProjectsAdmin() {
     value: string | File
   ) => {
     if (field === "image") {
+
+      const file = value as File;
+      // Check if the file name already exists in other projects
+    const isDuplicate = projects.some(
+      (project, projectIndex) =>
+        projectIndex !== index && project.image?.name === file.name
+    );
+
+    if (isDuplicate) {
+      window.alert(`The image file "${file.name}" is already in use. Please choose a different file.`);
+      return; // Exit early to prevent updating the state
+    }  
+
+
       const previewContainer = document.querySelector(
         `.thumbnail-img[data-index="${index.toString()}"]`
       );
