@@ -43,10 +43,9 @@ jobs:
 
               echo "Content3: $content3"
               echo "Content4: $content4"
-              echo "Content5: $content5"
+              
 
-          # Parse JSON content to remove "uploadedFiles"
-          echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
+          
 
       - name: Deocode
         uses: akiojin/decode-base64-github-action@v0.1.0
