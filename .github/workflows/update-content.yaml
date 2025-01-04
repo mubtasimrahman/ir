@@ -42,14 +42,14 @@ jobs:
 
               content4=$(echo "$content3" | jq -r '."1.sm.webp"')
               content5=$(echo "$content3" | jq -r '."2.sm.webp"')
-
+              echo "Content4: $content4"
               # Save content4 to GITHUB_ENV for use in subsequent steps
               echo "CONTENT4=$content4" >> $GITHUB_ENV
 
           # Parse JSON content to remove "uploadedFiles"
           echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
 
-      - name: Deocode
+      - name: Decode
         uses: akiojin/decode-base64-github-action@v0.1.0
         id: decode-base64
         with:
