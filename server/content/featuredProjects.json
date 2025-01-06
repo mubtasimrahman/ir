@@ -23,12 +23,19 @@
   },
   {
     "name": "ANN",
-    "services": ["Video Editing", "Videography"],
+    "services": [
+      "Video Editing",
+      "Videography"
+    ],
     "imageUrl": "ANN.webp"
   },
   {
     "name": "Unimart",
-    "services": ["Video Editing", "Videography", "Motion Design"],
+    "services": [
+      "Video Editing",
+      "Videography",
+      "Motion Design"
+    ],
     "imageUrl": "Unimart.webp"
   }
 ]
