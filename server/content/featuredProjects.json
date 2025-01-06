@@ -5,10 +5,9 @@
       "Graphic Design",
       "Motion Design",
       "Video Editing",
-      "AI Image Generation",
-      "Artwork and Illustrations"
+      "AI Image Generation"
     ],
-    "imageUrl": "IPDC.webp"
+    "imageUrl": "1.sm.webp"
   },
   {
     "name": "Smart Air",
@@ -17,19 +16,26 @@
       "Web Design",
       "Motion Design",
       "Video Editing",
-      "AI Image Generation"
+      "AI Image Generation",
+      "A"
     ],
     "imageUrl": "Smart Air.webp"
   },
   {
     "name": "ANN",
-    "services": ["Video Editing", "Videography"],
+    "services": [
+      "Video Editing",
+      "Videography"
+    ],
     "imageUrl": "ANN.webp"
   },
   {
     "name": "Unimart",
-    "services": ["Video Editing", "Videography", "Motion Design"],
-    "imageUrl": "Unimart.webp"
+    "services": [
+      "Video Editing",
+      "Videography",
+      "Motion Design"
+    ],
+    "imageUrl": "2.sm.webp"
   }
 ]
-
