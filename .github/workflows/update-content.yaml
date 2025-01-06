@@ -1,5 +1,4 @@
 name: update-content
-
 on:
   workflow_dispatch:
     inputs:
@@ -11,79 +10,22 @@ on:
         description: Path to the JSON file
         required: true
         type: string
-      imageFilePath:
-        description: Directory for uploaded images
-        required: false
-        type: string
-      mapping:
-        description: Mapping between old and new images
-        required: false
-        type: string
-
 jobs:
-  update-content:
-    runs-on: ubuntu-latest
-
+  update-json:
+    runs-on: windows-latest
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Step 2: Conditional JSON update
       - name: Update JSON file
-        id: update-json-file
-        if: inputs.content && inputs.filePath
         run: |
-          echo "Updating JSON file..."
-          content='${{ inputs.content }}'
-              content2=$(echo "$content" | jq -r '.[4]')
-
-              content3=$(echo "$content2" | jq -r '.uploadedFiles')
-
-              content4=$(echo "$content3" | jq -r '."1.sm.webp"')
-              content5=$(echo "$content3" | jq -r '."2.sm.webp"')
-              echo "Content4: $content4"
-              # Save content4 to GITHUB_ENV for use in subsequent steps
-              echo "CONTENT4=$content4" >> $GITHUB_ENV
-
-          # Parse JSON content to remove "uploadedFiles"
-          echo "$content" | jq 'map(del(.uploadedFiles))' > "${{ inputs.filePath }}"
-
-      - name: Decode
-        uses: akiojin/decode-base64-github-action@v0.1.0
-        id: decode-base64
-        with:
-          base64: ${{ env.CONTENT4 }}
-      - name: Save Decoded Image
-        run: |
-          # Save the decoded binary data into an image file
-          echo "${{ steps.decode-base64.outputs.decoded }}" | base64 --decode > decoded_image.webp
-
-          # Verify that the file was successfully created
-          file decoded_image.webp
-          ls -lh decoded_image.webp
-
-
-      # Step 3: Decode and replace images if mapping is provided
-      - name: Decode and replace images
-        if: inputs.imageFilePath && inputs.mapping
-        run: |
-          echo "Decoding and replacing images..."
-          mapping='${{ inputs.mapping }}'
-          imageFilePath='${{ inputs.imageFilePath }}'
-
-          # Iterate over mapping
-          echo "$mapping" | jq -r 'to_entries[] | "echo \"\(.key)\" | base64 --decode > \"$imageFilePath/\(.value)\""' | bash
-
-      # Step 4: Commit and push changes
+          $content = @"
+          ${{ inputs.content }}
+          "@
+          Set-Content -Path "${{ inputs.filePath }}" -Value $content
       - name: Commit and push changes
         run: |
-          echo "Committing changes..."
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git add "${{ inputs.filePath }}"
-          if [ -n "${{ inputs.imageFilePath }}" ]; then
-            git add "${{ inputs.imageFilePath }}"
-          fi
-          git commit -m "Update content and images via GitHub Actions" || echo "No changes to commit"
+          git add ${{ inputs.filePath }}
+          git commit -m "Update content via GitHub Actions"
           git push

@@ -30,7 +30,7 @@ interface FileMetadata {
 }
 
 const jsonFilePath = "server/content/featuredProjects.json";
-const imageFilePath = "client/src/asset/featuredProjects";
+const imageFilePath = "client/src/assets/featuredProjects";
 const endPoint =
   "https://us-central1-mythic-attic-446309-k5.cloudfunctions.net/updateFeaturedClients/triggerFeaturedProjects";
 
