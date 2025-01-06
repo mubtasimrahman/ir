@@ -5,9 +5,10 @@
       "Graphic Design",
       "Motion Design",
       "Video Editing",
-      "AI Image Generation"
+      "AI Image Generation",
+      "Artwork and Illustrations"
     ],
-    "imageUrl": "1.sm.webp"
+    "imageUrl": "IPDC.webp"
   },
   {
     "name": "Smart Air",
@@ -16,8 +17,7 @@
       "Web Design",
       "Motion Design",
       "Video Editing",
-      "AI Image Generation",
-      "A"
+      "AI Image Generation"
     ],
     "imageUrl": "Smart Air.webp"
   },
@@ -36,6 +36,6 @@
       "Videography",
       "Motion Design"
     ],
-    "imageUrl": "2.sm.webp"
+    "imageUrl": "Unimart.webp"
   }
 ]
