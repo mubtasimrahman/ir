@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import {  Routes, Route, BrowserRouter } from "react-router-dom"; // Correct import
+import {  Routes, Route, BrowserRouter } from "react-router";
 import PublicApp from "./PublicApp";
 const AdminApp = lazy(() => import("./AdminApp"));
 
