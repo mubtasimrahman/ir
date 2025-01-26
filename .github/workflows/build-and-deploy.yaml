@@ -35,7 +35,7 @@ jobs:
 
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
         #Upload artifact with name to path
           name: production-files
@@ -53,7 +53,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         #Download artifact with name and extract to path(Does not have to be same as upload)
         with:
           name: production-files
@@ -63,3 +63,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Path to download dir
+          publish_dir: client/dist
