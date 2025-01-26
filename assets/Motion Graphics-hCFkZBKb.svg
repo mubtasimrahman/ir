@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 154.29 159.44">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .31;
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_7);
+        opacity: .35;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: url(#Degradado_sin_nombre_8);
+        opacity: .32;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+    <radialGradient id="Degradado_sin_nombre_7" data-name="Degradado sin nombre 7" cx="76.22" cy="77.68" fx="76.22" fy="77.68" r="114.24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".37" stop-color="rgba(255, 255, 255, 0)" stop-opacity="0"/>
+      <stop offset=".51" stop-color="rgba(255, 255, 255, .03)" stop-opacity=".03"/>
+      <stop offset=".6" stop-color="rgba(255, 255, 255, .08)" stop-opacity=".08"/>
+      <stop offset=".68" stop-color="rgba(255, 255, 255, .15)" stop-opacity=".15"/>
+      <stop offset=".75" stop-color="rgba(255, 255, 255, .23)" stop-opacity=".23"/>
+      <stop offset=".8" stop-color="rgba(255, 255, 255, .34)" stop-opacity=".34"/>
+      <stop offset=".86" stop-color="rgba(255, 255, 255, .47)" stop-opacity=".47"/>
+      <stop offset=".91" stop-color="rgba(255, 255, 255, .61)" stop-opacity=".61"/>
+      <stop offset=".95" stop-color="rgba(255, 255, 255, .78)" stop-opacity=".78"/>
+      <stop offset=".99" stop-color="rgba(255, 255, 255, .96)" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <radialGradient id="Degradado_sin_nombre_8" data-name="Degradado sin nombre 8" cx="126.62" cy="-7.69" fx="126.62" fy="-7.69" r="153.95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".07" stop-color="rgba(255, 255, 255, .89)" stop-opacity=".89"/>
+      <stop offset=".27" stop-color="rgba(255, 255, 255, .63)" stop-opacity=".63"/>
+      <stop offset=".46" stop-color="rgba(255, 255, 255, .4)" stop-opacity=".4"/>
+      <stop offset=".63" stop-color="rgba(255, 255, 255, .23)" stop-opacity=".23"/>
+      <stop offset=".78" stop-color="rgba(255, 255, 255, .1)" stop-opacity=".1"/>
+      <stop offset=".91" stop-color="rgba(255, 255, 255, .03)" stop-opacity=".03"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_12" data-name="Layer 12">
+    <g id="Motion_Graphics" data-name="Motion Graphics">
+      <g>
+        <g>
+          <rect class="cls-2" width="154.29" height="159.44" rx="27.94" ry="27.94"/>
+          <rect class="cls-3" width="154.29" height="159.44" rx="27.94" ry="27.94"/>
+        </g>
+        <g class="cls-1">
+          <path class="cls-4" d="M111.78,62.91c0,1.66-1.34,3-3,3s-3-1.34-3-3,1.34-3,3-3,3,1.34,3,3h0Z"/>
+          <path class="cls-4" d="M123.19,29.72H34.37c-3.75,0-6.78,3.04-6.78,6.78v52.82c0,3.75,3.04,6.78,6.78,6.78h88.82c3.75,0,6.78-3.04,6.78-6.78v-52.82c0-3.75-3.04-6.78-6.78-6.78ZM93.78,64.41c0,.83-.67,1.5-1.5,1.5h0c-9.11,0-16.5,7.39-16.5,16.5h0c0,.83-.67,1.5-1.5,1.5h-3c-.83,0-1.5-.67-1.5-1.5h0c0-15.74-12.76-28.5-28.5-28.5h0c-.83,0-1.5-.67-1.5-1.5v-3c0-.83.67-1.5,1.5-1.5h1.5c13.12,0,24.45,7.71,29.76,18.82.47.98,1.77,1.14,2.49.33,3.85-4.38,9.47-7.15,15.75-7.15h1.5c.83,0,1.5.67,1.5,1.5v3ZM117.75,63.55c-.31,4.43-3.9,8.02-8.33,8.33-5.25.37-9.64-3.8-9.64-8.98s4.04-9,9-9,9.34,4.39,8.98,9.64Z"/>
+          <path class="cls-4" d="M30.73,119.95l9.6,9.68c1.35,1.36,3.56,1.36,4.91,0l9.6-9.68c1.34-1.35,1.34-3.53,0-4.88l-9.6-9.6c-1.35-1.35-3.54-1.35-4.89,0l-9.6,9.6c-1.35,1.35-1.35,3.53,0,4.88Z"/>
+          <path class="cls-4" d="M102.72,119.95l9.6,9.68c1.35,1.36,3.56,1.36,4.91,0l9.6-9.68c1.34-1.35,1.34-3.53,0-4.88l-9.6-9.6c-1.35-1.35-3.54-1.35-4.89,0l-9.6,9.6c-1.35,1.35-1.35,3.53,0,4.88Z"/>
+          <rect class="cls-4" x="63.78" y="114.5" width="6" height="6" rx="1.3" ry="1.3"/>
+          <rect class="cls-4" x="75.78" y="114.5" width="6" height="6" rx="1.32" ry="1.32"/>
+          <rect class="cls-4" x="87.78" y="114.5" width="6" height="6" rx="1.28" ry="1.28"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
