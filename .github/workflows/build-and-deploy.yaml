@@ -37,7 +37,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-        #Upload artifact with name to path
+        #Upload artifact with name from path
           name: production-files
           path: client/dist
 

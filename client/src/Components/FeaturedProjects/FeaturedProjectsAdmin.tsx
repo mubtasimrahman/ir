@@ -50,19 +50,19 @@ function FeaturedProjectsAdmin() {
     value: string | File
   ) => {
     if (field === "image") {
-
       const file = value as File;
       // Check if the file name already exists in other projects
-    const isDuplicate = projects.some(
-      (project, projectIndex) =>
-        projectIndex !== index && project.image?.name === file.name
-    );
+      const isDuplicate = projects.some(
+        (project, projectIndex) =>
+          projectIndex !== index && project.image?.name === file.name
+      );
 
-    if (isDuplicate) {
-      window.alert(`The image file "${file.name}" is already in use. Please choose a different file.`);
-      return; // Exit early to prevent updating the state
-    }  
-
+      if (isDuplicate) {
+        window.alert(
+          `The image file "${file.name}" is already in use. Please choose a different file.`
+        );
+        return; // Exit early to prevent updating the state
+      }
 
       const previewContainer = document.querySelector(
         `.thumbnail-img[data-index="${index.toString()}"]`
@@ -143,9 +143,9 @@ function FeaturedProjectsAdmin() {
     // Add new images to formData
     projects.forEach((project) => {
       if (project.image) {
-        formData.append(project.image.name, project.image); // Append file 
+        formData.append(project.image.name, project.image); // Append file
         // Map the file name to the project's `imageUrl`
-        mapping[project.image.name] = project.imageUrl
+        mapping[project.image.name] = project.imageUrl;
       }
     });
     formData.append("mapping", JSON.stringify(mapping));
