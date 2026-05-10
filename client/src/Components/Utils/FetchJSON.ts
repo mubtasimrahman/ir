@@ -6,6 +6,8 @@ interface Props<T extends { content: string }, U> {
   jsonShape?: T;
   setFormData: React.Dispatch<React.SetStateAction<U>>;
 }
+//change this to new repo name
+const currentRepo="backend-cms-integration"
 
 function FetchJSON<T extends { content: string }, U>({
   filePath,
@@ -16,7 +18,7 @@ function FetchJSON<T extends { content: string }, U>({
     async function fetchContent() {
       try {
         const response = await axios.get<T>(
-          `https://api.github.com/repos/mubtasimrahman/ir/contents/${filePath}?ref=backend-cms-integration`,
+          `https://api.github.com/repos/mubtasimrahman/ir/contents/${filePath}?ref=${currentRepo}`,
           {
             headers: { Accept: "application/vnd.github.v3+json" },
             signal: controller.signal, // Pass the abort signal
