@@ -1,0 +1,32 @@
+name: update-content
+# This workflow updates a JSON file in the repository with new content provided via workflow dispatch. It can be triggered manually from the GitHub Actions tab, allowing users to input the updated content and specify the path to the JSON file that needs to be updated. The workflow checks out the repository, updates the specified JSON file with the new content, and then commits and pushes the changes back to the repository.
+on:
+  workflow_dispatch:
+    inputs:
+      content:
+        description: Updated JSON content
+        required: true
+        type: string
+      filePath:
+        description: Path to the JSON file
+        required: true
+        type: string
+jobs:
+  update-json:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Update JSON file
+        run: |
+          $content = @"
+          ${{ inputs.content }}
+          "@
+          Set-Content -Path "${{ inputs.filePath }}" -Value $content
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add ${{ inputs.filePath }}
+          git commit -m "Update content via GitHub Actions"
+          git push
