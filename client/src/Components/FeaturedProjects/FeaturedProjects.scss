@@ -51,6 +51,18 @@ $card-padding-margin: 1rem;
   padding: 0;
 }
 
+.featured-project-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+}
+
 .service-tag {
   border-style: solid;
   border-color: var(--website-white-colour);
