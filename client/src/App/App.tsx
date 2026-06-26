@@ -1,6 +1,8 @@
 import { Suspense, lazy } from "react";
 import {  Routes, Route, BrowserRouter } from "react-router";
 import PublicApp from "./PublicApp";
+
+const AirPurifier = lazy(() => import("./AirPurifier"));
 const AdminApp = lazy(() => import("./AdminApp"));
 
 function App() {
@@ -8,6 +10,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PublicApp />} />
+        <Route
+          path="/air-purifier"
+          element={
+            <Suspense fallback={null}>
+              <AirPurifier />
+            </Suspense>
+          }
+        />
         <Route
           path="/tuntuni"
           element={
