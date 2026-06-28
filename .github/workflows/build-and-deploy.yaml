@@ -1,0 +1,68 @@
+name: build-and-deploy
+# This workflow builds the React app and deploys it to GitHub Pages whenever there is a push or pull request to the main branch, or when the update-content workflow completes successfully.  
+# Right now, updates to backend-cms-integration(which is the default branch) VIA CLI will not trigger this workflow so it wont make updates to the gh-pages branch and subsequently won't affect the live site.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_run:
+    workflows: [update-content]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    # condition to check if triggered by workflow_run and ensure success or check main (Push/Pull)
+    if: >
+      (github.event_name != 'workflow_run') || 
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Build
+        run: |
+          cd client
+          npm run build
+
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+        #Upload artifact with name from path
+          name: production-files
+          path: client/dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: windows-latest
+
+    # condition for deployment similar to the build job
+    if: >
+      (github.event_name != 'workflow_run') || 
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        #Download artifact with name and extract to path(Does not have to be same as upload)
+        with:
+          name: production-files
+          path: client/dist
+
+      - name: Publish to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Path to download dir
+          publish_dir: client/dist
