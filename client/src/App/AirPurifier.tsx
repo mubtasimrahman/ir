@@ -17,9 +17,7 @@ import BrandStoryNine from "../assets/airPurifier/brandStory/09.png";
 import BrandStoryTen from "../assets/airPurifier/brandStory/10.png";
 import AdditionalShadow from "../assets/airPurifier/brandStory/Additional shadow.webp";
 import BrandStoryBackdrop from "../assets/airPurifier/brandStory/Backdrop.png";
-import HeroVideoMp4 from "../assets/airPurifier/hero.mp4";
-import HeroVideoWebm from "../assets/airPurifier/hero-transparent.webm";
-import HeroPoster from "../assets/airPurifier/sky.jpg";
+import HeroVideo from "../assets/airPurifier/hero-transparent.webm";
 import SmartAirLogo from "../assets/airPurifier/logo-smart-air.webp";
 import SmarterHepaLogo from "../assets/airPurifier/logo-smarter-hepa.webp";
 import OwnedDigitalMediaImage from "../assets/airPurifier/owned-digital-media.webp";
@@ -283,7 +281,6 @@ function AirPurifier() {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const [previousMediaIndex, setPreviousMediaIndex] = useState<number | null>(null);
   const [aiSectionVisible, setAiSectionVisible] = useState(false);
-  const [socialReelsVisible, setSocialReelsVisible] = useState(false);
   const [isAiMuted, setIsAiMuted] = useState(false);
   const [activeAngleIndex, setActiveAngleIndex] = useState(0);
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
@@ -291,7 +288,6 @@ function AirPurifier() {
   const aiSectionRef = useRef<HTMLElement | null>(null);
   const activeAiVideoRef = useRef<HTMLVideoElement | null>(null);
   const ownedSectionRef = useRef<HTMLElement | null>(null);
-  const socialSectionRef = useRef<HTMLElement | null>(null);
   const brandStoryScrollRef = useRef<HTMLDivElement | null>(null);
   const carouselThumbsRef = useRef<HTMLDivElement | null>(null);
 
@@ -330,41 +326,6 @@ function AirPurifier() {
   }, []);
 
   useEffect(() => {
-    if (!socialSectionRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setSocialReelsVisible(entry.isIntersecting);
-      },
-      { rootMargin: "650px 0px", threshold: 0.01 }
-    );
-
-    observer.observe(socialSectionRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const socialVideos =
-      socialSectionRef.current?.querySelectorAll<HTMLVideoElement>("video");
-
-    socialVideos?.forEach((video) => {
-      video.muted = true;
-
-      if (!socialReelsVisible) {
-        video.pause();
-        return;
-      }
-
-      void video.play().catch(() => {
-        video.pause();
-      });
-    });
-  }, [socialReelsVisible]);
-
-  useEffect(() => {
     setIsAiMuted(aiMedia[activeMediaIndex].type !== "video");
   }, [activeMediaIndex]);
 
@@ -379,9 +340,12 @@ function AirPurifier() {
       return;
     }
 
-    void video.play().catch(() => {
-      setIsAiMuted(true);
-    });
+    const playAttempt = video.play();
+    if (playAttempt) {
+      void playAttempt.catch(() => {
+        setIsAiMuted(true);
+      });
+    }
   }, [activeMediaIndex, aiSectionVisible, isAiMuted]);
 
   useEffect(() => {
@@ -516,12 +480,9 @@ function AirPurifier() {
             loop
             muted
             playsInline
-            poster={HeroPoster}
-            preload="auto"
-          >
-            <source src={HeroVideoMp4} type="video/mp4" />
-            <source src={HeroVideoWebm} type="video/webm" />
-          </video>
+            preload="metadata"
+            src={HeroVideo}
+          />
         </section>
       <section className="air-purifier-intro" aria-label="Smart Air project overview">
           <div className="air-purifier-intro-content">
@@ -722,27 +683,15 @@ function AirPurifier() {
                               className="air-purifier-video-backdrop"
                               muted
                               playsInline
-                              preload="none"
-                              src={
-                                aiSectionVisible && position === "active"
-                                  ? media.src
-                                  : undefined
-                              }
+                              src={media.src}
                             />
-                            {/* eslint-disable-next-line jsx-a11y/media-has-caption -- Visual-only AI reel with no spoken dialogue. */}
                             <video
-                              aria-hidden="true"
                               className="air-purifier-video"
                               muted={position !== "active" || isAiMuted || !aiSectionVisible}
                               onEnded={position === "active" ? showNextMedia : undefined}
                               playsInline
-                              preload={aiSectionVisible && position === "active" ? "metadata" : "none"}
                               ref={position === "active" ? activeAiVideoRef : undefined}
-                              src={
-                                aiSectionVisible && position === "active"
-                                  ? media.src
-                                  : undefined
-                              }
+                              src={media.src}
                             />
                           </>
                         ) : (
@@ -904,7 +853,6 @@ function AirPurifier() {
         className="air-purifier-social-media"
         id="social-media-contents"
         aria-label="Social media contents portfolio"
-        ref={socialSectionRef}
       >
         <div className="air-purifier-social-folder">
           <span className="air-purifier-social-folder-shape" aria-hidden="true">
@@ -942,7 +890,6 @@ function AirPurifier() {
           src={SocialLeftLoop}
           alt=""
           aria-hidden="true"
-          loading="lazy"
         />
 
         <img
@@ -950,7 +897,6 @@ function AirPurifier() {
           src={SocialFolderEdge}
           alt=""
           aria-hidden="true"
-          loading="lazy"
         />
 
         <div className="air-purifier-social-reels" aria-hidden="true">
@@ -970,15 +916,14 @@ function AirPurifier() {
                     >
                       {isVideo ? (
                         <video
-                          autoPlay={socialReelsVisible}
+                          autoPlay
                           loop
                           muted
                           playsInline
-                          preload="none"
-                          src={socialReelsVisible ? media : undefined}
+                          src={media}
                         />
                       ) : (
-                        <img alt="" loading="lazy" src={media} />
+                        <img alt="" src={media} />
                       )}
                       <div className="air-purifier-social-card-ui">
                         <span className="air-purifier-social-heart"></span>
