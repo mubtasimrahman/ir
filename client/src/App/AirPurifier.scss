@@ -2507,10 +2507,6 @@
 
   .air-purifier-trusted-clients h3 {
     font-size: clamp(1.55rem, 7vw, 2.25rem);
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-weight: 400;
-    font-synthesis: none;
-    -webkit-font-smoothing: antialiased;
   }
 
   .air-purifier-trusted-logo-grid {
@@ -3011,7 +3007,6 @@
 @media screen and (width < 400px) {
   .air-purifier-trusted-clients h3 {
     font-size: clamp(1.42rem, 7.2vw, 1.75rem);
-    font-weight: 400;
   }
 
   .air-purifier-folder {
