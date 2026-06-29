@@ -1,5 +1,10 @@
 import type { CSSProperties, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import SmartAirOne from "../assets/allClients/Smart Air 1.webp";
+import SmartAirTwo from "../assets/allClients/Smart Air 2.webp";
+import SmartAirThree from "../assets/allClients/Smart Air 3.webp";
+import SmartAirFour from "../assets/allClients/Smart Air 4.webp";
+import SmartAirFive from "../assets/allClients/Smart Air 5.webp";
 import BrandStoryOne from "../assets/airPurifier/brandStory/01.png";
 import BrandStoryTwo from "../assets/airPurifier/brandStory/02.png";
 import BrandStoryThree from "../assets/airPurifier/brandStory/03.png";
@@ -12,26 +17,14 @@ import BrandStoryNine from "../assets/airPurifier/brandStory/09.png";
 import BrandStoryTen from "../assets/airPurifier/brandStory/10.png";
 import AdditionalShadow from "../assets/airPurifier/brandStory/Additional shadow.webp";
 import BrandStoryBackdrop from "../assets/airPurifier/brandStory/Backdrop.png";
+import HeroVideoMp4 from "../assets/airPurifier/hero.mp4";
 import HeroVideoWebm from "../assets/airPurifier/hero-transparent.webm";
+import HeroPoster from "../assets/airPurifier/sky.jpg";
 import SmartAirLogo from "../assets/airPurifier/logo-smart-air.webp";
 import SmarterHepaLogo from "../assets/airPurifier/logo-smarter-hepa.webp";
 import OwnedDigitalMediaImage from "../assets/airPurifier/owned-digital-media.webp";
-import PrintFolderStackOne from "../assets/airPurifier/print-folder-stack-1.webp";
-import PrintFolderStackTwo from "../assets/airPurifier/print-folder-stack-2.webp";
 import PrintSectionImage from "../assets/airPurifier/print.webp";
-import CleanCarouselVideo from "../assets/airPurifier/optimized/clean-carousel-slideshow.mp4";
-import HeroVideoMp4 from "../assets/airPurifier/optimized/hero.mp4";
-import SocialLeftLoop from "../assets/airPurifier/optimized/social-left-loop.mp4";
-import SocialReelBento from "../assets/airPurifier/optimized/social-reel-bento.mp4";
-import SocialReelChristmas from "../assets/airPurifier/optimized/social-reel-christmas.mp4";
-import SocialReelCompOne from "../assets/airPurifier/optimized/social-reel-comp-1.mp4";
-import SocialReelCompOneAlt from "../assets/airPurifier/optimized/social-reel-comp-1-alt.mp4";
-import SocialReelFreepikUpscale from "../assets/airPurifier/optimized/social-reel-freepik-upscale.mp4";
-import SocialReelFreepikWinter from "../assets/airPurifier/optimized/social-reel-freepik-winter.mp4";
-import SocialReelMagnific from "../assets/airPurifier/optimized/social-reel-magnific.mp4";
-import SocialReelQtThree from "../assets/airPurifier/optimized/social-reel-qt3.mp4";
-import SocialReelSmartAir from "../assets/airPurifier/optimized/social-reel-sa-reel.mp4";
-import SocialReelStopmotion from "../assets/airPurifier/optimized/social-reel-stopmotion.mp4";
+import CleanCarouselVideo from "../assets/airPurifier/clean-carousel-slideshow.mp4";
 import AiArtboardNine from "../assets/airPurifier/what-you-get/Artboard 9.webp";
 import AiChristmasSqair from "../assets/airPurifier/what-you-get/Christmas Sqair.webp";
 import AiCleanAir from "../assets/airPurifier/what-you-get/clean air copy.webp";
@@ -44,6 +37,17 @@ import SmallReferenceTwo from "../assets/airPurifier/what-you-give-us/Three Quar
 import SmallReferenceThree from "../assets/airPurifier/what-you-give-us/Front.webp";
 import SmallReferenceFour from "../assets/airPurifier/what-you-give-us/Back.webp";
 import SocialFolderEdge from "../assets/airPurifier/social-folder-edge.webp";
+import SocialLeftLoop from "../assets/airPurifier/social-left-loop.gif";
+import SocialReelBento from "../assets/airPurifier/social-reels/Bento Animate_1.mp4";
+import SocialReelChristmas from "../assets/airPurifier/social-reels/Christmas Dynamic.mp4";
+import SocialReelCompOne from "../assets/airPurifier/social-reels/Comp 1.mp4";
+import SocialReelCompOneAlt from "../assets/airPurifier/social-reels/Comp 1_1.mp4";
+import SocialReelFreepikUpscale from "../assets/airPurifier/social-reels/freepik_imagemp4-upscaled_1080x1920_60fps_50437.mp4";
+import SocialReelFreepikWinter from "../assets/airPurifier/social-reels/freepik__animate-the-provided-image-into-a-winter-miniature__39594.mp4";
+import SocialReelMagnific from "../assets/airPurifier/social-reels/magnific_video-upscale_43rlK509Aa.mp4";
+import SocialReelQtThree from "../assets/airPurifier/social-reels/QT3.mp4";
+import SocialReelSmartAir from "../assets/airPurifier/social-reels/SA Reel.mp4";
+import SocialReelStopmotion from "../assets/airPurifier/social-reels/Stopmotion.mp4";
 import StatHundredPlusImage from "../assets/airPurifier/stat-100plus.webp";
 import StatFourImage from "../assets/airPurifier/stat-4.webp";
 import StatMultimediaImage from "../assets/airPurifier/stat-multimedia.webp";
@@ -65,6 +69,33 @@ import StaticDustAllergy from "../assets/airPurifier/statics-carousel/Copy of Co
 import StaticHepaFilter from "../assets/airPurifier/statics-carousel/Hepa Filter 2.webp";
 import StaticBirthday from "../assets/airPurifier/statics-carousel/Birthday.webp";
 import "./AirPurifier.scss";
+
+const contentFolders = [
+  {
+    label: "Print Media",
+    href: "#print-media",
+    color: "blue",
+    images: [SmartAirOne, SmartAirTwo, SmartAirThree],
+  },
+  {
+    label: "Social Media Contents",
+    href: "#social-media-contents",
+    color: "pink",
+    images: [SmartAirTwo, SmartAirThree, SmartAirFour, SmartAirFive],
+  },
+  {
+    label: "Owned Digital Media",
+    href: "#owned-digital-media",
+    color: "green",
+    images: [SmartAirThree, SmartAirFour, SmartAirOne],
+  },
+  {
+    label: "AI Gen Images & Videos",
+    href: "#ai-gen-images-videos",
+    color: "yellow",
+    images: [SmartAirFour, SmartAirFive, SmartAirTwo, SmartAirOne],
+  },
+];
 
 const aiMedia = [
   { type: "video", src: CleanCarouselVideo, alt: "AI-generated air purifier carousel" },
@@ -210,65 +241,6 @@ const printMediaCarousel = [
   },
 ];
 
-interface FolderPreviewMedia {
-  src: string;
-  cropOrigin?: string;
-  cropScale?: number;
-}
-
-interface ContentFolder {
-  label: string;
-  href: string;
-  color: string;
-  media: FolderPreviewMedia[];
-  keepPreviewOrder?: boolean;
-}
-
-const contentFolders: ContentFolder[] = [
-  {
-    label: "Print Media",
-    href: "#print-media",
-    color: "blue",
-    keepPreviewOrder: true,
-    media: [
-      { src: PrintFolderStackOne },
-      { src: PrintFolderStackTwo },
-      { src: PrintSectionImage, cropOrigin: "62% 34%", cropScale: 2.2 },
-      { src: PrintSectionImage, cropOrigin: "23% 77%", cropScale: 2.25 },
-    ],
-  },
-  {
-    label: "Social Media Contents",
-    href: "#social-media-contents",
-    color: "pink",
-    media: printMediaCarousel
-      .slice(0, 4)
-      .map(({ image }) => ({ src: image })),
-  },
-  {
-    label: "Owned Digital Media",
-    href: "#owned-digital-media",
-    color: "green",
-    media: [
-      { src: OwnedDigitalMediaImage },
-      { src: BrandStoryOne },
-      { src: BrandStoryTwo },
-      { src: BrandStoryThree },
-    ],
-  },
-  {
-    label: "AI Gen Images & Videos",
-    href: "#ai-gen-images-videos",
-    color: "yellow",
-    media: [
-      { src: AiArtboardNine },
-      { src: AiChristmasSqair },
-      { src: AiCleanAir },
-      { src: SmallReferenceOne },
-    ],
-  },
-];
-
 const getCarouselPosition = (index: number, activeIndex: number) => {
   const totalItems = printMediaCarousel.length;
   const previousIndex = (activeIndex - 1 + totalItems) % totalItems;
@@ -310,41 +282,18 @@ function ScrollToContentsButton() {
 function AirPurifier() {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const [previousMediaIndex, setPreviousMediaIndex] = useState<number | null>(null);
-  const [aiMediaReady, setAiMediaReady] = useState(false);
   const [aiSectionVisible, setAiSectionVisible] = useState(false);
-  const [socialReelsReady, setSocialReelsReady] = useState(false);
   const [socialReelsVisible, setSocialReelsVisible] = useState(false);
   const [isAiMuted, setIsAiMuted] = useState(false);
   const [activeAngleIndex, setActiveAngleIndex] = useState(0);
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
-  const [contentsVisible, setContentsVisible] = useState(false);
   const [ownedVisible, setOwnedVisible] = useState(false);
-  const [printCarouselVisible, setPrintCarouselVisible] = useState(false);
-  const contentsSectionRef = useRef<HTMLElement | null>(null);
   const aiSectionRef = useRef<HTMLElement | null>(null);
   const activeAiVideoRef = useRef<HTMLVideoElement | null>(null);
   const ownedSectionRef = useRef<HTMLElement | null>(null);
   const socialSectionRef = useRef<HTMLElement | null>(null);
-  const printCarouselRef = useRef<HTMLElement | null>(null);
   const brandStoryScrollRef = useRef<HTMLDivElement | null>(null);
   const carouselThumbsRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!contentsSectionRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setContentsVisible(entry.isIntersecting);
-      },
-      { rootMargin: "120px 0px", threshold: 0.01 }
-    );
-
-    observer.observe(contentsSectionRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   useEffect(() => {
     if (!ownedSectionRef.current) return;
@@ -357,40 +306,6 @@ function AirPurifier() {
     );
 
     observer.observe(ownedSectionRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!printCarouselRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setPrintCarouselVisible(entry.isIntersecting);
-      },
-      { rootMargin: "120px 0px", threshold: 0.01 }
-    );
-
-    observer.observe(printCarouselRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!aiSectionRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setAiMediaReady(entry.isIntersecting);
-      },
-      { rootMargin: "240px 0px", threshold: 0.01 }
-    );
-
-    observer.observe(aiSectionRef.current);
 
     return () => {
       observer.disconnect();
@@ -419,26 +334,9 @@ function AirPurifier() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setSocialReelsReady(entry.isIntersecting);
-      },
-      { rootMargin: "240px 0px", threshold: 0.01 }
-    );
-
-    observer.observe(socialSectionRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!socialSectionRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
         setSocialReelsVisible(entry.isIntersecting);
       },
-      { threshold: 0.01 }
+      { rootMargin: "650px 0px", threshold: 0.01 }
     );
 
     observer.observe(socialSectionRef.current);
@@ -512,8 +410,6 @@ function AirPurifier() {
   }, [previousMediaIndex, activeMediaIndex]);
 
   useEffect(() => {
-    if (!printCarouselVisible) return;
-
     const carouselTimer = window.setInterval(() => {
       setActiveCarouselIndex(
         (currentIndex) => (currentIndex + 1) % printMediaCarousel.length
@@ -523,7 +419,7 @@ function AirPurifier() {
     return () => {
       window.clearInterval(carouselTimer);
     };
-  }, [printCarouselVisible]);
+  }, [activeCarouselIndex]);
 
   useEffect(() => {
     const thumbs = carouselThumbsRef.current;
@@ -537,8 +433,6 @@ function AirPurifier() {
   }, [activeCarouselIndex]);
 
   useEffect(() => {
-    if (!ownedVisible) return;
-
     const brandStoryTimer = window.setInterval(() => {
       if (!brandStoryScrollRef.current) return;
 
@@ -558,7 +452,7 @@ function AirPurifier() {
     return () => {
       window.clearInterval(brandStoryTimer);
     };
-  }, [ownedVisible]);
+  }, []);
 
   const showNextMedia = () => {
     setPreviousMediaIndex(activeMediaIndex);
@@ -622,10 +516,11 @@ function AirPurifier() {
             loop
             muted
             playsInline
+            poster={HeroPoster}
             preload="auto"
           >
-            <source src={HeroVideoWebm} type="video/webm" />
             <source src={HeroVideoMp4} type="video/mp4" />
+            <source src={HeroVideoWebm} type="video/webm" />
           </video>
         </section>
       <section className="air-purifier-intro" aria-label="Smart Air project overview">
@@ -708,10 +603,9 @@ function AirPurifier() {
 
         <div className="air-purifier-sky-flow">
           <section
-            className={`air-purifier-contents ${contentsVisible ? "is-visible" : ""}`}
+            className="air-purifier-contents"
             id={tableOfContentsId}
             aria-label="Air purifier portfolio table of contents"
-            ref={contentsSectionRef}
           >
             <div className="air-purifier-contents-copy">
               <h2>
@@ -739,44 +633,14 @@ function AirPurifier() {
                     <span className="air-purifier-folder-icon" aria-hidden="true"></span>
                     <span className="air-purifier-folder-label">{folder.label}</span>
                     <span className="air-purifier-folder-preview" aria-hidden="true">
-                      {folder.media.map((mediaItem, imageIndex) => {
-                        const isVideo = isVideoAsset(mediaItem.src);
-                        const previewStyle = {
-                          "--preview-index": imageIndex,
-                          "--preview-center": (folder.media.length - 1) / 2,
-                          "--preview-media-origin":
-                            mediaItem.cropOrigin ?? "center center",
-                          "--preview-media-scale": mediaItem.cropScale ?? 1,
-                          ...(folder.keepPreviewOrder
-                            ? { zIndex: folder.media.length - imageIndex }
-                            : {}),
-                        } as CSSProperties;
-
-                        return (
-                          <span
-                            className="air-purifier-folder-preview-card"
-                            key={`${mediaItem.src}-${imageIndex.toString()}`}
-                            style={previewStyle}
-                          >
-                            {isVideo ? (
-                              <video
-                                loop
-                                muted
-                                playsInline
-                                preload={contentsVisible ? "metadata" : "none"}
-                                src={contentsVisible ? mediaItem.src : undefined}
-                              />
-                            ) : (
-                              <img
-                                alt=""
-                                decoding="async"
-                                loading="lazy"
-                                src={mediaItem.src}
-                              />
-                            )}
-                          </span>
-                        );
-                      })}
+                      {folder.images.map((image, imageIndex) => (
+                        <img
+                          alt=""
+                          key={image}
+                          src={image}
+                          style={{ "--preview-index": imageIndex } as CSSProperties}
+                        />
+                      ))}
                     </span>
                   </a>
                 );
@@ -860,7 +724,7 @@ function AirPurifier() {
                               playsInline
                               preload="none"
                               src={
-                                aiMediaReady && position === "active"
+                                aiSectionVisible && position === "active"
                                   ? media.src
                                   : undefined
                               }
@@ -872,10 +736,10 @@ function AirPurifier() {
                               muted={position !== "active" || isAiMuted || !aiSectionVisible}
                               onEnded={position === "active" ? showNextMedia : undefined}
                               playsInline
-                              preload={aiMediaReady && position === "active" ? "metadata" : "none"}
+                              preload={aiSectionVisible && position === "active" ? "metadata" : "none"}
                               ref={position === "active" ? activeAiVideoRef : undefined}
                               src={
-                                aiMediaReady && position === "active"
+                                aiSectionVisible && position === "active"
                                   ? media.src
                                   : undefined
                               }
@@ -887,16 +751,12 @@ function AirPurifier() {
                               alt=""
                               aria-hidden="true"
                               className="air-purifier-video-backdrop"
-                              decoding="async"
-                              loading="lazy"
-                              src={aiMediaReady ? media.src : undefined}
+                              src={media.src}
                             />
                             <img
                               alt={media.alt}
                               className="air-purifier-video air-purifier-media-image"
-                              decoding="async"
-                              loading="lazy"
-                              src={aiMediaReady ? media.src : undefined}
+                              src={media.src}
                             />
                           </>
                         )}
@@ -925,9 +785,7 @@ function AirPurifier() {
                 </div>
                 <img
                   alt={`${angleOptions[activeAngleIndex].label} AI reference`}
-                  decoding="async"
-                  loading="lazy"
-                  src={aiMediaReady ? angleOptions[activeAngleIndex].image : undefined}
+                  src={angleOptions[activeAngleIndex].image}
                 />
                 <div className="air-purifier-angle-menu">
                   {angleOptions.map((option, index) => (
@@ -978,15 +836,11 @@ function AirPurifier() {
             alt=""
             aria-hidden="true"
             className="air-purifier-owned-shadow"
-            decoding="async"
-            loading="lazy"
             src={AdditionalShadow}
           />
           <img
             alt="Owned digital media portfolio collage"
             className="air-purifier-owned-still"
-            decoding="async"
-            loading="lazy"
             src={OwnedDigitalMediaImage}
           />
         </div>
@@ -999,8 +853,6 @@ function AirPurifier() {
           <img
             alt=""
             className="air-purifier-brand-story-backdrop"
-            decoding="async"
-            loading="lazy"
             src={BrandStoryBackdrop}
           />
 
@@ -1026,8 +878,6 @@ function AirPurifier() {
                     <img
                       alt={`Amazon brand story visual ${(index + 1).toString()}`}
                       className="air-purifier-brand-story-image"
-                      decoding="async"
-                      loading="lazy"
                       src={image}
                     />
                   </article>
@@ -1051,7 +901,7 @@ function AirPurifier() {
       </section>
 
       <section
-        className={`air-purifier-social-media ${socialReelsVisible ? "is-visible" : ""}`}
+        className="air-purifier-social-media"
         id="social-media-contents"
         aria-label="Social media contents portfolio"
         ref={socialSectionRef}
@@ -1087,15 +937,12 @@ function AirPurifier() {
           </ul>
         </div>
 
-        <video
-          autoPlay={socialReelsVisible}
+        <img
           className="air-purifier-social-left-loop"
-          src={socialReelsReady ? SocialLeftLoop : undefined}
+          src={SocialLeftLoop}
+          alt=""
           aria-hidden="true"
-          loop
-          muted
-          playsInline
-          preload="none"
+          loading="lazy"
         />
 
         <img
@@ -1103,7 +950,6 @@ function AirPurifier() {
           src={SocialFolderEdge}
           alt=""
           aria-hidden="true"
-          decoding="async"
           loading="lazy"
         />
 
@@ -1129,10 +975,10 @@ function AirPurifier() {
                           muted
                           playsInline
                           preload="none"
-                          src={socialReelsReady ? media : undefined}
+                          src={socialReelsVisible ? media : undefined}
                         />
                       ) : (
-                        <img alt="" decoding="async" loading="lazy" src={media} />
+                        <img alt="" loading="lazy" src={media} />
                       )}
                       <div className="air-purifier-social-card-ui">
                         <span className="air-purifier-social-heart"></span>
@@ -1149,9 +995,8 @@ function AirPurifier() {
 
       <section
         className="air-purifier-print-carousel"
-        id="social-media-visuals"
-        aria-label="Social media image carousel"
-        ref={printCarouselRef}
+        id="print-media"
+        aria-label="Print media image carousel"
       >
         <div className="air-purifier-carousel-copy">
           <h2>
@@ -1186,8 +1031,6 @@ function AirPurifier() {
                 <img
                   alt={item.label}
                   className="air-purifier-carousel-image"
-                  decoding="async"
-                  loading="lazy"
                   src={item.image}
                 />
               </figure>
@@ -1235,8 +1078,6 @@ function AirPurifier() {
                 <img
                   alt=""
                   className="air-purifier-carousel-thumb-image"
-                  decoding="async"
-                  loading="lazy"
                   src={item.image}
                 />
               </button>
@@ -1248,7 +1089,6 @@ function AirPurifier() {
 
       <section
         className="air-purifier-print-showcase"
-        id="print-media"
         aria-label="Print media showcase"
       >
         <div className="air-purifier-print-showcase-copy">
@@ -1333,8 +1173,6 @@ function AirPurifier() {
         <img
           alt="Print media campaign showcase"
           className="air-purifier-print-showcase-image"
-          decoding="async"
-          loading="lazy"
           src={PrintSectionImage}
         />
         <ScrollToContentsButton />
