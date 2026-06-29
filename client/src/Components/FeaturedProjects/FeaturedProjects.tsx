@@ -8,7 +8,6 @@ import ResolveImage from "../Utils/ResolveImage";
 import { isTouchScreenAndSmallViewport } from "../Utils/Touch&Viewport";
 // import LazyMask from "../WrapperComponents/LazyMask";
 import { useEffect, useRef } from "react";
-import { Link } from "react-router";
 
 interface FeaturedProjects {
   name: string;
@@ -97,19 +96,7 @@ function FeaturedProjects({ id }: { id: string }) {
                   <div className="container">
                     <div className="row justify-content-between align-item-center">
                       <h5 className="col-9 poppins-semibold card-title custom-width-smaller">
-                        {featuedProject.name === "Smart Air" ? (
-                          <Link
-                            className="featured-project-link"
-                            onClick={() => {
-                              window.scrollTo(0, 0);
-                            }}
-                            to="/air-purifier"
-                          >
-                            {featuedProject.name}
-                          </Link>
-                        ) : (
-                          featuedProject.name
-                        )}
+                        {featuedProject.name}
                       </h5>
                       {/* For beta version, no learn more */}
                       {/* <div className="col  button-container-fp poppins-regular ">
