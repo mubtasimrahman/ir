@@ -3,11 +3,7 @@
 //   initial-value: black;
 //   inherits: false;
 // }
-
-/* ^^ Above caused crashes with chromium with window resize and zooming in/out
-Using css @Property allows color to be animated but would cause crashes
-Using custom props with the normal synax, as in not using register property would not cause the transitions
-Only Register Prop worked for both */
+// ^^ Above caused crashes with chromium with window resize and zooming in/out
 
 .all-clients-container {
   /* 3 slides has to add up to 1320px(for largest viewport). The left and right slides only have exposed 

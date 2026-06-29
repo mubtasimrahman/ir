@@ -106,7 +106,7 @@ const slideDuration = 5000; // 5 seconds per slide
 const totalDuration = slides.length * slideDuration; // Total duration for all slides
 
 /* Register houdidi @property just once.This does not seem to make the component impure, as setting 
-the property later on with setProperty sets it specifically for THAT canvasElement. So having multiple 
+the propert later on with setPropertysets it specifically for THAT canvasElement. So having multiple 
 AllClients is also not problematic*/
 CSS.registerProperty({
   name: "--primary-color",
@@ -225,7 +225,7 @@ function AllClients() {
       }
     }
   }, [currentIndex]);
-/** This is a description of the foo function. */
+
   const handleSlideChange = (index: number) => {
     setCurrentIndex(index);
     setElapsedTime(index * slideDuration); // Update elapsed time based on the selected slide
