@@ -1,4 +1,4 @@
-import type { CSSProperties, FormEvent } from "react";
+import type { CSSProperties, SyntheticEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import SmartAirOne from "../assets/allClients/Smart Air 1.webp";
 import SmartAirTwo from "../assets/allClients/Smart Air 2.webp";
@@ -455,7 +455,7 @@ function AirPurifier() {
     });
   };
 
-  const handleContactFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleContactFormSubmit = (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
     const form = event.currentTarget;
     const emailInput = form.elements.namedItem("email") as HTMLInputElement | null;
 
