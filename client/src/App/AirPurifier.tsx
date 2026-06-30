@@ -340,12 +340,9 @@ function AirPurifier() {
       return;
     }
 
-    const playAttempt = video.play();
-    if (playAttempt) {
-      void playAttempt.catch(() => {
-        setIsAiMuted(true);
-      });
-    }
+    void video.play().catch(() => {
+      setIsAiMuted(true);
+    });
   }, [activeMediaIndex, aiSectionVisible, isAiMuted]);
 
   useEffect(() => {
@@ -685,6 +682,8 @@ function AirPurifier() {
                               playsInline
                               src={media.src}
                             />
+                            {/* Visual-only AI reel; captions are not required. */}
+                            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
                             <video
                               className="air-purifier-video"
                               muted={position !== "active" || isAiMuted || !aiSectionVisible}

@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity, no-duplicate-selectors -- Existing Air Purifier page uses intentional cascade ordering; preserve visual behavior before dependency updates. */
 .air-purifier-page {
   --air-page-gutter: clamp(1rem, 5vw, 5rem);
   --air-content-max: 86rem;
@@ -30,12 +31,15 @@
 .air-purifier-page h1 {
   font-size: clamp(4rem, 7vw, 6.5rem);
 }
+
 .air-purifier-page h2 {
   font-size: clamp(3rem, 5.4vw, 5.8rem);
 }
+
 .air-purifier-page h3 {
   font-size: clamp(1.6rem, 2.2vw, 2.4rem);
 }
+
 .air-purifier-page h4 {
   font-size: clamp(1.1rem, 1.6vw, 1.2rem);
 }
@@ -346,8 +350,7 @@
 .air-purifier-stat {
   display: grid;
   grid-template-rows: clamp(5.5rem, 8vw, 7.8rem) auto;
-  justify-items: center;
-  align-items: end;
+  place-items: end center;
   gap: clamp(0.35rem, 0.8vw, 0.7rem);
   min-width: 0;
   text-align: center;
@@ -475,7 +478,7 @@
   color: #050505;
   background: #ffe942;
   font-family: "Times New Roman MT Condensed", "Times New Roman", serif;
-  font-size: 1.04064em;
+  font-size: 1.0406em;
   font-style: italic;
   line-height: 0.64;
   letter-spacing: -0.03em;
@@ -502,7 +505,7 @@
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -0.42em -0.12em -0.42em;
+  inset: -0.42em -0.12em;
   border-radius: 0;
   background:
     radial-gradient(circle at 0.23em 0.23em, #64b5f6 0 0.23em, transparent 0.24em),
@@ -520,6 +523,7 @@
 .air-purifier-contents ~ section {
   color: #050505;
 }
+
 .air-purifier-contents *,
 .air-purifier-contents ~ section * {
   color: inherit;
@@ -1334,8 +1338,7 @@
 .air-purifier-brand-story-track {
   width: 100%;
   padding-block: clamp(1rem, 2vw, 1.6rem);
-  padding-inline-start: max(var(--air-page-gutter), clamp(13rem, 24vw, 30rem));
-  padding-inline-end: max(var(--air-page-gutter), clamp(6rem, 12vw, 15rem));
+  padding-inline: max(var(--air-page-gutter), clamp(13rem, 24vw, 30rem)) max(var(--air-page-gutter), clamp(6rem, 12vw, 15rem));
   display: flex;
   gap: clamp(1.2rem, 2.4vw, 2rem);
   overflow-x: auto;
@@ -1969,7 +1972,6 @@
 }
 
 .air-purifier-print-showcase {
-
   position: relative;
   min-height: 100vh;
   margin-top: 0;
@@ -2298,8 +2300,7 @@
   }
 
   .air-purifier-brand-story-track {
-    padding-inline-start: clamp(7rem, 14vw, 11rem);
-    padding-inline-end: clamp(3.8rem, 7vw, 5.5rem);
+    padding-inline: clamp(7rem, 14vw, 11rem) clamp(3.8rem, 7vw, 5.5rem);
   }
 
   .air-purifier-brand-story-card {
@@ -2566,14 +2567,7 @@
   }
 
   .air-purifier-angle-window {
-    top: var(--air-ai-photo-top);
-    right: calc(
-      var(--air-ai-video-right) +
-      var(--air-ai-video-width) -
-      var(--air-ai-photo-overlap)
-    );
-    bottom: auto;
-    left: auto;
+    inset: var(--air-ai-photo-top) calc(var(--air-ai-video-right) + var(--air-ai-video-width) - var(--air-ai-photo-overlap)) auto auto;
     width: var(--air-ai-photo-width);
   }
 
@@ -2624,8 +2618,7 @@
   }
 
   .air-purifier-brand-story-track {
-    padding-inline-start: 5rem;
-    padding-inline-end: 2.8rem;
+    padding-inline: 5rem 2.8rem;
     gap: 0.65rem;
   }
 
@@ -2956,7 +2949,7 @@
   }
 }
 
-@media screen and (max-width: 575.98px) {
+@media screen and (width <= 575.98px) {
   .air-purifier-social-media {
     padding-inline: 0;
   }
