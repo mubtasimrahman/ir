@@ -179,3 +179,76 @@ If the collaborator needs to work on any backend or Cloud Run logic, also inspec
 ---
 
 This document should help a new collaborator understand the existing content update pipeline, the current security gaps, and the key technical areas to review before making changes.
+
+====================================================
+## June 23 Rollback / Revert Notes
+## Context
+A new Air Purifier project page was added under /air-purifier. The work was started on/around June 23 while a new collaborator was still learning the repo structure and in the process, some air purifier-related work was mistakenly merged into branches.
+The later goal became:
+1. Return the main branch to the state it had before the Air Purifier work.
+2. Clean backend-cms-integration from the project-add-new-pages merge.
+3. Keep project-add-new-pages as the future working/deployment branch.
+All rollback work was done using normal git revert commits rather than git reset hard or history rewriting.
+
+## Why the Git history looks messy
+The history looks messy because several corrective commits were made while trying to undo the Air Purifier-related changes safely.
+Air Purifier work was first added on project-add-new-pages.
+That work was merged into main through PR #4 and PR #5.
+main was later merged back into project-add-new-pages.
+project-add-new-pages was also merged into backend-cms-integration through PR #7.
+PR #4 on main was reverted once, then reapplied during troubleshooting, then reverted again.
+PR #5 on main was reverted.
+Follow-up Air Purifier commits were reverted on project-add-new-pages.
+PR #7 was reverted on backend-cms-integration.
+No force push was used. The messy history is mostly the result of safe revert commits being used instead of deleting or rewriting shared history.
+
+## What was reverted on main
+The Air Purifier work entered main mainly through:
+Merge pull request #4 from mubtasimrahman/project-add-new-pages
+Merge pull request #5 from mubtasimrahman/project-add-new-pages
+
+The following rollback actions were ultimately made on main:
+Revert "Merge pull request #5 from mubtasimrahman/project-add-new-pages"
+Revert "Merge pull request #4 from mubtasimrahman/project-add-new-pages"
+
+The final state of main is that the Air Purifier page is no longer present in source code. But in live website the air purifier page still appears due to the failed build/deploy after reverting PR #4.
+
+## Why the main build/deploy failed after reverting PR #4
+After main was reverted back toward its older state, GitHub Actions ran the older workflow: front-end.yaml. That old workflow uses: actions/upload-artifact@v3
+GitHub now blocks/deprecates that artifact action version. Because of that, the workflow failed very early with an error about deprecated actions/upload-artifact: v3.
+This failure was expected after restoring the older main state. It does not necessarily mean the source code itself failed to build. It means the old deployment workflow is no longer accepted by GitHub Actions. When the revert build/deploy on main failed, the reverted build was not successfully published to gh-pages. Therefore, Hostinger continued serving the last successfully deployed gh-pages version. Hence, that previous successful deployment still includes: /air-purifier. So the live website still shows the Air Purifier page even after main source code has been cleaned. 
+
+## What was reverted on project-add-new-pages
+project-add-new-pages contains the Air Purifier development history and is intended to be used for future work/deployment.The following follow-up Air Purifier commits were reverted on project-add-new-pages:
+Revert "Optimize Air Purifier page performance"
+Revert "Fix Air Purifier mobile Safari video behavior"
+Important: the base Air Purifier page still exists on project-add-new-pages because Add Air Purifier project page was not reverted there. This was intentional because project-add-new-pages is expected to remain the branch for future Air Purifier/page work.
+Reverting Add Air Purifier project page on project-add-new-pages would remove the base Air Purifier page, route, styles, and assets from that branch.
+
+## What was reverted on backend-cms-integration
+Air Purifier-related commits appeared in backend-cms-integration because project-add-new-pages was merged into it through PR #7. To clean backend-cms-integration, the following revert was made and pushed:
+Revert "Merge pull request #7 from mubtasimrahman/project-add-new-pages"
+This revert removed the Air Purifier/project-add-new-pages changes from backend-cms-integration.
+
+## Current state summary
+
+## Main : 
+has been returned toward the old pre-Air-Purifier state. Air Purifier references were not found in client when checked on main. GitHub Actions from main fails because the old workflow uses deprecated actions/upload-artifact@v3.
+
+## Project-add-new-pages: 
+still exists as the future work branch. The optimization and mobile Safari video behavior commits were reverted there. The base Air Purifier page still exists there intentionally.
+
+## Backend-cms-integration: 
+has had PR #7 reverted and pushed. 
+
+## Gh-pages: 
+still contains the last successful deployed build. This is why the live website still shows/air-purifier until a successful deployment updates gh-pages and Hostinger serves the new build.
+
+## Future plan
+- Do not continue Air Purifier development from main.
+- Keep main as the old/restored branch.
+- Use project-add-new-pages for future Air Purifier/page work.
+- Update the GitHub Actions workflow on project-add-new-pages so build/deploy runs from project-add-new-pages instead of main.
+Do not manually edit gh-pages.
+If Air Purifier development should continue, keep the page work on project-add-new-pages, update the workflow there, and deploy from that branch after review.
+
