@@ -1,4 +1,4 @@
-import axios, { CanceledError } from "axios";
+import axios, { CanceledError, isAxiosError } from "axios";
 import { useEffect } from "react";
 
 interface Props<T extends { content: string }, U> {
@@ -32,7 +32,7 @@ function FetchJSON<T extends { content: string }, U>({
 
         setFormData(parsedContent as U);
       } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
+        if (isAxiosError(error)) {
           throw error;
         } else {
           throw error;
