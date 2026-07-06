@@ -1,4 +1,4 @@
-@import "../../../scss/mixins";
+@use "../../../scss/mixins" as *;
 
 // variables
 $smaller-font: 0.8rem;

@@ -1,4 +1,4 @@
-@import "./mixins";
+@use "./mixins" as *;
 @import "../node_modules/bootstrap/scss/functions";
 
 $progress-bg: #f2f2f230;

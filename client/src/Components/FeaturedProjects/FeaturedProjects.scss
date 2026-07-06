@@ -1,4 +1,4 @@
-@import "../../../scss/mixins";
+@use "../../../scss/mixins" as *;
 
 $button-font-size: max(0.7rem, 11px);
 $card-padding-margin: 1rem;
