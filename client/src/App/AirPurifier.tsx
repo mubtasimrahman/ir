@@ -508,6 +508,10 @@ function AirPurifier() {
         <div className="air-purifier-bg-layer" aria-hidden="true"></div>
 
         <section className="air-purifier-hero" aria-label="Cleaner Air portfolio">
+          <div className="air-purifier-main-site-bar">
+            <span>visit our main website</span>
+            <a href="https://irrealvisuals.com/">irrealvisuals.com</a>
+          </div>
           <video
             autoPlay
             className="air-purifier-hero-video"
