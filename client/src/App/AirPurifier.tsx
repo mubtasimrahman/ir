@@ -1,10 +1,5 @@
 import type { CSSProperties, SyntheticEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-import SmartAirOne from "../assets/allClients/Smart Air 1.webp";
-import SmartAirTwo from "../assets/allClients/Smart Air 2.webp";
-import SmartAirThree from "../assets/allClients/Smart Air 3.webp";
-import SmartAirFour from "../assets/allClients/Smart Air 4.webp";
-import SmartAirFive from "../assets/allClients/Smart Air 5.webp";
 import BrandStoryOne from "../assets/airPurifier/brandStory/01.png";
 import BrandStoryTwo from "../assets/airPurifier/brandStory/02.png";
 import BrandStoryThree from "../assets/airPurifier/brandStory/03.png";
@@ -21,6 +16,8 @@ import HeroVideo from "../assets/airPurifier/hero-transparent.webm";
 import SmartAirLogo from "../assets/airPurifier/logo-smart-air.webp";
 import SmarterHepaLogo from "../assets/airPurifier/logo-smarter-hepa.webp";
 import OwnedDigitalMediaImage from "../assets/airPurifier/owned-digital-media.webp";
+import PrintFolderStackOne from "../assets/airPurifier/print-folder-stack-1.webp";
+import PrintFolderStackTwo from "../assets/airPurifier/print-folder-stack-2.webp";
 import PrintSectionImage from "../assets/airPurifier/print.webp";
 import CleanCarouselVideo from "../assets/airPurifier/clean-carousel-slideshow.mp4";
 import AiArtboardNine from "../assets/airPurifier/what-you-get/Artboard 9.webp";
@@ -67,33 +64,6 @@ import StaticDustAllergy from "../assets/airPurifier/statics-carousel/Copy of Co
 import StaticHepaFilter from "../assets/airPurifier/statics-carousel/Hepa Filter 2.webp";
 import StaticBirthday from "../assets/airPurifier/statics-carousel/Birthday.webp";
 import "./AirPurifier.scss";
-
-const contentFolders = [
-  {
-    label: "Print Media",
-    href: "#print-media",
-    color: "blue",
-    images: [SmartAirOne, SmartAirTwo, SmartAirThree],
-  },
-  {
-    label: "Social Media Contents",
-    href: "#social-media-contents",
-    color: "pink",
-    images: [SmartAirTwo, SmartAirThree, SmartAirFour, SmartAirFive],
-  },
-  {
-    label: "Owned Digital Media",
-    href: "#owned-digital-media",
-    color: "green",
-    images: [SmartAirThree, SmartAirFour, SmartAirOne],
-  },
-  {
-    label: "AI Gen Images & Videos",
-    href: "#ai-gen-images-videos",
-    color: "yellow",
-    images: [SmartAirFour, SmartAirFive, SmartAirTwo, SmartAirOne],
-  },
-];
 
 const aiMedia = [
   { type: "video", src: CleanCarouselVideo, alt: "AI-generated air purifier carousel" },
@@ -239,6 +209,63 @@ const printMediaCarousel = [
   },
 ];
 
+interface FolderPreviewMedia {
+  src: string;
+  cropOrigin?: string;
+  cropScale?: number;
+}
+
+interface ContentFolder {
+  label: string;
+  href: string;
+  color: string;
+  media: FolderPreviewMedia[];
+  keepPreviewOrder?: boolean;
+}
+
+const contentFolders: ContentFolder[] = [
+  {
+    label: "Print Media",
+    href: "#print-media",
+    color: "blue",
+    keepPreviewOrder: true,
+    media: [
+      { src: PrintFolderStackOne },
+      { src: PrintFolderStackTwo },
+      { src: PrintSectionImage, cropOrigin: "62% 34%", cropScale: 2.2 },
+      { src: PrintSectionImage, cropOrigin: "23% 77%", cropScale: 2.25 },
+    ],
+  },
+  {
+    label: "Social Media Contents",
+    href: "#social-media-contents",
+    color: "pink",
+    media: printMediaCarousel.slice(0, 4).map(({ image }) => ({ src: image })),
+  },
+  {
+    label: "Owned Digital Media",
+    href: "#owned-digital-media",
+    color: "green",
+    media: [
+      { src: OwnedDigitalMediaImage },
+      { src: BrandStoryOne },
+      { src: BrandStoryTwo },
+      { src: BrandStoryThree },
+    ],
+  },
+  {
+    label: "AI Gen Images & Videos",
+    href: "#ai-gen-images-videos",
+    color: "yellow",
+    media: [
+      { src: AiArtboardNine },
+      { src: AiChristmasSqair },
+      { src: AiCleanAir },
+      { src: SmallReferenceOne },
+    ],
+  },
+];
+
 const getCarouselPosition = (index: number, activeIndex: number) => {
   const totalItems = printMediaCarousel.length;
   const previousIndex = (activeIndex - 1 + totalItems) % totalItems;
@@ -258,22 +285,32 @@ const getCarouselPosition = (index: number, activeIndex: number) => {
 const tableOfContentsId = "air-purifier-contents";
 
 function ScrollToContentsButton() {
-  const scrollToContents = () => {
-    document.getElementById(tableOfContentsId)?.scrollIntoView({
+  const scrollToContents = (event?: SyntheticEvent) => {
+    event?.preventDefault();
+
+    const target = document.getElementById(tableOfContentsId);
+    if (!target) return;
+
+    window.scrollTo({
       behavior: "smooth",
-      block: "start",
+      top: target.getBoundingClientRect().top + window.scrollY,
     });
   };
 
   return (
-    <button
+    <a
       aria-label="Scroll to table of content"
       className="air-purifier-section-jump"
-      onClick={scrollToContents}
-      type="button"
+      href={`#${tableOfContentsId}`}
+      onClick={(event) => {
+        scrollToContents(event);
+      }}
+      onTouchEnd={(event) => {
+        scrollToContents(event);
+      }}
     >
       <span className="air-purifier-section-jump-icon" aria-hidden="true"></span>
-    </button>
+    </a>
   );
 }
 
@@ -591,14 +628,33 @@ function AirPurifier() {
                     <span className="air-purifier-folder-icon" aria-hidden="true"></span>
                     <span className="air-purifier-folder-label">{folder.label}</span>
                     <span className="air-purifier-folder-preview" aria-hidden="true">
-                      {folder.images.map((image, imageIndex) => (
-                        <img
-                          alt=""
-                          key={image}
-                          src={image}
-                          style={{ "--preview-index": imageIndex } as CSSProperties}
-                        />
-                      ))}
+                      {folder.media.map((mediaItem, imageIndex) => {
+                        const previewStyle = {
+                          "--preview-index": imageIndex,
+                          "--preview-center": (folder.media.length - 1) / 2,
+                          "--preview-media-origin":
+                            mediaItem.cropOrigin ?? "center center",
+                          "--preview-media-scale": mediaItem.cropScale ?? 1,
+                          ...(folder.keepPreviewOrder
+                            ? { zIndex: folder.media.length - imageIndex }
+                            : {}),
+                        } as CSSProperties;
+
+                        return (
+                          <span
+                            className="air-purifier-folder-preview-card"
+                            key={`${mediaItem.src}-${imageIndex.toString()}`}
+                            style={previewStyle}
+                          >
+                            <img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src={mediaItem.src}
+                            />
+                          </span>
+                        );
+                      })}
                     </span>
                   </a>
                 );
@@ -939,8 +995,8 @@ function AirPurifier() {
 
       <section
         className="air-purifier-print-carousel"
-        id="print-media"
-        aria-label="Print media image carousel"
+        id="social-media-visuals"
+        aria-label="Social media image carousel"
       >
         <div className="air-purifier-carousel-copy">
           <h2>
@@ -1033,6 +1089,7 @@ function AirPurifier() {
 
       <section
         className="air-purifier-print-showcase"
+        id="print-media"
         aria-label="Print media showcase"
       >
         <div className="air-purifier-print-showcase-copy">

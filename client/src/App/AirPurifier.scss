@@ -59,6 +59,7 @@
   background: rgb(255 255 255 / 88%);
   box-shadow: 0 0.5rem 1.2rem rgb(0 0 0 / 16%);
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .air-purifier-section-jump:hover,
@@ -637,23 +638,35 @@
   pointer-events: none;
 }
 
-.air-purifier-folder-preview img {
+.air-purifier-folder-preview-card {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 58%;
   aspect-ratio: 1.1;
-  object-fit: cover;
+  display: block;
+  overflow: hidden;
   border: 0.2rem solid white;
   border-radius: 0.35rem;
+  background: #fff;
   box-shadow: 0 0.65rem 1.35rem rgb(31 91 121 / 26%);
   transform:
     translate(-50%, -50%)
-    rotate(calc((var(--preview-index) - 1.5) * 9deg))
+    rotate(calc((var(--preview-index) - var(--preview-center)) * 9deg))
     translate(
-      calc((var(--preview-index) - 1.5) * 1.15rem),
-      calc((var(--preview-index) - 1.5) * -0.45rem)
+      calc((var(--preview-index) - var(--preview-center)) * 1.15rem),
+      calc((var(--preview-index) - var(--preview-center)) * -0.45rem)
     );
+}
+
+.air-purifier-folder-preview-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--preview-media-origin, center center);
+  transform: scale(var(--preview-media-scale, 1));
+  transform-origin: var(--preview-media-origin, center center);
 }
 
 .air-purifier-folder:hover .air-purifier-folder-preview,
@@ -1378,26 +1391,32 @@
   display: grid;
   place-items: center;
   border: 0;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 88%);
-  box-shadow: 0 0.75rem 1.5rem rgb(18 76 112 / 22%);
+  background: transparent;
   transform: translateY(-50%);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .air-purifier-brand-story-button:hover {
-  background: #fff;
+  background: transparent;
+}
+
+.air-purifier-brand-story-button:focus-visible {
+  border-radius: 0.2rem;
+  outline: 0.14rem solid rgb(45 81 151 / 72%);
+  outline-offset: 0.2rem;
 }
 
 .air-purifier-brand-story-button-icon {
-  width: 0.85rem;
+  width: clamp(0.95rem, 1.7vw, 1.25rem);
   aspect-ratio: 1;
-  border-top: 0.16rem solid #2d5197;
-  border-left: 0.16rem solid #2d5197;
+  border-top: 0.28rem solid #fff;
+  border-left: 0.28rem solid #fff;
+  filter: drop-shadow(0 0.12rem 0.22rem rgb(18 76 112 / 35%));
 }
 
 .air-purifier-brand-story-button-prev {
-  left: clamp(0.8rem, 2vw, 1.5rem);
+  left: clamp(0.15rem, 0.8vw, 0.65rem);
 }
 
 .air-purifier-brand-story-button-prev .air-purifier-brand-story-button-icon {
@@ -1405,7 +1424,7 @@
 }
 
 .air-purifier-brand-story-button-next {
-  right: clamp(0.8rem, 2vw, 1.5rem);
+  right: clamp(0.15rem, 0.8vw, 0.65rem);
 }
 
 .air-purifier-brand-story-button-next .air-purifier-brand-story-button-icon {
@@ -2507,6 +2526,10 @@
 
   .air-purifier-trusted-clients h3 {
     font-size: clamp(1.55rem, 7vw, 2.25rem);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
   }
 
   .air-purifier-trusted-logo-grid {
@@ -2570,6 +2593,12 @@
     width: var(--air-ai-photo-width);
   }
 
+  .air-purifier-angle-menu {
+    top: 78%;
+    left: calc(100% - 1.1rem);
+    width: min(6.48rem, 32vw);
+  }
+
   .air-purifier-owned-media {
     --air-owned-padding: clamp(1rem, 5vw, 1.5rem);
 
@@ -2612,6 +2641,10 @@
     gap: 0.65rem;
   }
 
+  .air-purifier-brand-story-shell {
+    transform: translate(0.8rem, 1.35rem);
+  }
+
   .air-purifier-brand-story-copy h2 {
     font-size: clamp(1rem, 5vw, 1.7rem);
   }
@@ -2626,7 +2659,23 @@
   }
 
   .air-purifier-brand-story-button {
-    width: 2.1rem;
+    top: 53%;
+    width: clamp(1.85rem, 7.3vw, 2.35rem);
+  }
+
+  .air-purifier-brand-story-button-prev {
+    left: clamp(-0.65rem, -1.8vw, -0.45rem);
+  }
+
+  .air-purifier-brand-story-button-next {
+    right: clamp(0.15rem, 0.8vw, 0.65rem);
+  }
+
+  .air-purifier-owned-media > .air-purifier-section-jump {
+    right: clamp(0.45rem, 2.3vw, 0.9rem);
+    bottom: clamp(0.45rem, 2.4vw, 0.9rem);
+    z-index: 80;
+    pointer-events: auto;
   }
 
   .air-purifier-social-media {
@@ -2999,6 +3048,7 @@
 @media screen and (width < 400px) {
   .air-purifier-trusted-clients h3 {
     font-size: clamp(1.42rem, 7.2vw, 1.75rem);
+    font-weight: 400;
   }
 
   .air-purifier-folder {
