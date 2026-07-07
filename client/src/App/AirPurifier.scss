@@ -100,6 +100,12 @@
   background-repeat: no-repeat;
 }
 
+.air-purifier-bg-group-safari .air-purifier-bg-layer {
+  background-position: center 0;
+  background-size: 100vw auto;
+  background-repeat: no-repeat;
+}
+
 
 .air-purifier-page > section,
 .air-purifier-bg-group > section {
@@ -2468,6 +2474,12 @@
 
   .air-purifier-bg-layer {
     background-position: center -19vw;
+  }
+
+  .air-purifier-bg-group-safari .air-purifier-bg-layer {
+    background-position: center 0;
+    background-size: 100vw auto;
+    background-repeat: no-repeat;
   }
 
   .air-purifier-hero,

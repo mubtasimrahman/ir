@@ -12,7 +12,8 @@ import BrandStoryNine from "../assets/airPurifier/brandStory/09.png";
 import BrandStoryTen from "../assets/airPurifier/brandStory/10.png";
 import AdditionalShadow from "../assets/airPurifier/brandStory/Additional shadow.webp";
 import BrandStoryBackdrop from "../assets/airPurifier/brandStory/Backdrop.png";
-import HeroVideo from "../assets/airPurifier/hero-transparent.webm";
+import HeroSafariVideo from "../assets/airPurifier/hero.mp4";
+import HeroTransparentVideo from "../assets/airPurifier/hero-transparent.webm";
 import SmartAirLogo from "../assets/airPurifier/logo-smart-air.webp";
 import SmarterHepaLogo from "../assets/airPurifier/logo-smarter-hepa.webp";
 import OwnedDigitalMediaImage from "../assets/airPurifier/owned-digital-media.webp";
@@ -64,6 +65,20 @@ import StaticDustAllergy from "../assets/airPurifier/statics-carousel/Copy of Co
 import StaticHepaFilter from "../assets/airPurifier/statics-carousel/Hepa Filter 2.webp";
 import StaticBirthday from "../assets/airPurifier/statics-carousel/Birthday.webp";
 import "./AirPurifier.scss";
+
+const shouldUseSafariHeroVideo = () => {
+  if (typeof navigator === "undefined") return false;
+
+  const { maxTouchPoints, platform, userAgent, vendor } = navigator;
+  const isIosDevice = /iPad|iPhone|iPod/i.test(userAgent);
+  const isTouchIpad = platform === "MacIntel" && maxTouchPoints > 1;
+  const isAppleSafari =
+    vendor.includes("Apple") &&
+    /Safari/i.test(userAgent) &&
+    !/(Chrome|Chromium|CriOS|FxiOS|EdgiOS|OPiOS|Android)/i.test(userAgent);
+
+  return isIosDevice || isTouchIpad || isAppleSafari;
+};
 
 const aiMedia = [
   { type: "video", src: CleanCarouselVideo, alt: "AI-generated air purifier carousel" },
@@ -315,6 +330,8 @@ function ScrollToContentsButton() {
 }
 
 function AirPurifier() {
+  const [usesSafariHeroVideo] = useState(() => shouldUseSafariHeroVideo());
+  const heroVideoSrc = usesSafariHeroVideo ? HeroSafariVideo : HeroTransparentVideo;
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const [previousMediaIndex, setPreviousMediaIndex] = useState<number | null>(null);
   const [aiSectionVisible, setAiSectionVisible] = useState(false);
@@ -504,7 +521,11 @@ function AirPurifier() {
 
   return (
     <main className="air-purifier-page">
-      <div className="air-purifier-bg-group">
+      <div
+        className={`air-purifier-bg-group ${
+          usesSafariHeroVideo ? "air-purifier-bg-group-safari" : ""
+        }`}
+      >
         <div className="air-purifier-bg-layer" aria-hidden="true"></div>
 
         <section className="air-purifier-hero" aria-label="Cleaner Air portfolio">
@@ -514,12 +535,14 @@ function AirPurifier() {
           </div>
           <video
             autoPlay
-            className="air-purifier-hero-video"
+            className={`air-purifier-hero-video ${
+              usesSafariHeroVideo ? "air-purifier-hero-video-safari" : ""
+            }`}
             loop
             muted
             playsInline
             preload="metadata"
-            src={HeroVideo}
+            src={heroVideoSrc}
           />
         </section>
       <section className="air-purifier-intro" aria-label="Smart Air project overview">
