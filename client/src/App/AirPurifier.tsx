@@ -44,6 +44,16 @@ import SocialReelMagnific from "../assets/airPurifier/social-reels/magnific_vide
 import SocialReelQtThree from "../assets/airPurifier/social-reels/QT3.mp4";
 import SocialReelSmartAir from "../assets/airPurifier/social-reels/SA Reel.mp4";
 import SocialReelStopmotion from "../assets/airPurifier/social-reels/Stopmotion.mp4";
+import SocialReelBentoPoster from "../assets/airPurifier/social-reels/posters/bento-animate-1.jpg";
+import SocialReelChristmasPoster from "../assets/airPurifier/social-reels/posters/christmas-dynamic.jpg";
+import SocialReelCompOnePoster from "../assets/airPurifier/social-reels/posters/comp-1.jpg";
+import SocialReelCompOneAltPoster from "../assets/airPurifier/social-reels/posters/comp-1-1.jpg";
+import SocialReelFreepikUpscalePoster from "../assets/airPurifier/social-reels/posters/freepik-upscaled.jpg";
+import SocialReelFreepikWinterPoster from "../assets/airPurifier/social-reels/posters/freepik-winter-miniature.jpg";
+import SocialReelMagnificPoster from "../assets/airPurifier/social-reels/posters/magnific-video-upscale.jpg";
+import SocialReelQtThreePoster from "../assets/airPurifier/social-reels/posters/qt3.jpg";
+import SocialReelSmartAirPoster from "../assets/airPurifier/social-reels/posters/sa-reel.jpg";
+import SocialReelStopmotionPoster from "../assets/airPurifier/social-reels/posters/stopmotion.jpg";
 import StatHundredPlusImage from "../assets/airPurifier/stat-100plus.webp";
 import StatFourImage from "../assets/airPurifier/stat-4.webp";
 import StatMultimediaImage from "../assets/airPurifier/stat-multimedia.webp";
@@ -114,22 +124,22 @@ const brandStorySlides = [
 const socialMediaThreads = [
   {
     variant: "thread-one",
-    images: [
-      SocialReelCompOneAlt,
-      SocialReelSmartAir,
-      SocialReelChristmas,
-      SocialReelQtThree,
-      SocialReelFreepikWinter,
+    items: [
+      { poster: SocialReelCompOneAltPoster, video: SocialReelCompOneAlt },
+      { poster: SocialReelSmartAirPoster, video: SocialReelSmartAir },
+      { poster: SocialReelChristmasPoster, video: SocialReelChristmas },
+      { poster: SocialReelQtThreePoster, video: SocialReelQtThree },
+      { poster: SocialReelFreepikWinterPoster, video: SocialReelFreepikWinter },
     ],
   },
   {
     variant: "thread-two",
-    images: [
-      SocialReelFreepikUpscale,
-      SocialReelBento,
-      SocialReelMagnific,
-      SocialReelCompOne,
-      SocialReelStopmotion,
+    items: [
+      { poster: SocialReelFreepikUpscalePoster, video: SocialReelFreepikUpscale },
+      { poster: SocialReelBentoPoster, video: SocialReelBento },
+      { poster: SocialReelMagnificPoster, video: SocialReelMagnific },
+      { poster: SocialReelCompOnePoster, video: SocialReelCompOne },
+      { poster: SocialReelStopmotionPoster, video: SocialReelStopmotion },
     ],
   },
 ];
@@ -138,8 +148,6 @@ const trustedClients = [
   { name: "Smart Air", logo: SmartAirLogo },
   { name: "Smarter HEPA", logo: SmarterHepaLogo },
 ];
-
-const isVideoAsset = (asset: string) => /\.(mp4|webm)(?:[?#].*)?$/i.test(asset);
 
 const printMediaCarousel = [
   {
@@ -344,6 +352,7 @@ function AirPurifier() {
   const ownedSectionRef = useRef<HTMLElement | null>(null);
   const brandStoryScrollRef = useRef<HTMLDivElement | null>(null);
   const carouselThumbsRef = useRef<HTMLDivElement | null>(null);
+  const socialReelsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!ownedSectionRef.current) return;
@@ -446,6 +455,39 @@ function AirPurifier() {
       behavior: "smooth",
     });
   }, [activeCarouselIndex]);
+
+  useEffect(() => {
+    const reels = socialReelsRef.current;
+    if (!reels) return;
+
+    const videos = Array.from(reels.querySelectorAll<HTMLVideoElement>("video"));
+    const cleanups = videos.map((video) => {
+      const playVideo = () => {
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        void video.play().catch(() => undefined);
+      };
+
+      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        playVideo();
+      }
+
+      video.addEventListener("loadeddata", playVideo);
+      video.addEventListener("canplay", playVideo);
+
+      return () => {
+        video.removeEventListener("loadeddata", playVideo);
+        video.removeEventListener("canplay", playVideo);
+      };
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => {
+        cleanup();
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const brandStoryTimer = window.setInterval(() => {
@@ -981,31 +1023,37 @@ function AirPurifier() {
           aria-hidden="true"
         />
 
-        <div className="air-purifier-social-reels" aria-hidden="true">
+        <div
+          className="air-purifier-social-reels"
+          aria-hidden="true"
+          ref={socialReelsRef}
+        >
           {socialMediaThreads.map((thread) => (
             <div
               className={`air-purifier-social-thread air-purifier-social-${thread.variant}`}
               key={thread.variant}
             >
               <div className="air-purifier-social-track">
-                {[...thread.images, ...thread.images].map((media, index) => {
-                  const isVideo = isVideoAsset(media);
+                {[...thread.items, ...thread.items].map((media, index) => {
+                  const isDuplicatePoster = index >= thread.items.length;
 
                   return (
                     <div
                       className="air-purifier-social-card"
-                      key={`${thread.variant}-${media}-${index.toString()}`}
+                      key={`${thread.variant}-${media.video}-${index.toString()}`}
                     >
-                      {isVideo ? (
+                      {isDuplicatePoster ? (
+                        <img alt="" loading="lazy" src={media.poster} />
+                      ) : (
                         <video
                           autoPlay
                           loop
                           muted
                           playsInline
-                          src={media}
+                          poster={media.poster}
+                          preload="auto"
+                          src={media.video}
                         />
-                      ) : (
-                        <img alt="" src={media} />
                       )}
                       <div className="air-purifier-social-card-ui">
                         <span className="air-purifier-social-heart"></span>
