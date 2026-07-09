@@ -1,5 +1,5 @@
 import type { CSSProperties, SyntheticEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import BrandStoryOne from "../assets/airPurifier/brandStory/01.png";
 import BrandStoryTwo from "../assets/airPurifier/brandStory/02.png";
 import BrandStoryThree from "../assets/airPurifier/brandStory/03.png";
@@ -100,6 +100,56 @@ const aiMedia = [
   { type: "image", src: AiSqairSizeTwo, alt: "Person carrying an air purifier" },
   { type: "image", src: AiSqairSize, alt: "Air purifier in a home interior" },
 ] as const;
+
+const aiPreloadTimeoutMs = 6000;
+const aiPreloadPromises = new Map<string, Promise<void>>();
+const aiPreloadedImages = new Map<string, HTMLImageElement>();
+const aiPreloadedVideos = new Map<string, HTMLVideoElement>();
+
+const preloadAiMedia = (index: number) => {
+  if (typeof window === "undefined") return Promise.resolve();
+
+  const media = aiMedia[index];
+  const existingPreload = aiPreloadPromises.get(media.src);
+  if (existingPreload) return existingPreload;
+
+  const preloadPromise = new Promise<void>((resolve) => {
+    let isResolved = false;
+
+    const finish = () => {
+      if (isResolved) return;
+      isResolved = true;
+      window.clearTimeout(timeoutId);
+      resolve();
+    };
+
+    const timeoutId = window.setTimeout(finish, aiPreloadTimeoutMs);
+
+    if (media.type === "image") {
+      const image = new Image();
+      image.decoding = "async";
+      image.onload = finish;
+      image.onerror = finish;
+      image.src = media.src;
+      aiPreloadedImages.set(media.src, image);
+      return;
+    }
+
+    const video = document.createElement("video");
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
+    video.src = media.src;
+    video.addEventListener("loadeddata", finish, { once: true });
+    video.addEventListener("canplay", finish, { once: true });
+    video.addEventListener("error", finish, { once: true });
+    video.load();
+    aiPreloadedVideos.set(media.src, video);
+  });
+
+  aiPreloadPromises.set(media.src, preloadPromise);
+  return preloadPromise;
+};
 
 const angleOptions = [
   { label: "Top Down", image: SmallReferenceOne },
@@ -353,6 +403,23 @@ function AirPurifier() {
   const brandStoryScrollRef = useRef<HTMLDivElement | null>(null);
   const carouselThumbsRef = useRef<HTMLDivElement | null>(null);
   const socialReelsRef = useRef<HTMLDivElement | null>(null);
+  const mediaTransitionRequestRef = useRef(0);
+
+  const queueMediaTransition = useCallback(
+    (nextIndex: number) => {
+      const transitionRequest = mediaTransitionRequestRef.current + 1;
+      mediaTransitionRequestRef.current = transitionRequest;
+      const currentIndex = activeMediaIndex;
+
+      void preloadAiMedia(nextIndex).then(() => {
+        if (mediaTransitionRequestRef.current !== transitionRequest) return;
+
+        setPreviousMediaIndex(currentIndex);
+        setActiveMediaIndex(nextIndex);
+      });
+    },
+    [activeMediaIndex]
+  );
 
   useEffect(() => {
     if (!ownedSectionRef.current) return;
@@ -393,6 +460,13 @@ function AirPurifier() {
   }, [activeMediaIndex]);
 
   useEffect(() => {
+    if (!aiSectionVisible) return;
+
+    void preloadAiMedia(activeMediaIndex);
+    void preloadAiMedia((activeMediaIndex + 1) % aiMedia.length);
+  }, [activeMediaIndex, aiSectionVisible]);
+
+  useEffect(() => {
     const video = activeAiVideoRef.current;
     if (!video || aiMedia[activeMediaIndex].type !== "video") return;
 
@@ -412,14 +486,13 @@ function AirPurifier() {
     if (!aiSectionVisible || aiMedia[activeMediaIndex].type !== "image") return;
 
     const mediaTimer = window.setTimeout(() => {
-      setPreviousMediaIndex(activeMediaIndex);
-      setActiveMediaIndex((activeMediaIndex + 1) % aiMedia.length);
+      queueMediaTransition((activeMediaIndex + 1) % aiMedia.length);
     }, 4000);
 
     return () => {
       window.clearTimeout(mediaTimer);
     };
-  }, [activeMediaIndex, aiSectionVisible]);
+  }, [activeMediaIndex, aiSectionVisible, queueMediaTransition]);
 
   useEffect(() => {
     if (previousMediaIndex === null) return;
@@ -512,8 +585,7 @@ function AirPurifier() {
   }, []);
 
   const showNextMedia = () => {
-    setPreviousMediaIndex(activeMediaIndex);
-    setActiveMediaIndex((activeMediaIndex + 1) % aiMedia.length);
+    queueMediaTransition((activeMediaIndex + 1) % aiMedia.length);
   };
 
   const toggleAiSound = () => {
@@ -798,26 +870,18 @@ function AirPurifier() {
                         key={`${position}-${media.src}`}
                       >
                         {media.type === "video" ? (
-                          <>
-                            <video
-                              aria-hidden="true"
-                              autoPlay={aiSectionVisible && position === "active"}
-                              className="air-purifier-video-backdrop"
-                              muted
-                              playsInline
-                              src={media.src}
-                            />
-                            {/* Visual-only AI reel; captions are not required. */}
-                            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                            <video
-                              className="air-purifier-video"
-                              muted={position !== "active" || isAiMuted || !aiSectionVisible}
-                              onEnded={position === "active" ? showNextMedia : undefined}
-                              playsInline
-                              ref={position === "active" ? activeAiVideoRef : undefined}
-                              src={media.src}
-                            />
-                          </>
+                          /* Visual-only AI reel; captions are not required. */
+                          /* eslint-disable-next-line jsx-a11y/media-has-caption */
+                          <video
+                            autoPlay={aiSectionVisible && position === "active"}
+                            className="air-purifier-video"
+                            muted={position !== "active" || isAiMuted || !aiSectionVisible}
+                            onEnded={position === "active" ? showNextMedia : undefined}
+                            playsInline
+                            preload="auto"
+                            ref={position === "active" ? activeAiVideoRef : undefined}
+                            src={media.src}
+                          />
                         ) : (
                           <>
                             <img

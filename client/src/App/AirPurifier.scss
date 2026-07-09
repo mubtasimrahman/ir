@@ -893,7 +893,8 @@
   position: relative;
   aspect-ratio: 3 / 3.3;
   overflow: hidden;
-  background: #111;
+  background:
+    linear-gradient(180deg, rgb(223 246 255 / 96%) 0%, rgb(242 251 255 / 100%) 100%);
 }
 
 .air-purifier-media-slide {
