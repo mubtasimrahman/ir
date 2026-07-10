@@ -106,6 +106,12 @@
   background-repeat: no-repeat;
 }
 
+@media screen and (width >= 992px) {
+  .air-purifier-bg-group-safari .air-purifier-bg-layer {
+    background-position: center calc(100svh - 62.5vw);
+  }
+}
+
 
 .air-purifier-page > section,
 .air-purifier-bg-group > section {
@@ -325,6 +331,15 @@
   white-space: nowrap;
   text-transform: lowercase;
   transform: translateY(-19%);
+}
+
+@media screen and (width >= 992px) {
+  .air-purifier-trusted-clients h3 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 .air-purifier-trusted-logo-grid {
@@ -1168,6 +1183,48 @@
   pointer-events: auto;
 }
 
+@media screen and (width >= 992px) {
+  .air-purifier-sky-flow {
+    width: 100vw;
+    max-width: none;
+    margin-inline: calc(50% - 50vw);
+    background-color: #dff5fc;
+    background-size: 100% 100%, 50px 50px, 100% 100%, 100% auto;
+    background-position: center 70%, center 40%, center 50%, center -28.899rem;
+    background-repeat: no-repeat, repeat, repeat, no-repeat;
+    background-blend-mode: normal;
+  }
+
+  .air-purifier-ai-section {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .air-purifier-ai-stage {
+    --air-ai-video-right: clamp(12px, 2vw, 40px);
+    --air-ai-video-width: clamp(360px, 32vw, 616px);
+    --air-ai-reference-width: clamp(180px, 17vw, 328px);
+    --air-ai-frame-overlap: clamp(56px, 4.75vw, 88px);
+
+    min-height: clamp(520px, 46vw, 864px);
+    transform: translateY(var(--air-ai-section-lift));
+  }
+
+  .air-purifier-video-window {
+    right: var(--air-ai-video-right);
+    width: var(--air-ai-video-width);
+  }
+
+  .air-purifier-angle-window {
+    top: clamp(220px, 20vw, 384px);
+    right: calc(
+      var(--air-ai-video-right) + var(--air-ai-video-width) -
+      var(--air-ai-frame-overlap)
+    );
+    left: auto;
+    width: var(--air-ai-reference-width);
+  }
+}
+
 .air-purifier-angle-menu button:hover,
 .air-purifier-angle-menu button.active {
   background: #d7d7d7;
@@ -1752,6 +1809,35 @@
   top: -50%;
 }
 
+@media screen and (width >= 992px) {
+  .air-purifier-social-media {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 38vw);
+    gap: clamp(1.5rem, 3vw, 4rem);
+  }
+
+  .air-purifier-social-copy {
+    --air-social-copy-shift: 0rem;
+
+    justify-self: end;
+    width: min(100%, clamp(300px, 32vw, 560px));
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: clamp(24px, 3vw, 72px);
+    transform: none;
+  }
+
+  .air-purifier-social-copy p {
+    --air-social-summary-overhang: clamp(2.5rem, 5vw, 5rem);
+
+    width: calc(100% + var(--air-social-summary-overhang));
+    max-width: none;
+    margin-left: calc(0rem - var(--air-social-summary-overhang));
+    font-size: clamp(0.92rem, 1.4vw, 1.4rem);
+    text-wrap: pretty;
+    white-space: normal;
+  }
+}
+
 .air-purifier-print-carousel {
   position: relative;
   z-index: 1;
@@ -2096,6 +2182,17 @@
   color: #1f4d66;
   font-size: clamp(1rem, 1.55vw, 1.28rem);
   line-height: 1.35;
+}
+
+@media screen and (width >= 992px) {
+  .air-purifier-print-showcase-copy p {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .air-purifier-print-showcase-image {
+    clip-path: inset(2px 0 0);
+  }
 }
 
 .air-purifier-testimonial {
