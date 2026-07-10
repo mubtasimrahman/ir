@@ -1,15 +1,25 @@
 name: build-and-deploy
+
+# Previous behavior:
 # This workflow builds the React app and deploys it to GitHub Pages whenever there is a push or pull request to the main branch, or when the update-content workflow completes successfully.  
 # Right now, updates to backend-cms-integration(which is the default branch) VIA CLI will not trigger this workflow so it wont make updates to the gh-pages branch and subsequently won't affect the live site.
+
+#Updated Current behavior:A push to project-add-new-pages builds that branch
+# and publishes client/dist to gh-pages.
+# No pull request or merge into main.
+
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_run:
-    workflows: [update-content]
-    types:
-      - completed
+    branches: [project-add-new-pages]
+  #pull_request:
+    #branches: [main]
+  #workflow_run:
+    #workflows: [update-content]
+    #types:
+      #- completed
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -23,6 +33,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: client/package-lock.json
 
       - name: Install dependencies
         run: |
